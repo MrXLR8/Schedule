@@ -5,17 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Конструктор"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1024">
+        Title="Конструктор расписаний" Height="768" Width="1024">
+    
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="MenuButtonWithMargin">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="Image" x:Key="ImageWithMargin">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid x:Name="Global">
         <Grid.RowDefinitions>
             <RowDefinition Height="600" x:Name="ActionHold"/>
-            <RowDefinition Height="168" x:Name="MenuHold"/>
+            <RowDefinition Height="138" x:Name="MenuHold"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="1" BorderThickness="5" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-            <Border.BorderBrush>
-                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>
-            </Border.BorderBrush>
-        </Border>
+            <Border Grid.Row="1" BorderThickness="5" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>
+                </Border.BorderBrush>
+                    <StackPanel x:Name="MenuPanel" Orientation="Horizontal" Margin="10">
+                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Создать новое расписание" x:Name="newButton">
+                    <Image Style="{StaticResource ImageWithMargin}" Source="img/New.png"></Image>  
+                </Button>
+                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Открыть файл с расписанием" x:Name="openButton">
+                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Open.png"></Image>
+                </Button>
+                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Сохранить расписание" x:Name="saveButton">
+                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Save.png"></Image>
+                </Button>
+                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Сохранить расписание как" x:Name="saveAsButton">
+                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Save as.png"></Image>
+                </Button>
+                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Задать временные интервалы занятий" x:Name="IntervalButton">
+                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Interval.png"></Image>
+                </Button>
+                
+            </StackPanel>
+            </Border>
 
         <Grid x:Name="ActionGrid" Grid.Row="0">
             <Grid.ColumnDefinitions>

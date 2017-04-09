@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.26403.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Конструктор", "Конструктор\Конструктор.csproj", "{8B8F19F7-E15D-4AF8-9C74-685EA5E6BE91}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D1706B13-17EA-4188-B98E-03FBD3DA58EC} = {D1706B13-17EA-4188-B98E-03FBD3DA58EC}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ОбщийКод", "ОбщийКод\ОбщийКод.csproj", "{D1706B13-17EA-4188-B98E-03FBD3DA58EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{8B8F19F7-E15D-4AF8-9C74-685EA5E6BE91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B8F19F7-E15D-4AF8-9C74-685EA5E6BE91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B8F19F7-E15D-4AF8-9C74-685EA5E6BE91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1706B13-17EA-4188-B98E-03FBD3DA58EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1706B13-17EA-4188-B98E-03FBD3DA58EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1706B13-17EA-4188-B98E-03FBD3DA58EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1706B13-17EA-4188-B98E-03FBD3DA58EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

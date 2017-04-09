@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 namespace Конструктор
 {
     /// <summary>
@@ -24,5 +23,24 @@ namespace Конструктор
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void openButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<Group> testList = new List<Group>();
+            testList.Add(new Group("ПІ-1320"));
+            testList.Add(new Group("ПР-19"));
+            testList.Add(new Group("8-Б"));
+
+            GroupList.ItemsSource = testList;
+           // GroupList.ItemsSource = new[] { new { nameOfTheGroup = "TEST1" }, new { nameOfTheGroup = "TEST2" } };
+           
+            System.Diagnostics.Debug.Write("\n loaded");
+        }
     }
+
 }

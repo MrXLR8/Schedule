@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Конструктор"
         mc:Ignorable="d"
         Title="Конструктор расписаний" Height="768" Width="1024"
-       Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" 
+       Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Loaded="Window_Loaded" 
         >
 
     <Window.Resources>
@@ -26,42 +26,35 @@
             <RowDefinition Height="600" x:Name="ActionHold"/>
             <RowDefinition Height="138" x:Name="MenuHold"/>
         </Grid.RowDefinitions>
-        <Border Style="{StaticResource Borders}" Grid.Row="1" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-            <Border.BorderBrush>
-                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>
-            </Border.BorderBrush>
-            <StackPanel x:Name="MenuPanel" Orientation="Horizontal" Margin="10">
-                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Создать новое расписание" x:Name="newButton">
-                    <Image Style="{StaticResource ImageWithMargin}" Source="img/New.png"></Image>
-                </Button>
-                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Открыть файл с расписанием" x:Name="openButton">
-                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Open.png"></Image>
-                </Button>
-                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Сохранить расписание" x:Name="saveButton" IsEnabled="False">
-                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Save.png"/>
-                </Button>
-                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Сохранить расписание как" x:Name="saveAsButton" IsEnabled="False">
-                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Save as.png"></Image>
-                </Button>
-                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Задать временные интервалы занятий" x:Name="IntervalButton" IsEnabled="False">
-                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Interval.png"></Image>
-                </Button>
-
-            </StackPanel>
-        </Border>
-
+      
         <Grid x:Name="ActionGrid" Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="600"/>
                 <ColumnDefinition Width="600"/>
             </Grid.ColumnDefinitions>
-            <Border Style="{StaticResource Borders}" Grid.Column="0">
+            <Border x:Name="LeftPanel" Style="{StaticResource Borders}" Grid.Column="0">
                 <Border.BorderBrush>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>
                 </Border.BorderBrush>
+                <ListBox x:Name="GroupList" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+                    <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,5,5,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="img\Group.png" Grid.Column="0"/>
+                                <Button Width="90" Grid.Column="1" Content="{Binding Path=nameOfTheGroup}">
+                                   </Button>
+                                
+                            </Grid>
+                    </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </Border>
-            <Border Style="{StaticResource Borders}" Grid.Column="1" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
+            <Border x:Name="CenterPanel" Style="{StaticResource Borders}" Grid.Column="1" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
                 <TabControl>
                     <TabItem Header="Числитель" Width="297">
                         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" d:IsHidden="True">
@@ -87,12 +80,35 @@
                     <TabItem Header="Знаменатель" Width="297">Вторая вкладка</TabItem>
                 </TabControl>
                            </Border>
-            <Border Style="{StaticResource Borders}" Grid.Column="2" >
+            <Border x:Name="RightPanel" Style="{StaticResource Borders}" Grid.Column="2" >
                 <Border.BorderBrush>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>
                 </Border.BorderBrush>
             </Border>
         </Grid>
+        <Border x:Name="MenuPanel" Style="{StaticResource Borders}" Grid.Row="1" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>
+            </Border.BorderBrush>
+            <StackPanel x:Name="Menu" Orientation="Horizontal" Margin="10">
+                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Создать новое расписание" x:Name="newButton">
+                    <Image Style="{StaticResource ImageWithMargin}" Source="img/New.png" d:IsLocked="True"></Image>
+                </Button>
+                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Открыть файл с расписанием" x:Name="openButton" Click="openButton_Click">
+                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Open.png" d:IsLocked="True"></Image>
+                </Button>
+                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Сохранить расписание" x:Name="saveButton" IsEnabled="False">
+                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Save.png" d:IsLocked="True"/>
+                </Button>
+                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Сохранить расписание как" x:Name="saveAsButton" IsEnabled="False">
+                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Save as.png" d:IsLocked="True"></Image>
+                </Button>
+                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Задать временные интервалы занятий" x:Name="IntervalButton" IsEnabled="False">
+                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Interval.png" d:IsLocked="True"></Image>
+                </Button>
+
+            </StackPanel>
+        </Border>
 
 
     </Grid>

@@ -22,6 +22,7 @@ namespace Конструктор
     public partial class MainWindow : Window
     {
         public ObservableCollection<Group> testList { get; set; }
+        public ObservableCollection<LectionSwap> swapList { get; set; }
 
         public MainWindow()
         {
@@ -53,20 +54,39 @@ namespace Конструктор
 
         private void newButton_Click(object sender, RoutedEventArgs e)
         {
-            testList.Add(new Group("NEW ONE"));
-            
+            swapList = new ObservableCollection<LectionSwap>();
+            LectionSwap first = new LectionSwap(DateTime.Now,new Lection("Empir","Dub",305,2));
+            LectionSwap second = new LectionSwap(DateTime.Now, new Lection("Tryd","OOP", 108, 4));
+
+            swapList.Add(first);
+            swapList.Add(second);
+
+            swapGrid.ItemsSource = null;
+            swapGrid.ItemsSource = swapList;
+
         }
 
         private void deleteGroup_Click(object sender, RoutedEventArgs e)
         {
-                Button sent = (Button)sender;
-            Grid myGrid = (Grid)sent.Parent;
-            int rowIndex = Grid.GetColumn(sent);
-            ColumnDefinition rowDef = myGrid.ColumnDefinitions[rowIndex];
+            /* Button sent = (Button)sender;
+         Grid myGrid = (Grid)sent.Parent;
+         int rowIndex = Grid.GetColumn(sent);
+         ColumnDefinition rowDef = myGrid.ColumnDefinitions[rowIndex];
 
-            Label asd = (Label)GlobalMethods.getFromGrid(myGrid, 1, 0);
+         Label asd = (Label)GlobalMethods.getFromGrid(myGrid, 1, 0);
 
-            MessageBox.Show(asd.Content.ToString());
+         MessageBox.Show(asd.Content.ToString());
+         */
+           // swapList = new ObservableCollection<LectionSwap>();
+            LectionSwap first = new LectionSwap(DateTime.Now, new Lection("zzzz", "Dub", 305, 2));
+            LectionSwap second = new LectionSwap(DateTime.Now, new Lection("xxxxx", "OOP", 108, 4));
+
+            swapList.Add(first);
+            swapList.Add(second);
+
+            //swapGrid.ItemsSource = null;
+           // swapGrid.ItemsSource = swapList;
+
         }
     }
 

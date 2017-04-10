@@ -17,10 +17,7 @@ public static class GlobalMethods
       .First(f => Grid.GetRow(f) == 0 && Grid.GetColumn(f) == column);
     }
 }
-public abstract class Entry
-{
-    public string name { get; set; }
-} 
+
 
 public static class Collection
 {

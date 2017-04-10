@@ -56,6 +56,18 @@ namespace Конструктор
             testList.Add(new Group("NEW ONE"));
             
         }
+
+        private void deleteGroup_Click(object sender, RoutedEventArgs e)
+        {
+                Button sent = (Button)sender;
+            Grid myGrid = (Grid)sent.Parent;
+            int rowIndex = Grid.GetColumn(sent);
+            ColumnDefinition rowDef = myGrid.ColumnDefinitions[rowIndex];
+
+            Label asd = (Label)GlobalMethods.getFromGrid(myGrid, 1, 0);
+
+            MessageBox.Show(asd.Content.ToString());
+        }
     }
 
 }

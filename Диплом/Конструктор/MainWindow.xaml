@@ -26,10 +26,11 @@
             <RowDefinition Height="*" x:Name="ActionHold"/>
             <RowDefinition Height="0.2*" x:Name="MenuHold"/>
         </Grid.RowDefinitions>
-      
+ 
+        
         <Grid x:Name="ActionGrid" Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.7*" /> 
+                <ColumnDefinition  Width="0.7*" /> 
                 
                 <ColumnDefinition Width="2" />
                 
@@ -40,7 +41,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <GridSplitter  Width="Auto" Height="Auto" HorizontalAlignment="Stretch" ResizeDirection="Columns" Grid.Row="1" Grid.Column="1"  Panel.ZIndex="1"/>
+            <GridSplitter  Width="Auto" Height="Auto" ResizeBehavior="PreviousAndNext" HorizontalAlignment="Stretch" ResizeDirection="Columns" Grid.Row="1" Grid.Column="1"  Panel.ZIndex="1"/>
             <GridSplitter Width="Auto" Height="Auto" ResizeBehavior="PreviousAndNext" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="3"  Panel.ZIndex="1"/>
 
 
@@ -51,10 +52,38 @@
                 </Border.BorderBrush>
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition MinHeight="0,25" Height="0.05*" />
                         <RowDefinition Height="*" />
-                        <RowDefinition  MinHeight="60" Height="0.1*" />
+                        <RowDefinition  MinHeight="60" Height="0.07*" />
                     </Grid.RowDefinitions>
-                             <Grid Grid.Row="1">
+                    
+                    <Label Content="Список групп:" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+                    <ListBox x:Name="GroupList" Grid.Row="1"  Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=testList,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+
+                                <Grid Margin="0,5,5,5" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition MinWidth="18" Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <Image Source="img\Group.png" Grid.Column="0"/>
+
+                                    <Label Grid.Column="1" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" Content="{Binding name}"></Label>
+
+                                    <Button  Grid.Column="2" Click="deleteGroup_Click">
+                                        <Image Source="img\Trash.png"/>
+                                    </Button>
+
+
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <Grid Margin="2,0,2,0" Grid.Row="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="3*"/>
                                     <ColumnDefinition Width="*"/>
@@ -64,34 +93,19 @@
                             <RowDefinition MinHeight="30" Height="0.5*"/>
                         </Grid.RowDefinitions>
                                  
+                         
                         <Button Grid.Row="1" Grid.Column="1"  Content="+"/>
                         <TextBox Grid.Row="1" Grid.Column="0" TextAlignment="Center" VerticalContentAlignment="Center" />
 
-                        <Label Grid.Row="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Content="Добавление новой группы"> </Label>
+                        <Label Grid.Row="0" FontSize="10" HorizontalContentAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Content="Создать новую группу"> </Label>
                                  
                     </Grid>
 
-                    <ListBox x:Name="GroupList"  Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=testList,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
-                    <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        
-                        <Grid Margin="0,5,5,5" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="3*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="img\Group.png" Grid.Column="0"/>
-
-                                <Label Grid.Column="1" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" Content="{Binding name}"></Label>
-                                
-                                
-                                
-                            </Grid>
-                    </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
                 </Grid>
             </Border>
+            
+            
+            
             <Border x:Name="CenterPanel" Style="{StaticResource Borders}" Grid.Column="2" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
                 <TabControl>
                     <TabItem Header="Числитель" HorizontalContentAlignment="Stretch">
@@ -118,34 +132,47 @@
                     <TabItem Header="Знаменатель" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" HorizontalContentAlignment="Stretch">Вторая вкладка</TabItem>
                 </TabControl>
                            </Border>
+            
+            
+            
             <Border x:Name="RightPanel" Style="{StaticResource Borders}" Grid.Column="4" >
                 <Border.BorderBrush>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>
                 </Border.BorderBrush>
+               
             </Border>
         </Grid>
+        
+        
         <Border x:Name="MenuPanel" Style="{StaticResource Borders}" Grid.Row="1" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
             <Border.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>
             </Border.BorderBrush>
-            <StackPanel x:Name="Menu" Orientation="Horizontal" Margin="10">
-                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Создать новое расписание" x:Name="newButton" Click="newButton_Click">
+            <Grid x:Name="Menu"  Margin="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Создать новое расписание" x:Name="newButton" Click="newButton_Click">
                     <Image Style="{StaticResource ImageWithMargin}" Source="img/New.png" d:IsLocked="True"></Image>
                 </Button>
-                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Открыть файл с расписанием" x:Name="openButton" Click="openButton_Click">
+                <Button Grid.Column="1" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Открыть файл с расписанием" x:Name="openButton" Click="openButton_Click">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Open.png" d:IsLocked="True"></Image>
                 </Button>
-                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Сохранить расписание" x:Name="saveButton" IsEnabled="False">
+                <Button Grid.Column="2" Style="{StaticResource MenuButtonWithMargin}"  ToolTip="Сохранить расписание" x:Name="saveButton" IsEnabled="False">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Save.png" d:IsLocked="True"/>
                 </Button>
-                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Сохранить расписание как" x:Name="saveAsButton" IsEnabled="False">
+                <Button Grid.Column="3" Style="{StaticResource MenuButtonWithMargin}"  ToolTip="Сохранить расписание как" x:Name="saveAsButton" IsEnabled="False">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Save as.png" d:IsLocked="True"></Image>
                 </Button>
-                <Button Style="{StaticResource MenuButtonWithMargin}" Width="100" ToolTip="Задать временные интервалы занятий" x:Name="IntervalButton" IsEnabled="False">
+                <Button Grid.Column="4" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Задать временные интервалы занятий" x:Name="IntervalButton" IsEnabled="False">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Interval.png" d:IsLocked="True"></Image>
                 </Button>
 
-            </StackPanel>
+            </Grid>
         </Border>
 
 

@@ -4,12 +4,19 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
-    public static class Global
+public static class GlobalMethods
+{
+
+    public static UIElement getFromGrid(Grid _toLook, int column, int row)
     {
-     
+        return _toLook.Children
+      .Cast<UIElement>()
+      .First(f => Grid.GetRow(f) == 0 && Grid.GetColumn(f) == column);
     }
-
+}
 public abstract class Entry
 {
     public string name { get; set; }

@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Конструктор
+namespace Libary
 {
-   public class Group
+   public class Group: Entry
     {
-        public string nameOfTheGroup { get; set; }
         public Group(string _name)
         {
-            nameOfTheGroup = _name;
+            name= _name;
         }
-
     }
 }

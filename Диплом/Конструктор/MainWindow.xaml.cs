@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Libary;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +21,15 @@ namespace Конструктор
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<Group> testList { get; set; }
+
         public MainWindow()
         {
+            testList =  new ObservableCollection<Group>();
+            
             InitializeComponent();
+            DataContext = this;
+ 
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -31,15 +39,22 @@ namespace Конструктор
 
         private void openButton_Click(object sender, RoutedEventArgs e)
         {
-            List<Group> testList = new List<Group>();
+           
             testList.Add(new Group("ПІ-1320"));
             testList.Add(new Group("ПР-19"));
             testList.Add(new Group("8-Б"));
 
-            GroupList.ItemsSource = testList;
+
+            //GroupList.ItemsSource = testList;
            // GroupList.ItemsSource = new[] { new { nameOfTheGroup = "TEST1" }, new { nameOfTheGroup = "TEST2" } };
            
             System.Diagnostics.Debug.Write("\n loaded");
+        }
+
+        private void newButton_Click(object sender, RoutedEventArgs e)
+        {
+            testList.Add(new Group("NEW ONE"));
+            
         }
     }
 

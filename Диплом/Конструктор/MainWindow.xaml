@@ -21,7 +21,7 @@
         </Style>
     </Window.Resources>
 
-    <Grid x:Name="Global">
+    <Grid x:Name="GlobalGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" x:Name="ActionHold"/>
             <RowDefinition Height="0.2*" x:Name="MenuHold"/>
@@ -267,7 +267,7 @@
                 <Button Grid.Column="4" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Задать временные интервалы занятий" x:Name="IntervalButton" IsEnabled="False">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Interval.png" d:IsLocked="True"></Image>
                 </Button>
-                <Button Grid.Column="5" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Редактирование списка предметов,аудиторий" x:Name="ListsButton" IsEnabled="True">
+                <Button Grid.Column="5" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Редактирование списка предметов,аудиторий" x:Name="ListsButton" IsEnabled="True" Click="ListsButton_Click">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Lists.png" d:IsLocked="True"></Image>
                 </Button>
 

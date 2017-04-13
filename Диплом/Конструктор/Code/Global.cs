@@ -8,8 +8,9 @@ using System.Windows;
 using System.Windows.Controls;
 namespace Конструктор
 {
-    public static class GlobalMethods
+    public static class Global
     {
+
 
         public static UIElement getFromGrid(Grid _toLook, int column, int row)
         {
@@ -17,11 +18,11 @@ namespace Конструктор
           .Cast<UIElement>()
           .First(f => Grid.GetRow(f) == 0 && Grid.GetColumn(f) == column);
         }
-    }
-    public static class Global {
 
-        public static Window editorWindow;
+        public static ListsEditor editorWindow;
     }
+
+
 
 
 

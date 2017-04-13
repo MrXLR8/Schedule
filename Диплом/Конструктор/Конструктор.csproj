@@ -54,6 +54,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ListsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,8 +66,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FlipPanel.cs" />
+    <Compile Include="Code\Global.cs" />
+    <Compile Include="Code\Group.cs" />
     <Compile Include="Group.cs" />
+    <Compile Include="ListsEditor.xaml.cs">
+      <DependentUpon>ListsEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -112,12 +120,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\Group.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\БиблиотекаКлассов\БиблиотекаКлассов.csproj">
-      <Project>{d89d4f70-fa83-4e4a-9afc-44337ce86dc3}</Project>
-      <Name>БиблиотекаКлассов</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\Trash.png" />

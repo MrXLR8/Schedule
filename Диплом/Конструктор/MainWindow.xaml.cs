@@ -26,6 +26,8 @@ namespace Конструктор
 
         public MainWindow()
         {
+
+            Global.editorWindow = new ListsEditor();
             testList =  new ObservableCollection<Group>();
             
             InitializeComponent();
@@ -83,10 +85,16 @@ namespace Конструктор
 
             swapList.Add(first);
             swapList.Add(second);
-
+            
             //swapGrid.ItemsSource = null;
            // swapGrid.ItemsSource = swapList;
 
+        }
+
+        private void ListsButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            Global.editorWindow.Show();
         }
     }
 

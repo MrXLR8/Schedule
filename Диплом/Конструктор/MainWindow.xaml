@@ -131,7 +131,7 @@
                     </TabItem>
                     <TabItem Header="Знаменатель" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" HorizontalContentAlignment="Stretch">Вторая вкладка</TabItem>
                 </TabControl>
-                           </Border>
+             </Border>
 
 
             
@@ -144,7 +144,7 @@
 
                     <GroupBox Padding="1">
                         <GroupBox.Header>
-                            <Label Content="Пара"/>
+                            <Label Content="Предмет"/>
                         </GroupBox.Header>
                         <ComboBox x:Name="paraCombo"/>
                     </GroupBox>
@@ -182,7 +182,7 @@
                                 <DataGridTextColumn Width="*" Header="Предмет" Binding="{Binding Path=para.name}"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                            <Button Margin="0,5,0,0">
+                            <Button Margin="0,5,0,0" x:Name="DeleteSwap">
                                 <StackPanel  Orientation="Horizontal">
                                     <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Удалить замену"/>
                                     <Image Width="30" Height="30" Source="img\Trash.png"/>
@@ -208,7 +208,31 @@
                             </Grid>
                         </StackPanel>
                     </Expander>
-                </StackPanel>
+                    
+                    <GroupBox Padding="0">
+                            <GroupBox.Header>
+                                <Label Margin="0,10,0,0" Content="Внесение изменений"/>
+                            </GroupBox.Header>
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <RadioButton  Grid.Row="0" Content="Числитель" x:Name="ChuslCheckBox"></RadioButton>
+                                <RadioButton Margin="0,10,0,10" Grid.Row="1" Content="Знаменатель" x:Name="ZnamCheckBox"></RadioButton>
+                                <RadioButton Grid.Row="2" Content="Обе недели" x:Name="BothCheckBox"></RadioButton>
+                            </Grid>
+                        </GroupBox>
+
+                        <Button Margin="0,5,0,0" x:Name="AcceptChanges">
+                            <StackPanel  Orientation="Horizontal">
+                                <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ToolTip="Если данная пара существует в этот промежуток времени у этой группы, данные будут перезаписаны" Content="Внести изменения"/>
+                                <Image Width="30" Height="30" Source="img\Edit.png"/>
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
                 </ScrollViewer>
             </Border>
             
@@ -225,7 +249,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Создать новое расписание" x:Name="newButton" Click="newButton_Click">
                     <Image Style="{StaticResource ImageWithMargin}" Source="img/New.png" d:IsLocked="True"></Image>
@@ -241,6 +266,9 @@
                 </Button>
                 <Button Grid.Column="4" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Задать временные интервалы занятий" x:Name="IntervalButton" IsEnabled="False">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Interval.png" d:IsLocked="True"></Image>
+                </Button>
+                <Button Grid.Column="5" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Редактирование списка предметов,аудиторий" x:Name="ListsButton" IsEnabled="True">
+                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Lists.png" d:IsLocked="True"></Image>
                 </Button>
 
             </Grid>

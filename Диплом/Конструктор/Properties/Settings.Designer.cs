@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Конструктор.Properties
+namespace Builder.Properties
 {
 
 

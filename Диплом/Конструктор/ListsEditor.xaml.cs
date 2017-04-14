@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Конструктор
+namespace Builder
 {
     /// <summary>
     /// Логика взаимодействия для ListsEditor.xaml
@@ -28,6 +28,17 @@ namespace Конструктор
         {
             e.Cancel = true;
             this.Visibility = Visibility.Hidden;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            Global.lectorList.Add(new Lector("Dubinskuy", "Slava", "Gendiyovuch"));
+        }
+
+        private void prepodName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

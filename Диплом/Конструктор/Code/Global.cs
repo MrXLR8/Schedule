@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-namespace Конструктор
+namespace Builder
 {
     public static class Global
     {
@@ -20,6 +21,8 @@ namespace Конструктор
         }
 
         public static ListsEditor editorWindow;
+
+        public static ObservableCollection<Lector> lectorList { get; set; }
     }
 
 

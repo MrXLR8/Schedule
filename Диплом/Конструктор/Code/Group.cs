@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Libary
+namespace Builder
 {
 
     public abstract class Entry
@@ -21,11 +21,22 @@ namespace Libary
     public class Lection: Entry
     {
         public int auditory { get; set; }
-        public string lector { get; set; }
+        public Lector lector { get; set; }
         public int lectionNumber { get; set; } // номер пары в дне
-        public Lection(string _name, string _lector, int _auditory,  int _lectionNumber )
+        public Lection(string _name, Lector _lector, int _auditory,  int _lectionNumber )
         {
-            name = _name; auditory = _auditory; lectionNumber = _lectionNumber; lector = _lector;
+            name = _name; auditory = _auditory; lectionNumber = _lectionNumber; lector.name = _lector.name; lector.middleName = _lector.middleName; lector.lastName = _lector.lastName;
+        }
+    }
+
+    public class Lector : Entry
+    {
+        public string lastName { get; set; }
+        public string middleName { get; set; }
+
+        public Lector(string _name, string _middleName, string _lastName)
+        {
+            name = _name; middleName = _middleName; lastName = _lastName;
         }
     }
 

@@ -1,4 +1,4 @@
-﻿using Libary;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,7 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-namespace Конструктор
+
+
+namespace Builder
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -26,10 +28,17 @@ namespace Конструктор
 
         public MainWindow()
         {
-
+            #region Инициализая глобальных списков
             Global.editorWindow = new ListsEditor();
-            testList =  new ObservableCollection<Group>();
-            
+           // Global.editorWindow.prepodGrid.ItemsSource = Global.lectorList;
+
+            testList = new ObservableCollection<Group>();
+
+            Global.lectorList = new ObservableCollection<Lector>();
+
+            #endregion
+
+
             InitializeComponent();
             DataContext = this;
  
@@ -57,14 +66,17 @@ namespace Конструктор
         private void newButton_Click(object sender, RoutedEventArgs e)
         {
             swapList = new ObservableCollection<LectionSwap>();
-            LectionSwap first = new LectionSwap(DateTime.Now,new Lection("Empir","Dub",305,2));
-            LectionSwap second = new LectionSwap(DateTime.Now, new Lection("Tryd","OOP", 108, 4));
+            LectionSwap first = new LectionSwap(DateTime.Now,new Lection("Empir", new Lector("Dubinskuy", "Slava", "Gendiyovuch"), 305,2));
+            LectionSwap second = new LectionSwap(DateTime.Now, new Lection("Tryd",new Lector("Fedorov","Andrey","Viacheslavovuch"), 108, 4));
 
             swapList.Add(first);
             swapList.Add(second);
 
             swapGrid.ItemsSource = null;
             swapGrid.ItemsSource = swapList;
+
+          
+           
 
         }
 
@@ -80,8 +92,8 @@ namespace Конструктор
          MessageBox.Show(asd.Content.ToString());
          */
            // swapList = new ObservableCollection<LectionSwap>();
-            LectionSwap first = new LectionSwap(DateTime.Now, new Lection("zzzz", "Dub", 305, 2));
-            LectionSwap second = new LectionSwap(DateTime.Now, new Lection("xxxxx", "OOP", 108, 4));
+            LectionSwap first = new LectionSwap(DateTime.Now, new Lection("zzzz", new Lector("Dubinskuy", "Slava", "Gendiyovuch"), 305, 2));
+            LectionSwap second = new LectionSwap(DateTime.Now, new Lection("xxxxx", new Lector("Fedorov", "Andrey", "Gendiyovuch"), 108, 4));
 
             swapList.Add(first);
             swapList.Add(second);

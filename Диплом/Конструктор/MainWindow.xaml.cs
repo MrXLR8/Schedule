@@ -30,6 +30,7 @@ namespace Builder
         {
             Global.prepodWindow = new Lectors();
             Global.predmetWindow = new Paru();
+            Global.classesWindow = new Classes();
             #region Инициализая глобальных списков
 
             // Global.editorWindow.prepodGrid.ItemsSource = Global.lectorList;
@@ -143,6 +144,12 @@ namespace Builder
         {
             Global.predmetWindow.Show();
             Global.predmetWindow.Activate();
+        }
+
+        private void classEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Global.classesWindow.Show();
+            Global.classesWindow.Activate();
         }
     }
 

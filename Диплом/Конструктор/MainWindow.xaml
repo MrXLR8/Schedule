@@ -166,7 +166,7 @@
                                         <ColumnDefinition Width="0.3*"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Column="0"  Content="Аудитория"/>
-                                    <Button x:Name="classEdit" MaxHeight="20"  Grid.Column="1">
+                                    <Button x:Name="classEdit" MaxHeight="20"  Grid.Column="1" Click="classEdit_Click">
                                         <Image Source="img\Edit2.png"/>
                                     </Button>
                                 </Grid>

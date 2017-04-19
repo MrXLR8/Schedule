@@ -54,6 +54,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Forms\Edit\Paru.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Forms\Edit\Lectors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -68,6 +72,9 @@
     </Compile>
     <Compile Include="Code\Global.cs" />
     <Compile Include="Code\Group.cs" />
+    <Compile Include="Forms\Edit\Paru.xaml.cs">
+      <DependentUpon>Paru.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Edit\Lectors.xaml.cs">
       <DependentUpon>Lectors.xaml</DependentUpon>
     </Compile>

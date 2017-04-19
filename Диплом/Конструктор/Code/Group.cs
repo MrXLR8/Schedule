@@ -29,6 +29,19 @@ namespace Builder
         }
     }
 
+    public class TimeInterval
+    {
+        class Time
+        {
+            int hours { get; set; }
+            int minutes { get; set; }
+
+
+        }
+        public int pairNumber { get; set; }
+        public 
+    }
+
     public class Lector : Entry
     {
         public string lastName { get; set; }

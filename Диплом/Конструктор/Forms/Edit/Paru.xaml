@@ -1,0 +1,63 @@
+﻿<Window x:Class="Builder.Paru"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Builder"
+        xmlns:naame="clr-namespace:Builder"
+        mc:Ignorable="d"
+        Title="Редактор списка предметов" ResizeMode="NoResize" Height="400" Width="400" Closing="Window_Closing" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="329*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid  AutoGenerateColumns="False" x:Name="predmetGrid" VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Path=lectorList}" >
+                <DataGrid.Columns >
+                    <DataGridTextColumn Width="*" Header="Название пары" Binding="{Binding Path=name}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <GroupBox Grid.Column="1" Margin="3">
+                <GroupBox.Header>
+                    <Label Content="Внесение изменений"/>
+                </GroupBox.Header>
+                <StackPanel Orientation="Vertical" Margin="3">
+
+                    <GroupBox>
+                        <GroupBox.Header>
+                            <Label Content="Название пары"/>
+                        </GroupBox.Header>
+                        <TextBox x:Name="prepodLastName" Margin="2" Text="{Binding CurrentCell.Item.name, ElementName=predmetGrid}" />
+                    </GroupBox>
+
+                    <Button Margin="0,5,0,0" x:Name="addEntry"  MaxHeight="30" Click="addEntry_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" VerticalContentAlignment="Center" FontSize="10" Content="Создать" />
+                            <Image Grid.Column="1"  Source="..\..\img\Edit.png"/>
+                        </Grid>
+                    </Button>
+                    <Button Margin="0,5,0,0" x:Name="deleteEntry" MaxHeight="30" Click="deleteEntry_Click"  >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" VerticalContentAlignment="Center" FontSize="10" Content="Удалить" />
+                            <Image Grid.Column="1"  Source="..\..\img\Trash.png"/>
+                        </Grid>
+                    </Button>
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+    </Grid>
+</Window>

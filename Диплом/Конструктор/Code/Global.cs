@@ -21,8 +21,14 @@ namespace Builder
         }
 
         public static Lectors prepodWindow;
+        public static Paru predmetWindow;
 
         public static ObservableCollection<Lector> lectorList { get; set; }
+        public static ObservableCollection<string> predmetList { get; set; }
+        public static ObservableCollection<int> classList { get; set; }
+        public static ObservableCollection<Lector> lectorList { get; set; }
+
+
     }
 
 

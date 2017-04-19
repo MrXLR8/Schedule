@@ -144,21 +144,40 @@
 
                     <GroupBox Padding="1">
                         <GroupBox.Header>
-                            <Label Content="Предмет"/>
-                        </GroupBox.Header>
+                                <Grid HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="0.3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0"  Content="Предмет"/>
+                                    <Button HorizontalAlignment="Right" x:Name="predmetEdit" MaxHeight="20"  Grid.Column="1" Click="predmetEdit_Click">
+                                        <Image Source="img\Edit2.png" d:IsLocked="True"/>
+                                    </Button>
+                                </Grid>
+                            </GroupBox.Header>
                         <ComboBox x:Name="paraCombo"/>
                     </GroupBox>
 
                     <GroupBox Padding="1">
                         <GroupBox.Header>
-                            <Label Content="Аудитория"/>
-                        </GroupBox.Header>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="0.3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0"  Content="Аудитория"/>
+                                    <Button x:Name="classEdit" MaxHeight="20"  Grid.Column="1">
+                                        <Image Source="img\Edit2.png"/>
+                                    </Button>
+                                </Grid>
+                            </GroupBox.Header>
                     
                     <ComboBox x:Name="auditCombo"/>
                     </GroupBox>
                 
                     <GroupBox Padding="1">
                         <GroupBox.Header>
+                            
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -183,8 +202,19 @@
 
                     <GroupBox Padding="1">
                         <GroupBox.Header>
-                            <Label Margin="0,10,0,0" Content="Пара"/>
-                        </GroupBox.Header>
+                            
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="0.3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0"  Content="Пара (Время)"/>
+                                    <Button x:Name="paraEdit" MaxHeight="20"  Grid.Column="1">
+                                        <Image Source="img\Edit2.png"/>
+                                    </Button>
+                                </Grid>
+                            
+                            </GroupBox.Header>
                         <ComboBox x:Name="timeCombo"/>
                     </GroupBox>
 

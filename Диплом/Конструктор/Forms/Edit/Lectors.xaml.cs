@@ -44,11 +44,6 @@ namespace Builder
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             prepodGrid.ItemsSource = Global.lectorList;
-            Global.lectorList.Add(new Lector("Dubinskuy", "Slava", "Gendiyovuch"));
-
-            Global.lectorList.Add(new Lector("Fedorov", "Andre", "Vyach"));
-
-            Global.lectorList.Add(new Lector("Bondar", "Ivan", "Fugegoznaevich"));
 
         }
 

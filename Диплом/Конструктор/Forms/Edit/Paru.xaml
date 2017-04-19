@@ -18,9 +18,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid  AutoGenerateColumns="False" x:Name="predmetGrid" VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Path=lectorList}" >
+            <DataGrid  AutoGenerateColumns="False" x:Name="predmetGrid" VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Path=predmetList}" >
                 <DataGrid.Columns >
-                    <DataGridTextColumn Width="*" Header="Название пары" Binding="{Binding Path=name}"/>
+                    <DataGridTextColumn Width="*" Header="Название предмета"  Binding="{Binding}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <GroupBox Grid.Column="1" Margin="3">
@@ -31,16 +31,16 @@
 
                     <GroupBox>
                         <GroupBox.Header>
-                            <Label Content="Название пары"/>
+                            <Label Content="Название"/>
                         </GroupBox.Header>
-                        <TextBox x:Name="predmetName" Margin="2" Text="{Binding CurrentCell.Item.name, ElementName=predmetGrid}" />
+                        <TextBox x:Name="predmetName" Margin="2" Text="{Binding CurrentCell.Item, ElementName=predmetGrid, Mode=OneWay}" />
                     </GroupBox>
 
                     <Button Margin="0,5,0,0" x:Name="addEntry"  MaxHeight="30" Click="addEntry_Click">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" VerticalContentAlignment="Center" FontSize="10" Content="Создать" />
                             <Image Grid.Column="1"  Source="..\..\img\Edit.png"/>

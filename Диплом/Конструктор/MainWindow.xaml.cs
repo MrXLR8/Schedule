@@ -37,9 +37,33 @@ namespace Builder
             testList = new ObservableCollection<Group>();
 
             Global.lectorList = new ObservableCollection<Lector>();
-            
+            Global.predmetList = new ObservableCollection<string>();
+            Global.classList = new ObservableCollection<int>();
             #endregion
 
+            #region ТЕСТОВЫЕ ЗАПОЛНЕНИЯ В СПИСКАХ
+
+            #region lectors
+            Global.lectorList.Add(new Lector("Дубинский", "Вячеслав", "Генадийович"));
+
+            Global.lectorList.Add(new Lector("Федоров", "Андрей", "Вячеславович"));
+
+            Global.lectorList.Add(new Lector("Бондарь", "Иван", "ФигЕгоЗнаевич"));
+            #endregion
+            #region paru
+            Global.predmetList.Add("Эмпирические Методы");
+            Global.predmetList.Add("Информатика");
+            Global.predmetList.Add("English");
+            #endregion 
+
+            #region class
+            Global.classList.Add(105);
+            Global.classList.Add(308);
+            Global.classList.Add(224);
+            #endregion
+
+
+            #endregion
 
             InitializeComponent();
             DataContext = this;
@@ -49,6 +73,8 @@ namespace Builder
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             lectorCombo.ItemsSource = Global.lectorList;
+            paraCombo.ItemsSource = Global.predmetList;
+            classCombo.ItemsSource = Global.classList;
         }
 
         private void openButton_Click(object sender, RoutedEventArgs e)

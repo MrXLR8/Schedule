@@ -172,7 +172,7 @@
                                 </Grid>
                             </GroupBox.Header>
                     
-                    <ComboBox x:Name="auditCombo"/>
+                    <ComboBox x:Name="classCombo"/>
                     </GroupBox>
                 
                     <GroupBox Padding="1">

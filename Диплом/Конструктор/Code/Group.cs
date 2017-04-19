@@ -39,33 +39,28 @@ namespace Builder
 
         }
         public int pairNumber { get; set; }
-        public 
-    }
 
+    }
     public class Lector : Entry
     {
         public string lastName { get; set; }
         public string middleName { get; set; }
 
-        public string shortName
+        public override string ToString()
         {
-            get
+            string result;
+            result = lastName;
+            try
             {
-
-
-                string result;
-                result = lastName;
-                try
-                {
-                    result += " " + name[0] +". " + middleName[0] + ".";
-                }
-                catch (Exception e)
-                {
-                    result = lastName;
-                }
-                return result;
+                result += " " + name[0] + ". " + middleName[0] + ".";
             }
+            catch (Exception e)
+            {
+                result = lastName;
+            }
+            return result;
         }
+
         public Lector(string _lastName, string _name, string _middleName)
         {
             name = _name; middleName = _middleName; lastName = _lastName;

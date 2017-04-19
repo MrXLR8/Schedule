@@ -43,7 +43,7 @@ namespace Builder
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            s.ItemsSource = Global.lectorList;
+            predmetGrid.ItemsSource = Global.lectorList;
             Global.lectorList.Add(new Lector("Dubinskuy", "Slava", "Gendiyovuch"));
 
             Global.lectorList.Add(new Lector("Fedorov", "Andre", "Vyach"));
@@ -56,19 +56,18 @@ namespace Builder
 
         private void addEntry_Click(object sender, RoutedEventArgs e)
         {
-            Global.lectorList.Add(new Lector(prepodName.Text, prepodMiddleName.Text, prepodMiddleName.Text));
+            Global.predmetList.Add(predmetName.Text);
             clearFields();
         }
         void clearFields()
         {
-            prepodName.Clear();
-            prepodLastName.Clear();
-            prepodMiddleName.Clear();
+            predmetName.Clear();
         }
 
         private void deleteEntry_Click(object sender, RoutedEventArgs e)
         {
-            Global.lectorList.Remove((Lector)prepodGrid.SelectedItem);
+            Global.lectorList.Remove((Lector)predmetGrid.SelectedItem);
         }
+
     }
 }

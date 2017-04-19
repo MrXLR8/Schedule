@@ -191,11 +191,7 @@
 
                             </GroupBox.Header>
                             <ComboBox x:Name="lectorCombo">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <Label Content="{Binding Path=shortName}"/>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
+   
                                 
                             </ComboBox>
                         </GroupBox>

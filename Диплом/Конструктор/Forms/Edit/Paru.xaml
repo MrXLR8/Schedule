@@ -33,7 +33,7 @@
                         <GroupBox.Header>
                             <Label Content="Название пары"/>
                         </GroupBox.Header>
-                        <TextBox x:Name="prepodLastName" Margin="2" Text="{Binding CurrentCell.Item.name, ElementName=predmetGrid}" />
+                        <TextBox x:Name="predmetName" Margin="2" Text="{Binding CurrentCell.Item.name, ElementName=predmetGrid}" />
                     </GroupBox>
 
                     <Button Margin="0,5,0,0" x:Name="addEntry"  MaxHeight="30" Click="addEntry_Click">

@@ -159,10 +159,27 @@
                 
                     <GroupBox Padding="1">
                         <GroupBox.Header>
-                            <Label  Content="Преподаватель"/>
-                        </GroupBox.Header>
-                        <ComboBox x:Name="lectorCombo"/>
-                    </GroupBox>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="0.3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0"  Content="Преподаватель"/>
+                                    <Button x:Name="prepodEdit" Click="prepodEdit_Click" MaxHeight="20"  Grid.Column="1">
+                                        <Image Source="img\Edit2.png"/>
+                                    </Button>
+                                </Grid>
+
+                            </GroupBox.Header>
+                            <ComboBox x:Name="lectorCombo">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding Path=shortName}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                                
+                            </ComboBox>
+                        </GroupBox>
 
                     <GroupBox Padding="1">
                         <GroupBox.Header>
@@ -225,10 +242,14 @@
                         </GroupBox>
 
                         <Button Margin="0,5,5,0" MaxHeight="40" x:Name="AcceptChanges">
-                            <StackPanel  Orientation="Horizontal">
-                                <Label FontSize="11" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ToolTip="Если данная пара существует в этот промежуток времени у этой группы, данные будут перезаписаны" Content="Внести изменения"/>
-                                <Image  Source="img\Edit.png"/>
-                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="0.3*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" FontSize="11" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ToolTip="Если данная пара существует в этот промежуток времени у этой группы, данные будут перезаписаны" Content="Внести изменения"/>
+                                <Image Grid.Column="1"  Source="img\Edit.png"/>
+                            </Grid>
                         </Button>
 
                     </StackPanel>
@@ -266,7 +287,7 @@
                 <Button Grid.Column="4" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Задать временные интервалы занятий" x:Name="IntervalButton" IsEnabled="False">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Interval.png" d:IsLocked="True"></Image>
                 </Button>
-                <Button Grid.Column="5" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Редактирование списка предметов,аудиторий" x:Name="ListsButton" IsEnabled="True" Click="ListsButton_Click">
+                <Button Grid.Column="5" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Редактирование списка предметов,аудиторий" x:Name="ListsButton" IsEnabled="True" >
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Lists.png" d:IsLocked="True"></Image>
                 </Button>
 

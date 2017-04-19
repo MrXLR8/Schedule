@@ -28,14 +28,16 @@ namespace Builder
 
         public MainWindow()
         {
+            Global.prepodWindow = new Lectors();
+            
             #region Инициализая глобальных списков
-            Global.editorWindow = new ListsEditor();
-           // Global.editorWindow.prepodGrid.ItemsSource = Global.lectorList;
+
+            // Global.editorWindow.prepodGrid.ItemsSource = Global.lectorList;
 
             testList = new ObservableCollection<Group>();
 
             Global.lectorList = new ObservableCollection<Lector>();
-
+            
             #endregion
 
 
@@ -46,7 +48,7 @@ namespace Builder
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            lectorCombo.ItemsSource = Global.lectorList;
         }
 
         private void openButton_Click(object sender, RoutedEventArgs e)
@@ -103,10 +105,12 @@ namespace Builder
 
         }
 
-        private void ListsButton_Click(object sender, RoutedEventArgs e)
+
+
+        private void prepodEdit_Click(object sender, RoutedEventArgs e)
         {
-            
-            Global.editorWindow.Show();
+            Global.prepodWindow.Show();
+            Global.prepodWindow.Activate();
         }
     }
 

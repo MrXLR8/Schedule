@@ -34,7 +34,26 @@ namespace Builder
         public string lastName { get; set; }
         public string middleName { get; set; }
 
-        public Lector(string _name, string _middleName, string _lastName)
+        public string shortName
+        {
+            get
+            {
+
+
+                string result;
+                result = lastName;
+                try
+                {
+                    result += " " + name[0] +". " + middleName[0] + ".";
+                }
+                catch (Exception e)
+                {
+                    result = lastName;
+                }
+                return result;
+            }
+        }
+        public Lector(string _lastName, string _name, string _middleName)
         {
             name = _name; middleName = _middleName; lastName = _lastName;
         }

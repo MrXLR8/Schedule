@@ -20,7 +20,7 @@ namespace Builder
           .First(f => Grid.GetRow(f) == 0 && Grid.GetColumn(f) == column);
         }
 
-        public static ListsEditor editorWindow;
+        public static Lectors prepodWindow;
 
         public static ObservableCollection<Lector> lectorList { get; set; }
     }

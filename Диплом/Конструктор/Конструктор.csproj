@@ -54,7 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="ListsEditor.xaml">
+    <Page Include="Forms\Edit\Lectors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -68,9 +68,8 @@
     </Compile>
     <Compile Include="Code\Global.cs" />
     <Compile Include="Code\Group.cs" />
-    <Compile Include="Group.cs" />
-    <Compile Include="ListsEditor.xaml.cs">
-      <DependentUpon>ListsEditor.xaml</DependentUpon>
+    <Compile Include="Forms\Edit\Lectors.xaml.cs">
+      <DependentUpon>Lectors.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -129,6 +128,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Edit2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

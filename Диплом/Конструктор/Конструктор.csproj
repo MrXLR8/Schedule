@@ -76,6 +76,7 @@
     </Compile>
     <Compile Include="Code\Global.cs" />
     <Compile Include="Code\Group.cs" />
+    <Compile Include="Code\TimeInterval.cs" />
     <Compile Include="Forms\Edit\Classes.xaml.cs">
       <DependentUpon>Classes.xaml</DependentUpon>
     </Compile>

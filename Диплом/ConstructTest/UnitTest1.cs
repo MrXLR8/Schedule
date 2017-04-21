@@ -29,10 +29,22 @@ namespace ConstructTest
             Time check;
             check = new Time(3, new TimeSpan(12, 10, 0), new TimeSpan(13, 30, 0));
 
+
             Assert.IsTrue(interval.setTime(check));
             Assert.IsTrue(
                 interval.timeList[3].start == new TimeSpan(12, 10, 0)
                 );
+
+            
+            check = new Time(3, new TimeSpan(12, 30, 0), new TimeSpan(13, 20, 0));
+
+
+            Assert.IsTrue(interval.setTime(check));
+            Assert.IsTrue(
+                interval.timeList[3].start == new TimeSpan(12, 30, 0)
+                );
+
+
         }
 
 

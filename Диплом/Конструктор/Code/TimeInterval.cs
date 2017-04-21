@@ -17,13 +17,13 @@ namespace Конструктор
         public Time[] timeList = new Time[11];
         public bool setTime(Time _input )
         {
-            int index = _input.index - 1;
+            int index = _input.index;
             if(_input.start>_input.end)
             {
                 return false;
             }
 
-            for (int i=1; i<=index; i++) // проверка были ли раньше пары у которых время раньше
+            for (int i=1; i<index; i++) // проверка были ли раньше пары у которых время раньше
             {
                 Time c = timeList[i];
                 if (c != null)

@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Конструктор расписаний" Height="600" Width="800"
        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Loaded="Window_Loaded" 
+        Closed="Window_Closed"
         >
 
     <Window.Resources>
@@ -205,7 +206,7 @@
                                         <ColumnDefinition Width="0.3*"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Column="0"  Content="Пара (Время)"/>
-                                    <Button x:Name="paraEdit" MaxHeight="20"  Grid.Column="1">
+                                    <Button x:Name="paraEdit" MaxHeight="20" Click="paraEdit_Click"  Grid.Column="1">
                                         <Image Source="img\Edit2.png"/>
                                     </Button>
                                 </Grid>

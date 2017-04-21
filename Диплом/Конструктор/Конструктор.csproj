@@ -66,6 +66,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\Edit\TimeInterval.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -85,6 +89,9 @@
     </Compile>
     <Compile Include="Forms\Edit\Lectors.xaml.cs">
       <DependentUpon>Lectors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Edit\TimeInterval.xaml.cs">
+      <DependentUpon>TimeInterval.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

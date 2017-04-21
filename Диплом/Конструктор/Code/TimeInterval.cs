@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Конструктор
 {
-   
-   public class Intervals
+
+    public class Intervals
     {
 
         // 1 - 9:00 - 10:20
@@ -15,15 +15,15 @@ namespace Конструктор
         // 3 - INSERT (12:10 - 13:30)
         //4 -  13:40 - 15:00
         public Time[] timeList = new Time[11];
-        public bool setTime(Time _input )
+        public bool checkCorrect(Time _input)
         {
             int index = _input.index;
-            if(_input.start>_input.end)
+            if (_input.start > _input.end)
             {
                 return false;
             }
 
-            for (int i=1; i<index; i++) // проверка были ли раньше пары у которых время раньше
+            for (int i = 1; i < index; i++) // проверка были ли раньше пары у которых время раньше
             {
                 Time c = timeList[i];
                 if (c != null)
@@ -40,7 +40,7 @@ namespace Конструктор
                 }
             }
 
-            for(int i=index+1;i<10;i++)
+            for (int i = index + 1; i < 10; i++)
             {
                 Time c = timeList[i];
                 if (c != null)
@@ -57,23 +57,34 @@ namespace Конструктор
                 }
 
             }
-
-            timeList[_input.index] = _input;
             return true;
+
         }
 
+
+        public bool setTime(Time _input)
+        {
+            if (checkCorrect(_input))
+            {
+                timeList[_input.index] = _input;
+                return true;
+            }
+            else return false;
+
+        }
     }
 
     public class Time
     {
         public int index;
-      public  TimeSpan start;
-       public TimeSpan end;
+        public TimeSpan start;
+        public TimeSpan end;
         public Time(int _index, TimeSpan _start, TimeSpan _end)
         {
             index = _index;
-            start =_start;
+            start = _start;
             end = _end;
         }
     }
 }
+    

@@ -31,6 +31,7 @@ namespace Builder
             Global.prepodWindow = new Lectors();
             Global.predmetWindow = new Paru();
             Global.classesWindow = new Classes();
+            Global.intervalWindow = new TimeInterval();
             #region Инициализая глобальных списков
 
             // Global.editorWindow.prepodGrid.ItemsSource = Global.lectorList;
@@ -150,6 +151,17 @@ namespace Builder
         {
             Global.classesWindow.Show();
             Global.classesWindow.Activate();
+        }
+
+        private void paraEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Global.intervalWindow.Show();
+            Global.intervalWindow.Activate();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 

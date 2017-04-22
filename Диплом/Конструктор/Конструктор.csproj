@@ -97,8 +97,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Para.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Para.xaml.cs">
+      <DependentUpon>Para.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -153,6 +160,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\Edit2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Minus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

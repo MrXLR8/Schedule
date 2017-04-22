@@ -23,6 +23,9 @@ namespace Builder
     {
         public ObservableCollection<Time> listOfTimes = new ObservableCollection<Time>() { null, null, null, null, null, null, null, null, null, null, null } ;
         Button[] listOfButtons;
+
+        Para test = new Para();
+
         public TimeInterval()
         {
             InitializeComponent();
@@ -190,12 +193,30 @@ namespace Builder
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            listOfButtons = new Button[11] { null, save1, save2, save3, save4, save5, save6, save7, save8, save9, save10 };
         }
 
         private void Window_Activated(object sender, EventArgs e)
         {
             MessageBox.Show("load");
+        }
+
+        private void removeButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(test.time.ToString());
+        }
+
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+          
+        }
+
+        private void newButton_Click(object sender, RoutedEventArgs e)
+        {
+            pairs.Items.Add(test);
+            test.pairNumber = 2;
+            test.time = new Time(2, new TimeSpan(9, 1, 0), new TimeSpan(10, 20, 0));
+            pairs.Items.Refresh();
+            
         }
     }
 }

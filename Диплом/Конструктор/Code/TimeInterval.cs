@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Конструктор
+namespace Builder
 {
 
     public class Intervals
@@ -14,7 +15,7 @@ namespace Конструктор
         // 2 - 10:20 - 11:50
         // 3 - INSERT (12:10 - 13:30)
         //4 -  13:40 - 15:00
-        public Time[] timeList = new Time[11];
+        public ObservableCollection<Time> timeList = new ObservableCollection<Time>() { null, null, null, null, null, null, null, null, null, null, null };
         public bool checkCorrect(Time _input)
         {
             int index = _input.index;
@@ -84,6 +85,18 @@ namespace Конструктор
             index = _index;
             start = _start;
             end = _end;
+        }
+        public override string ToString()
+        {
+            string startH, startM;
+            string endH, endM;
+             if (start.Hours < 10) { startH= "0" + start.Hours; } else { startH= start.Hours.ToString(); };
+            if (start.Minutes < 10) { startM = "0" + start.Minutes; } else { startM = start.Minutes.ToString(); };
+
+            if (end.Hours < 10) { endH = "0" + end.Hours; } else { endH = end.Hours.ToString(); };
+            if (end.Minutes < 10) { endM = "0" + end.Minutes; } else { endM = end.Minutes.ToString(); };
+
+            return index+" (" + startH+ ":" + startM + " - " + endH + ":" + endM + ")";
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Конструктор;
+using Builder;
 namespace ConstructTest
 {
     [TestClass]

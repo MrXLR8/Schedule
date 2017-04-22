@@ -77,6 +77,7 @@ namespace Builder
             lectorCombo.ItemsSource = Global.lectorList;
             paraCombo.ItemsSource = Global.predmetList;
             classCombo.ItemsSource = Global.classList;
+            timeCombo.ItemsSource = Global.interval.timeList;
         }
 
         private void openButton_Click(object sender, RoutedEventArgs e)

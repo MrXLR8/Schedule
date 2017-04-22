@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Builder"
         Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
         mc:Ignorable="d"
-        Title="Редактирование интервала пар" ResizeMode="CanResize" Height="300" Width="450" Closing="Window_Closing">
+        Title="Редактирование интервала пар" ResizeMode="CanResize" Height="300" Width="450" Closing="Window_Closing" Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="Border" x:Key="Borders">
             <Setter Property="BorderThickness" Value="1"/>
@@ -93,9 +93,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                                     <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-                             <TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+                                    <TextBox Grid.Column="2" Style="{StaticResource timeInput}"  TextChanged="TextBox_TextChanged"/>
                         </Grid>
                     </GroupBox>
 
@@ -106,9 +106,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox TextChanged="TextBox_TextChanged" Grid.Column="0" Style="{StaticResource timeInput}"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-                            <TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+                                    <TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -117,10 +117,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Margin="1">
+                        <Button x:Name="save1" Grid.Column="0" Margin="1" IsEnabled="False" Click="saveInterval_Click">
                             <Image Source="..\..\img\Save.png"/>
                         </Button>
-                        <Button Grid.Column="1" Margin="1">
+                        <Button Grid.Column="1" Margin="1" Click="deletePair_Click">
                             <Image Source="..\..\img\Trash.png"/>
                         </Button>
                     </Grid>
@@ -147,9 +147,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -160,9 +160,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -171,10 +171,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Margin="1">
+                        <Button x:Name="save2" Grid.Column="0" Margin="1" IsEnabled="False" Click="saveInterval_Click">
                             <Image Source="..\..\img\Save.png"/>
                         </Button>
-                        <Button Grid.Column="1" Margin="1">
+                        <Button Grid.Column="1" Margin="1" Click="deletePair_Click">
                             <Image Source="..\..\img\Trash.png"/>
                         </Button>
                     </Grid>
@@ -201,9 +201,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -214,9 +214,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -225,10 +225,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Margin="1">
+                        <Button x:Name="save3" Grid.Column="0" Margin="1" IsEnabled="False" Click="saveInterval_Click">
                             <Image Source="..\..\img\Save.png"/>
                         </Button>
-                        <Button Grid.Column="1" Margin="1">
+                        <Button Grid.Column="1" Margin="1" Click="deletePair_Click">
                             <Image Source="..\..\img\Trash.png"/>
                         </Button>
                     </Grid>
@@ -255,9 +255,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -268,9 +268,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -279,10 +279,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Margin="1">
+                        <Button x:Name="save4" Grid.Column="0" Margin="1" IsEnabled="False" Click="saveInterval_Click">
                             <Image Source="..\..\img\Save.png"/>
                         </Button>
-                        <Button Grid.Column="1" Margin="1">
+                        <Button Grid.Column="1" Margin="1" Click="deletePair_Click">
                             <Image Source="..\..\img\Trash.png"/>
                         </Button>
                     </Grid>
@@ -309,9 +309,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -322,9 +322,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -333,10 +333,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Margin="1">
+                        <Button x:Name="save5" Grid.Column="0" Margin="1" IsEnabled="False" Click="saveInterval_Click">
                             <Image Source="..\..\img\Save.png"/>
                         </Button>
-                        <Button Grid.Column="1" Margin="1">
+                        <Button Grid.Column="1" Margin="1" Click="deletePair_Click">
                             <Image Source="..\..\img\Trash.png"/>
                         </Button>
                     </Grid>
@@ -363,9 +363,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -376,9 +376,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -387,10 +387,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Margin="1">
+                        <Button x:Name="save6" Grid.Column="0" Margin="1" IsEnabled="False" Click="saveInterval_Click">
                             <Image Source="..\..\img\Save.png"/>
                         </Button>
-                        <Button Grid.Column="1" Margin="1">
+                        <Button Grid.Column="1" Margin="1" Click="deletePair_Click">
                             <Image Source="..\..\img\Trash.png"/>
                         </Button>
                     </Grid>
@@ -417,9 +417,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -430,9 +430,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -441,10 +441,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Margin="1">
+                        <Button x:Name="save7" Grid.Column="0" Margin="1" IsEnabled="False" Click="saveInterval_Click">
                             <Image Source="..\..\img\Save.png"/>
                         </Button>
-                        <Button Grid.Column="1" Margin="1">
+                        <Button Grid.Column="1" Margin="1" Click="deletePair_Click">
                             <Image Source="..\..\img\Trash.png"/>
                         </Button>
                     </Grid>
@@ -471,9 +471,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -484,9 +484,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -495,10 +495,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Margin="1">
+                        <Button x:Name="save8" Grid.Column="0" Margin="1" IsEnabled="False" Click="saveInterval_Click">
                             <Image Source="..\..\img\Save.png"/>
                         </Button>
-                        <Button Grid.Column="1" Margin="1">
+                        <Button Grid.Column="1" Margin="1" Click="deletePair_Click">
                             <Image Source="..\..\img\Trash.png"/>
                         </Button>
                     </Grid>
@@ -525,9 +525,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -538,9 +538,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -549,10 +549,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Margin="1">
+                        <Button x:Name="save9" Grid.Column="0" Margin="1" IsEnabled="False" Click="saveInterval_Click">
                             <Image Source="..\..\img\Save.png"/>
                         </Button>
-                        <Button Grid.Column="1" Margin="1">
+                        <Button Grid.Column="1" Margin="1" Click="deletePair_Click">
                             <Image Source="..\..\img\Trash.png"/>
                         </Button>
                     </Grid>
@@ -579,9 +579,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -592,9 +592,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}"/>
+                            <TextBox Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextBox_TextChanged"/>
                             <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-<TextBox Grid.Column="2" Style="{StaticResource timeInput}"/>
+<TextBox TextChanged="TextBox_TextChanged" Grid.Column="2" Style="{StaticResource timeInput}"/>
                         </Grid>
                     </GroupBox>
 
@@ -603,10 +603,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Margin="1">
+                        <Button x:Name="save10" Grid.Column="0" Margin="1" IsEnabled="False" Click="saveInterval_Click">
                             <Image Source="..\..\img\Save.png"/>
                         </Button>
-                        <Button Grid.Column="1" Margin="1">
+                        <Button Grid.Column="1" Margin="1" Click="deletePair_Click">
                             <Image Source="..\..\img\Trash.png"/>
                         </Button>
                     </Grid>

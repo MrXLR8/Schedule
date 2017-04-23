@@ -61,7 +61,7 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
 
-                            <local:IntervalControl time="{Binding}"></local:IntervalControl>  
+                            <local:IntervalControl time="{Binding}" checkMethod="toCheck" ></local:IntervalControl>  
                            
                         </DataTemplate>
                     </ListBox.ItemTemplate>

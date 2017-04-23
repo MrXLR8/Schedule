@@ -212,7 +212,7 @@
                                 </Grid>
                             
                             </GroupBox.Header>
-                        <ComboBox x:Name="timeCombo"/>
+                        <ComboBox x:Name="timeCombo" ContextMenuOpening="timeCombo_ContextMenuOpening" MouseEnter="timeCombo_MouseEnter"/>
                     </GroupBox>
 
                     <Expander Padding="2">
@@ -245,7 +245,7 @@
                                 <Label Grid.Row="2" Grid.Column="1" Content="Предмет"/>
 
                                     <DatePicker Grid.Row="1" Grid.ColumnSpan="2"/>
-                                <ComboBox Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="1" Width="auto"/>
+                                <ComboBox x:Name="predmetSwapCombo" Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="1" Width="auto"/>
 
                                 <Button Margin="0,5,0,0" Grid.ColumnSpan="2" Grid.Row="4" Content="Добавить" Height="30"/>
                             </Grid>

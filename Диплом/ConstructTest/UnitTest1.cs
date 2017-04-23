@@ -67,7 +67,7 @@ namespace ConstructTest
             interval.setTime(add);
 
 
-            add = new Interval(3, new TimeSpan(16, 15, 0), new TimeSpan(18, 25, 0));
+            add = new Interval(3, new TimeSpan(10, 15, 0), new TimeSpan(18, 25, 0));
             interval.setTime(add);
 
             Assert.IsFalse(

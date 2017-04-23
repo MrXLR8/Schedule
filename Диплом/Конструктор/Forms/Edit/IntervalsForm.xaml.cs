@@ -33,12 +33,11 @@ namespace Builder
 
         public bool checkAll ()
         {
-            ItemCollection look = pairs.Items;
 
-            foreach (Interval c in look)
+            foreach (Interval c in pairs.Items)
             {
   
-                if(!test.setTime(c)) { return false; }
+                if(!test.checkCorrect(c)) { return false; }
             }
             return true;
         }
@@ -67,11 +66,11 @@ namespace Builder
 
         private void removeButton_Click(object sender, RoutedEventArgs e)
         {
-            int index = Global.intervals.last - 1;
+            int index = test.last - 1;
             if (index >= 0)
             {
-                Global.intervals.timeList.RemoveAt(index);
-                index = Global.intervals.last - 1;
+                test.timeList.RemoveAt(index);
+                index = test.last - 1;
                 if (index < 0)
                 {
                     ((Button)sender).IsEnabled = false;
@@ -80,8 +79,10 @@ namespace Builder
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
-        { 
-            MessageBox.Show(checkAll().ToString());
+        {
+            Global.intervals = test.Clone();
+            resetButton_Click(null, null);
+            saveButton.IsEnabled = false;
         }
 
         private void newButton_Click(object sender, RoutedEventArgs e)
@@ -103,7 +104,21 @@ namespace Builder
             test = Global.intervals.Clone();
             pairs.ItemsSource = test.timeList;
             pairs.Items.Refresh();
-            if(pairs.Items.Count==0) { removeButton.IsEnabled = false; }
+            if(pairs.Items.Count==0) { removeButton.IsEnabled = false; saveButton.IsEnabled = false; }
         }
+
+        void toCheck(IntervalControl sender)
+        {
+            bool localcheck = test.setTime(sender.time);
+           System.Diagnostics.Debug.Write("\n \n Local: "+ localcheck);
+
+            bool globalCheck = checkAll();
+            System.Diagnostics.Debug.Write("\n \n GLOBAL: " + globalCheck);
+
+            saveButton.IsEnabled = globalCheck&localcheck;
+
+        }
+
+
     }
 }

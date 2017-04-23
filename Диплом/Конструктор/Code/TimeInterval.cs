@@ -44,6 +44,12 @@ namespace Builder
                         { // если у ранних конечная дата больше
                             return false;
                         }
+
+                        if(_input.start<=c.end)
+                        {
+                            //если старт находиться внутри промежутка
+                            return false;
+                        }
                     }
                 }
             }
@@ -59,6 +65,11 @@ namespace Builder
 
                     if (_input.end >= c.end)
                     { // если у поздних конечная дата меньше
+                        return false;
+                    }
+
+                    if (_input.end >= c.start)
+                    { // его конец не может залазить в его старт
                         return false;
                     }
                 }
@@ -86,6 +97,7 @@ namespace Builder
             IntervalCollection result = new IntervalCollection();
             result.timeList=Collection.ToCollection<Interval>(Collection.ToList<Interval>(timeList));
             return result;
+            
         }
 
     }

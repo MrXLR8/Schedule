@@ -21,7 +21,7 @@ namespace Builder
     /// </summary>
     public partial class IntervalControl : UserControl
     {
-       
+
         public IntervalControl()
         {
             InitializeComponent();
@@ -31,6 +31,10 @@ namespace Builder
         public static readonly DependencyProperty TimeProperty =
             DependencyProperty.Register("time", typeof(Interval), typeof(IntervalControl), new FrameworkPropertyMetadata(new PropertyChangedCallback(TimeChanged)));
 
+        public static readonly DependencyProperty checkMethodProperty =
+            DependencyProperty.Register("checkMethod", typeof(voidMethod), typeof(IntervalControl), new FrameworkPropertyMetadata(new PropertyChangedCallback(TimeChanged)));
+
+
 
         public Interval time
         {
@@ -38,6 +42,16 @@ namespace Builder
             set { SetValue(TimeProperty, value); }
         }
 
+
+        public delegate void voidMethod(IntervalControl sender);
+
+        public voidMethod checkMethod
+        {
+            get { return (voidMethod)GetValue(checkMethodProperty); }
+            set { SetValue(checkMethodProperty, value); }
+
+        }
+        
 
 
 
@@ -54,6 +68,9 @@ namespace Builder
 
             window.endHText.Text = window.time.end.Hours.ToString();
             window.endMText.Text = window.time.end.Minutes.ToString();
+
+            window.checkMethod?.Invoke(window);
+            
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -64,9 +81,25 @@ namespace Builder
 
         private void TextChanged(object sender, TextChangedEventArgs e)
         {
+            string senderText = ((TextBox)sender).Text; 
             if (!string.IsNullOrEmpty(startHText.Text) && !string.IsNullOrEmpty(startMText.Text) && !string.IsNullOrEmpty(endHText.Text) && !string.IsNullOrEmpty(endMText.Text))
             {
-                
+                if(((TextBox)sender).Name.Last()=='H')
+                {
+                    if(Convert.ToInt32(senderText)>23)
+                    {
+                        ((TextBox)sender).Clear();
+                        return;
+                    }
+                }
+                else
+                {
+                    if (Convert.ToInt32(senderText) > 59)
+                    {
+                        ((TextBox)sender).Clear();
+                        return;
+                    }
+                }
                 TimeSpan start, end;
                 start = new TimeSpan(Convert.ToInt32(startHText.Text), Convert.ToInt32(startMText.Text), 0);
                 end = new TimeSpan(Convert.ToInt32(endHText.Text), Convert.ToInt32(endMText.Text), 0);

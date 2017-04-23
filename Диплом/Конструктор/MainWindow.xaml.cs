@@ -78,6 +78,7 @@ namespace Builder
             paraCombo.ItemsSource = Global.predmetList;
             classCombo.ItemsSource = Global.classList;
             timeCombo.ItemsSource = Global.intervals.timeList;
+            predmetSwapCombo.ItemsSource = Global.predmetList;
         }
 
         private void openButton_Click(object sender, RoutedEventArgs e)
@@ -163,6 +164,17 @@ namespace Builder
         private void Window_Closed(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void timeCombo_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            
+        }
+
+        private void timeCombo_MouseEnter(object sender, MouseEventArgs e)
+        {
+            timeCombo.ItemsSource = Global.intervals.timeList;
+            ((ComboBox)sender).Items.Refresh();
         }
     }
 

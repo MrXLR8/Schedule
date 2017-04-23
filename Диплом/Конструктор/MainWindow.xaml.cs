@@ -43,6 +43,7 @@ namespace Builder
             Global.lectorList = new ObservableCollection<Lector>();
             Global.predmetList = new ObservableCollection<string>();
             Global.classList = new ObservableCollection<int>();
+            Global.groupList = new ObservableCollection<Group>();
             #endregion
 
             #region ТЕСТОВЫЕ ЗАПОЛНЕНИЯ В СПИСКАХ
@@ -82,6 +83,7 @@ namespace Builder
             timeCombo.ItemsSource = Global.intervals.timeList;
             swapGrid.ItemsSource = swapListToAdd;
             predmetSwapCombo.ItemsSource = Global.predmetList;
+            GroupListBox.ItemsSource = Global.groupList;
         }
 
         private void openButton_Click(object sender, RoutedEventArgs e)
@@ -107,24 +109,7 @@ namespace Builder
 
         }
 
-        private void deleteGroup_Click(object sender, RoutedEventArgs e)
-        {
-            /* Button sent = (Button)sender;
-         Grid myGrid = (Grid)sent.Parent;
-         int rowIndex = Grid.GetColumn(sent);
-         ColumnDefinition rowDef = myGrid.ColumnDefinitions[rowIndex];
 
-         Label asd = (Label)GlobalMethods.getFromGrid(myGrid, 1, 0);
-
-         MessageBox.Show(asd.Content.ToString());
-         */
-           // swapList = new ObservableCollection<LectionSwap>();
-
-            
-            //swapGrid.ItemsSource = null;
-           // swapGrid.ItemsSource = swapList;
-
-        }
 
 
 
@@ -180,6 +165,29 @@ namespace Builder
                 }
             }
         }
+
+        private void addGroup_Click(object sender, RoutedEventArgs e)
+        {
+            string text = groupNameText.Text;
+            Group toAdd;
+            if(!string.IsNullOrEmpty(text))
+            {
+                toAdd = new Group(text);
+                Global.groupList.Add(toAdd);
+                groupNameText.Clear();
+            }
+        }
+
+        private void deleteGroup_Click(object sender, RoutedEventArgs e)
+        {
+
+
+
+            Global.groupList.Remove((Group)GroupListBox.SelectedItem);
+
+
+        }
+
     }
 
 }

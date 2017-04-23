@@ -27,18 +27,18 @@
             <RowDefinition Height="*" x:Name="ActionHold"/>
             <RowDefinition Height="0.2*" x:Name="MenuHold"/>
         </Grid.RowDefinitions>
- 
-        
+
+
         <Grid x:Name="ActionGrid" Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition  Width="0.7*" /> 
-                
+                <ColumnDefinition  Width="0.7*" />
+
                 <ColumnDefinition Width="2" />
-                
+
                 <ColumnDefinition Width="3*"/>
-                
+
                 <ColumnDefinition Width="2" />
-                
+
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
@@ -53,13 +53,13 @@
                 </Border.BorderBrush>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition MinHeight="0,25" Height="0.05*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition  MinHeight="60" Height="0.07*" />
+                        <RowDefinition MinHeight="0,25" Height="25*" />
+                        <RowDefinition Height="352*" />
+                        <RowDefinition  MinHeight="60" Height="91*" />
                     </Grid.RowDefinitions>
-                    
-                    <Label Content="Список групп:" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
-                    <ListBox x:Name="GroupList" Grid.Row="1"  Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=testList,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+
+                    <Label Content="Список групп:" HorizontalContentAlignment="Center" VerticalAlignment="Center" Height="25"/>
+                    <ListBox x:Name="GroupListBox" Grid.Row="1"  Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=testList,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
                         <ListBox.ItemTemplate>
                             <DataTemplate>
 
@@ -67,16 +67,12 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="3*"/>
-                                        <ColumnDefinition MinWidth="18" Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    
+
                                     <Image Source="img\Group.png" Grid.Column="0"/>
 
                                     <Label Grid.Column="1" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" Content="{Binding name}"></Label>
 
-                                    <Button  Grid.Column="2" Click="deleteGroup_Click">
-                                        <Image Source="img\Trash.png"/>
-                                    </Button>
 
 
                                 </Grid>
@@ -85,28 +81,29 @@
                     </ListBox>
 
                     <Grid Margin="2,0,2,0" Grid.Row="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="*"/>
-                                 </Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition MinHeight="30" Height="0.5*" />
-                            <RowDefinition MinHeight="30" Height="0.5*"/>
+                            <RowDefinition MinHeight="30" />
+                            <RowDefinition MinHeight="30"/>
+                            <RowDefinition MinHeight="30"/>
                         </Grid.RowDefinitions>
-                                 
-                         
-                        <Button Grid.Row="1" Grid.Column="1"  Content="+"/>
-                        <TextBox Grid.Row="1" Grid.Column="0" TextAlignment="Center" VerticalContentAlignment="Center" />
 
-                        <Label Grid.Row="0" FontSize="10" HorizontalContentAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Content="Добавить группу"> </Label>
-                                 
+
+                        <Button x:Name="addGroup" Margin="2,0,0,1" Grid.Row="1" Grid.Column="1"  Content="+" Click="addGroup_Click"/>
+                        <TextBox x:Name="groupNameText" Margin="0,0,0,1" Grid.Row="1" Grid.Column="0" TextAlignment="Center" VerticalContentAlignment="Center" />
+
+                        <Label Grid.Row="0" FontSize="10" HorizontalContentAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Content="Добавить группу" Height="22" Margin="0,4"></Label>
+                        <Button x:Name="deleteGroupButton" Click="deleteGroup_Click" Grid.Row="2" Margin="0,0,0,1" FontSize="11" Grid.ColumnSpan="2" Content="Удалить выбранную группу"/>
                     </Grid>
 
                 </Grid>
             </Border>
-            
-            
-            
+
+
+
             <Border x:Name="CenterPanel" Style="{StaticResource Borders}" Grid.Column="2" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
                 <TabControl>
                     <TabItem Header="Числитель" HorizontalContentAlignment="Stretch">
@@ -132,19 +129,19 @@
                     </TabItem>
                     <TabItem Header="Знаменатель" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" HorizontalContentAlignment="Stretch">Вторая вкладка</TabItem>
                 </TabControl>
-             </Border>
+            </Border>
 
 
-            
+
             <Border x:Name="RightPanel" Style="{StaticResource Borders}" Grid.Column="4" >
                 <Border.BorderBrush>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>
                 </Border.BorderBrush>
                 <ScrollViewer>
-                <StackPanel Margin="5">
+                    <StackPanel Margin="5">
 
-                    <GroupBox Padding="1">
-                        <GroupBox.Header>
+                        <GroupBox Padding="1">
+                            <GroupBox.Header>
                                 <Grid HorizontalAlignment="Stretch">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -156,11 +153,11 @@
                                     </Button>
                                 </Grid>
                             </GroupBox.Header>
-                        <ComboBox x:Name="paraCombo"/>
-                    </GroupBox>
+                            <ComboBox x:Name="paraCombo"/>
+                        </GroupBox>
 
-                    <GroupBox Padding="1">
-                        <GroupBox.Header>
+                        <GroupBox Padding="1">
+                            <GroupBox.Header>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -172,13 +169,13 @@
                                     </Button>
                                 </Grid>
                             </GroupBox.Header>
-                    
-                    <ComboBox x:Name="classCombo"/>
-                    </GroupBox>
-                
-                    <GroupBox Padding="1">
-                        <GroupBox.Header>
-                            
+
+                            <ComboBox x:Name="classCombo"/>
+                        </GroupBox>
+
+                        <GroupBox Padding="1">
+                            <GroupBox.Header>
+
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -192,14 +189,14 @@
 
                             </GroupBox.Header>
                             <ComboBox x:Name="lectorCombo">
-   
-                                
+
+
                             </ComboBox>
                         </GroupBox>
 
-                    <GroupBox Padding="1">
-                        <GroupBox.Header>
-                            
+                        <GroupBox Padding="1">
+                            <GroupBox.Header>
+
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -210,57 +207,57 @@
                                         <Image Source="img\Edit2.png"/>
                                     </Button>
                                 </Grid>
-                            
+
                             </GroupBox.Header>
-                        <ComboBox x:Name="timeCombo" MouseEnter="timeCombo_MouseEnter"/>
-                    </GroupBox>
+                            <ComboBox x:Name="timeCombo" MouseEnter="timeCombo_MouseEnter"/>
+                        </GroupBox>
 
-                    <Expander Padding="2">
-                        <Expander.Header>
-                            <Label Content="Замены"/>
-                        </Expander.Header>
-                        <StackPanel>
-                        <DataGrid Height="100" AutoGenerateColumns="False" x:Name="swapGrid" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
-                            <DataGrid.Columns >
-                                <DataGridTextColumn Width="0.6*" Header="Дата" Binding="{Binding Path=periodString}"/>
-                                <DataGridTextColumn Width="*" Header="Предмет" Binding="{Binding Path=para}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                            <Button Margin="0,5,0,0" x:Name="DeleteSwap" Click="DeleteSwap_Click">
-                                <StackPanel  Orientation="Horizontal">
-                                    <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Удалить замену"/>
-                                    <Image Width="30" Height="30" Source="img\Trash.png"/>
-                                </StackPanel>
-                            </Button>
-                            <Grid >
+                        <Expander Padding="2">
+                            <Expander.Header>
+                                <Label Content="Замены"/>
+                            </Expander.Header>
+                            <StackPanel>
+                                <DataGrid Height="100" AutoGenerateColumns="False" x:Name="swapGrid" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
+                                    <DataGrid.Columns >
+                                        <DataGridTextColumn Width="0.6*" Header="Дата" Binding="{Binding Path=periodString}"/>
+                                        <DataGridTextColumn Width="*" Header="Предмет" Binding="{Binding Path=para}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <Button Margin="0,5,0,0" x:Name="DeleteSwap" Click="DeleteSwap_Click">
+                                    <StackPanel  Orientation="Horizontal">
+                                        <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Удалить замену"/>
+                                        <Image Width="30" Height="30" Source="img\Trash.png"/>
+                                    </StackPanel>
+                                </Button>
+                                <Grid >
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                     <RowDefinition/>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
                                     </Grid.RowDefinitions>
-                                <Label Grid.Row="0" Grid.Column="0" Content="Дата"/>
-                                <Label Grid.Row="2" Grid.Column="1" Content="Предмет"/>
+                                    <Label Grid.Row="0" Grid.Column="0" Content="Дата"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Content="Предмет"/>
 
                                     <DatePicker x:Name="swapDatePicker" Grid.Row="1" Grid.ColumnSpan="2"/>
-                                <ComboBox x:Name="predmetSwapCombo" Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="1" Width="auto"/>
+                                    <ComboBox x:Name="predmetSwapCombo" Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="1" Width="auto"/>
 
-                                <Button x:Name="createSwapButton" Margin="0,5,0,0" Grid.ColumnSpan="2" Grid.Row="4" Content="Добавить" Height="30" Click="createSwapButton_Click"/>
-                            </Grid>
-                        </StackPanel>
-                    </Expander>
-                    
-                    <GroupBox Padding="0">
+                                    <Button x:Name="createSwapButton" Margin="0,5,0,0" Grid.ColumnSpan="2" Grid.Row="4" Content="Добавить" Height="30" Click="createSwapButton_Click"/>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
+
+                        <GroupBox Padding="0">
                             <GroupBox.Header>
                                 <Label Margin="0,10,0,0" Content="Выбор недели"/>
                             </GroupBox.Header>
                             <Grid >
                                 <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <RadioButton  Grid.Row="0" Content="Числитель" x:Name="ChuslCheckBox"></RadioButton>
                                 <RadioButton Margin="0,10,0,10" Grid.Row="1" Content="Знаменатель" x:Name="ZnamCheckBox"></RadioButton>
@@ -282,10 +279,10 @@
                     </StackPanel>
                 </ScrollViewer>
             </Border>
-            
+
         </Grid>
-        
-        
+
+
         <Border x:Name="MenuPanel" Style="{StaticResource Borders}" Grid.Row="1" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
             <Border.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>

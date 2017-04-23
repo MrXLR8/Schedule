@@ -11,38 +11,36 @@ namespace ConstructTest
         [TestMethod]
         public void IntervalFill()
         {
-            Intervals interval = new Intervals();
-            Time add;
-            add = new Time(1, new TimeSpan(9, 0, 0), new TimeSpan(10, 20, 0));
+            IntervalCollection interval = new IntervalCollection();
+            Interval add;
+            add = new Interval(1, new TimeSpan(9, 0, 0), new TimeSpan(10, 20, 0));
             interval.setTime(add);
 
-            add = new Time(2, new TimeSpan(10, 20, 0), new TimeSpan(11, 50, 0));
+            add = new Interval(2, new TimeSpan(10, 20, 0), new TimeSpan(11, 50, 0));
             interval.setTime(add);
 
-            add = new Time(4, new TimeSpan(13, 40, 0), new TimeSpan(15, 00, 0));
+            add = new Interval(3, new TimeSpan(12, 10, 0), new TimeSpan(13, 30, 0));
             interval.setTime(add);
 
-            add = new Time(5, new TimeSpan(15, 20, 0), new TimeSpan(16, 40, 0));
+            add = new Interval(4, new TimeSpan(13, 40, 0), new TimeSpan(15, 00, 0));
+            interval.setTime(add);
+
+            add = new Interval(5, new TimeSpan(15, 20, 0), new TimeSpan(16, 40, 0));
             interval.setTime(add);
 
 
-            Time check;
-            check = new Time(3, new TimeSpan(12, 10, 0), new TimeSpan(13, 30, 0));
+            add = new Interval(3, new TimeSpan(12, 15, 0), new TimeSpan(13, 25, 0));
+            interval.setTime(add);
 
 
-            Assert.IsTrue(interval.setTime(check));
+
+
+
             Assert.IsTrue(
-                interval.timeList[3].start == new TimeSpan(12, 10, 0)
+                interval.timeList[2].start == new TimeSpan(12, 15, 0)
                 );
 
             
-            check = new Time(3, new TimeSpan(12, 30, 0), new TimeSpan(13, 20, 0));
-
-
-            Assert.IsTrue(interval.setTime(check));
-            Assert.IsTrue(
-                interval.timeList[3].start == new TimeSpan(12, 30, 0)
-                );
 
 
         }
@@ -51,28 +49,32 @@ namespace ConstructTest
         [TestMethod]
         public void FlaseIntervalFill()
         {
-            Intervals interval = new Intervals();
-            Time add;
-            add = new Time(1, new TimeSpan(9, 0, 0), new TimeSpan(7, 20, 0));
-            Assert.IsFalse(interval.setTime(add));
-
-            add = new Time(2, new TimeSpan(10, 20, 0), new TimeSpan(11, 50, 0));
+            IntervalCollection interval = new IntervalCollection();
+            Interval add;
+            add = new Interval(1, new TimeSpan(9, 0, 0), new TimeSpan(10, 20, 0));
             interval.setTime(add);
 
-            add = new Time(4, new TimeSpan(13, 40, 0), new TimeSpan(15, 00, 0));
+            add = new Interval(2, new TimeSpan(10, 20, 0), new TimeSpan(11, 50, 0));
             interval.setTime(add);
 
-            add = new Time(5, new TimeSpan(15, 20, 0), new TimeSpan(16, 40, 0));
+            add = new Interval(3, new TimeSpan(12, 10, 0), new TimeSpan(13, 30, 0));
+            interval.setTime(add);
+
+            add = new Interval(4, new TimeSpan(13, 40, 0), new TimeSpan(15, 00, 0));
+            interval.setTime(add);
+
+            add = new Interval(5, new TimeSpan(15, 20, 0), new TimeSpan(16, 40, 0));
             interval.setTime(add);
 
 
-            Time check;
-            check = new Time(3, new TimeSpan(9, 10, 0), new TimeSpan(13, 30, 0));
+            add = new Interval(3, new TimeSpan(16, 15, 0), new TimeSpan(18, 25, 0));
+            interval.setTime(add);
 
-            Assert.IsFalse(interval.setTime(check));
-            Assert.IsNull(
-                interval.timeList[check.index]
-                );
+            Assert.IsFalse(
+    interval.setTime(add)
+    );
+
+
         }
     }
 }

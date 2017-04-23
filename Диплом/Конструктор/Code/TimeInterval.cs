@@ -8,42 +8,46 @@ using System.Threading.Tasks;
 namespace Builder
 {
 
-    public class Intervals
+    public class IntervalCollection
     {
 
         // 1 - 9:00 - 10:20
         // 2 - 10:20 - 11:50
         // 3 - INSERT (12:10 - 13:30)
         //4 -  13:40 - 15:00
-        public ObservableCollection<Time> timeList = new ObservableCollection<Time>() { null, null, null, null, null, null, null, null, null, null, null };
-        public bool checkCorrect(Time _input)
+        public int last { get { return timeList.Count; } }
+
+        public ObservableCollection<Interval> timeList = new ObservableCollection<Interval>();
+
+        public bool checkCorrect(Interval _input)
         {
-            int index = _input.index;
+            int index = _input.index-1;
             if (_input.start > _input.end)
             {
                 return false;
             }
-
-            for (int i = 1; i < index; i++) // проверка были ли раньше пары у которых время раньше
+            if (last > 0)
             {
-                Time c = timeList[i];
-                if (c != null)
+                for (int i = 0; i < index; i++) // проверка были ли раньше пары у которых время раньше
                 {
-                    if (_input.start <= c.start)
-                    { // если у ранних начальная дата больше
-                        return false;
-                    }
+                    Interval c = timeList[i];
+                    if (c != null)
+                    {
+                        if (_input.start <= c.start)
+                        { // если у ранних начальная дата больше
+                            return false;
+                        }
 
-                    if (_input.end <= c.end)
-                    { // если у ранних конечная дата больше
-                        return false;
+                        if (_input.end <= c.end)
+                        { // если у ранних конечная дата больше
+                            return false;
+                        }
                     }
                 }
             }
-
-            for (int i = index + 1; i < 10; i++)
+            for (int i = index + 1; i < last-1; i++)
             {
-                Time c = timeList[i];
+                Interval c = timeList[i];
                 if (c != null)
                 {
                     if (_input.start >= c.start)
@@ -62,30 +66,33 @@ namespace Builder
 
         }
 
-
-        public bool setTime(Time _input)
+        public bool setTime(Interval _input)
         {
             if (checkCorrect(_input))
             {
-                timeList[_input.index] = _input;
+                try { timeList[_input.index - 1] = _input; }
+                catch (Exception e) { timeList.Add(_input); }
+                
                 return true;
             }
             else return false;
 
         }
+
     }
 
-    public class Time
+    public class Interval
     {
         public int index;
         public TimeSpan start;
         public TimeSpan end;
-        public Time(int _index, TimeSpan _start, TimeSpan _end)
+        public Interval(int _index, TimeSpan _start, TimeSpan _end)
         {
             index = _index;
             start = _start;
             end = _end;
         }
+
         public override string ToString()
         {
             string startH, startM;

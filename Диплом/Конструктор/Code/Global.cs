@@ -20,15 +20,15 @@ namespace Builder
           .First(f => Grid.GetRow(f) == 0 && Grid.GetColumn(f) == column);
         }
 
-        public static Lectors prepodWindow;
-        public static Paru predmetWindow;
-        public static Classes classesWindow;
-        public static TimeInterval intervalWindow;
+        public static LectorsForm prepodWindow;
+        public static PredmetsForm predmetWindow;
+        public static ClassesForm classesWindow;
+        public static IntervalsForm intervalWindow;
 
         public static ObservableCollection<Lector> lectorList { get; set; }
         public static ObservableCollection<string> predmetList { get; set; }
         public static ObservableCollection<int> classList { get; set; }
-        public static Intervals interval = new Intervals();
+        public static IntervalCollection intervals = new IntervalCollection();
 
 
     }

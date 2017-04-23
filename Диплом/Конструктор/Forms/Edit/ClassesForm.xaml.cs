@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,10 +19,10 @@ namespace Builder
     /// <summary>
     /// Логика взаимодействия для ListsEditor.xaml
     /// </summary>
-    public  partial  class Paru : Window
+    public  partial  class ClassesForm : Window
     {
         
-        public Paru()
+        public ClassesForm()
         {
             
             InitializeComponent();
@@ -34,7 +35,11 @@ namespace Builder
             
         }
 
-
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
 
         private void prepodName_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -43,7 +48,7 @@ namespace Builder
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            predmetGrid.ItemsSource = Global.predmetList;
+            classGrid.ItemsSource = Global.classList;
             
         }
 
@@ -51,18 +56,18 @@ namespace Builder
 
         private void addEntry_Click(object sender, RoutedEventArgs e)
         {
-            Global.predmetList.Add(predmetName.Text);
+            Global.classList.Add(Convert.ToInt32(classNumber.Text));
             clearFields();
         }
 
         void clearFields()
         {
-            predmetName.Clear();
+            classNumber.Clear();
         }
 
         private void deleteEntry_Click(object sender, RoutedEventArgs e)
         {
-            Global.predmetList.Remove((string)predmetGrid.SelectedItem);
+            Global.classList.Remove((int)classGrid.SelectedItem);
         }
 
     }

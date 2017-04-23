@@ -1,4 +1,4 @@
-﻿<Window x:Class="Builder.TimeInterval"
+﻿<Window x:Class="Builder.IntervalsForm"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -57,8 +57,14 @@
                     
             </Grid>
             <ScrollViewer Grid.Row="1">
-                <ListBox x:Name="pairs" HorizontalContentAlignment="Stretch">
+                <ListBox x:Name="pairs" HorizontalContentAlignment="Stretch" Loaded="pairs_Loaded">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
 
+                            <local:IntervalControl time="{Binding}"></local:IntervalControl>  
+                           
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
 
                 </ListBox>
                
@@ -72,13 +78,13 @@
                     <ColumnDefinition Width="*"/>
 
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" ToolTip="Создать новое расписание" x:Name="newButton" Click="newButton_Click">
+                <Button Grid.Column="0" ToolTip="Создать новое расписание" x:Name="addButton" Click="newButton_Click">
                     <Image  Source="../../img/Plus.png" d:IsLocked="True"></Image>
                 </Button>
-                <Button Grid.Column="1" ToolTip="Открыть файл с расписанием" x:Name="openButton" Click="removeButton_Click">
+                <Button Grid.Column="1" ToolTip="Открыть файл с расписанием" x:Name="removeButton" Click="removeButton_Click" IsEnabled="False">
                     <Image   Source="../../img/Minus.png" d:IsLocked="True"></Image>
                 </Button>
-                <Button Grid.Column="2"  ToolTip="Сохранить расписание" x:Name="saveButton" Click="saveButton_Click" IsEnabled="False">
+                <Button Grid.Column="2"  ToolTip="Сохранить расписание" x:Name="saveButton" Click="saveButton_Click">
                     <Image   Source="../../img/Save.png" d:IsLocked="True"/>
                 </Button>
 

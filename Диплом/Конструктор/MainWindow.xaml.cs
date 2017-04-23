@@ -28,10 +28,10 @@ namespace Builder
 
         public MainWindow()
         {
-            Global.prepodWindow = new Lectors();
-            Global.predmetWindow = new Paru();
-            Global.classesWindow = new Classes();
-            Global.intervalWindow = new TimeInterval();
+            Global.prepodWindow = new LectorsForm();
+            Global.predmetWindow = new PredmetsForm();
+            Global.classesWindow = new ClassesForm();
+            Global.intervalWindow = new IntervalsForm();
             #region Инициализая глобальных списков
 
             // Global.editorWindow.prepodGrid.ItemsSource = Global.lectorList;
@@ -77,7 +77,7 @@ namespace Builder
             lectorCombo.ItemsSource = Global.lectorList;
             paraCombo.ItemsSource = Global.predmetList;
             classCombo.ItemsSource = Global.classList;
-            timeCombo.ItemsSource = Global.interval.timeList;
+            timeCombo.ItemsSource = Global.intervals.timeList;
         }
 
         private void openButton_Click(object sender, RoutedEventArgs e)

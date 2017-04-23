@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,54 +19,48 @@ namespace Builder
     /// <summary>
     /// Логика взаимодействия для Para.xaml
     /// </summary>
-    public partial class Para : UserControl
+    public partial class IntervalControl : UserControl
     {
        
-        public Para()
+        public IntervalControl()
         {
             InitializeComponent();
         }
 
-        public static readonly DependencyProperty pairNumberProperty =
-            DependencyProperty.Register("pairNumber", typeof(int), typeof(Para), new FrameworkPropertyMetadata(new PropertyChangedCallback(pairNumberChanged)));
 
         public static readonly DependencyProperty TimeProperty =
-            DependencyProperty.Register("startH", typeof(Time), typeof(Para), new FrameworkPropertyMetadata(new PropertyChangedCallback(TimeChanged)));
+            DependencyProperty.Register("time", typeof(Interval), typeof(IntervalControl), new FrameworkPropertyMetadata(new PropertyChangedCallback(TimeChanged)));
 
 
-        public Time time
+        public Interval time
         {
-            get { return (Time)GetValue(TimeProperty); }
+            get { return (Interval)GetValue(TimeProperty); }
             set { SetValue(TimeProperty, value); }
         }
 
 
-        public int pairNumber
-        {
-            get { return (int)GetValue(pairNumberProperty); }
-            set { SetValue(pairNumberProperty, value); }
-        }
 
-        private static void pairNumberChanged(DependencyObject sender,
-            DependencyPropertyChangedEventArgs e)
-        {
-            Para window = (Para)sender;
-            window.pairLabel.Content = window.pairNumber;
-        }
 
 
         private static void TimeChanged(DependencyObject sender,
      DependencyPropertyChangedEventArgs e)
         {
-            Para window = (Para)sender;
+            IntervalControl window = (IntervalControl)sender;
 
-           window.startHText.Text = window.time.start.Hours.ToString();
+            window.pairLabel.Content = window.time.index;
+
+            window.startHText.Text = window.time.start.Hours.ToString();
             window.startMText.Text = window.time.start.Minutes.ToString();
 
             window.endHText.Text = window.time.end.Hours.ToString();
             window.endMText.Text = window.time.end.Hours.ToString();
         }
 
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
 
         private void TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -76,7 +71,7 @@ namespace Builder
                 start = new TimeSpan(Convert.ToInt32(startHText.Text), Convert.ToInt32(startMText.Text), 0);
                 end = new TimeSpan(Convert.ToInt32(endHText.Text), Convert.ToInt32(endMText.Text), 0);
 
-                Time toChange = new Time(pairNumber, start, end);
+                Interval toChange = new Interval(time.index, start, end);
 
                 time = toChange;
             }

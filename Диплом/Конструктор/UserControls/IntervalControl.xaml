@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Builder.Para"
+﻿<UserControl x:Class="Builder.IntervalControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -50,9 +50,9 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBox x:Name="startHText" Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextChanged"/>
+                        <TextBox x:Name="startHText" PreviewTextInput="NumberValidationTextBox" Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextChanged"/>
                         <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-                        <TextBox x:Name="startMText" Grid.Column="2" Style="{StaticResource timeInput}" TextChanged="TextChanged"/>
+                        <TextBox x:Name="startMText" PreviewTextInput="NumberValidationTextBox" Grid.Column="2" Style="{StaticResource timeInput}" TextChanged="TextChanged"/>
                     </Grid>
                 </GroupBox>
 
@@ -63,9 +63,9 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBox x:Name="endHText" Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextChanged"/>
+                        <TextBox x:Name="endHText" PreviewTextInput="NumberValidationTextBox" Grid.Column="0" Style="{StaticResource timeInput}" TextChanged="TextChanged"/>
                         <TextBlock Grid.Column="1" Text=":" TextAlignment="Center" Style="{StaticResource tochka}"/>
-                        <TextBox x:Name="endMText" Grid.Column="2" Style="{StaticResource timeInput}" TextChanged="TextChanged"/>
+                        <TextBox x:Name="endMText" PreviewTextInput="NumberValidationTextBox" Grid.Column="2" Style="{StaticResource timeInput}" TextChanged="TextChanged"/>
                     </Grid>
                 </GroupBox>
 

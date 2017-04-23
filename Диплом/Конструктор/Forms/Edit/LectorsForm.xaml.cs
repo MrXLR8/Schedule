@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,10 +18,10 @@ namespace Builder
     /// <summary>
     /// Логика взаимодействия для ListsEditor.xaml
     /// </summary>
-    public  partial  class Classes : Window
+    public  partial  class LectorsForm : Window
     {
         
-        public Classes()
+        public LectorsForm()
         {
             
             InitializeComponent();
@@ -35,11 +34,7 @@ namespace Builder
             
         }
 
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
+
 
         private void prepodName_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -48,27 +43,27 @@ namespace Builder
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            classGrid.ItemsSource = Global.classList;
-            
+            prepodGrid.ItemsSource = Global.lectorList;
+
         }
 
 
 
         private void addEntry_Click(object sender, RoutedEventArgs e)
         {
-            Global.classList.Add(Convert.ToInt32(classNumber.Text));
+            Global.lectorList.Add(new Lector(prepodName.Text, prepodMiddleName.Text, prepodMiddleName.Text));
             clearFields();
         }
-
         void clearFields()
         {
-            classNumber.Clear();
+            prepodName.Clear();
+            prepodLastName.Clear();
+            prepodMiddleName.Clear();
         }
 
         private void deleteEntry_Click(object sender, RoutedEventArgs e)
         {
-            Global.classList.Remove((int)classGrid.SelectedItem);
+            Global.lectorList.Remove((Lector)prepodGrid.SelectedItem);
         }
-
     }
 }

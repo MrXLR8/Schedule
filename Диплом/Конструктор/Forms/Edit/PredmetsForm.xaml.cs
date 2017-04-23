@@ -18,10 +18,10 @@ namespace Builder
     /// <summary>
     /// Логика взаимодействия для ListsEditor.xaml
     /// </summary>
-    public  partial  class Lectors : Window
+    public  partial  class PredmetsForm : Window
     {
         
-        public Lectors()
+        public PredmetsForm()
         {
             
             InitializeComponent();
@@ -43,27 +43,27 @@ namespace Builder
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            prepodGrid.ItemsSource = Global.lectorList;
-
+            predmetGrid.ItemsSource = Global.predmetList;
+            
         }
 
 
 
         private void addEntry_Click(object sender, RoutedEventArgs e)
         {
-            Global.lectorList.Add(new Lector(prepodName.Text, prepodMiddleName.Text, prepodMiddleName.Text));
+            Global.predmetList.Add(predmetName.Text);
             clearFields();
         }
+
         void clearFields()
         {
-            prepodName.Clear();
-            prepodLastName.Clear();
-            prepodMiddleName.Clear();
+            predmetName.Clear();
         }
 
         private void deleteEntry_Click(object sender, RoutedEventArgs e)
         {
-            Global.lectorList.Remove((Lector)prepodGrid.SelectedItem);
+            Global.predmetList.Remove((string)predmetGrid.SelectedItem);
         }
+
     }
 }

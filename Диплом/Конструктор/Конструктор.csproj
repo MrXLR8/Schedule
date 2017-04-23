@@ -54,19 +54,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Forms\Edit\Classes.xaml">
+    <Page Include="Forms\Edit\ClassesForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Forms\Edit\Paru.xaml">
+    <Page Include="Forms\Edit\PredmetsForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Forms\Edit\Lectors.xaml">
+    <Page Include="Forms\Edit\LectorsForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\Edit\TimeInterval.xaml">
+    <Page Include="Forms\Edit\IntervalsForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -81,30 +81,30 @@
     <Compile Include="Code\Global.cs" />
     <Compile Include="Code\Group.cs" />
     <Compile Include="Code\TimeInterval.cs" />
-    <Compile Include="Forms\Edit\Classes.xaml.cs">
-      <DependentUpon>Classes.xaml</DependentUpon>
+    <Compile Include="Forms\Edit\ClassesForm.xaml.cs">
+      <DependentUpon>ClassesForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Edit\Paru.xaml.cs">
-      <DependentUpon>Paru.xaml</DependentUpon>
+    <Compile Include="Forms\Edit\PredmetsForm.xaml.cs">
+      <DependentUpon>PredmetsForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Edit\Lectors.xaml.cs">
-      <DependentUpon>Lectors.xaml</DependentUpon>
+    <Compile Include="Forms\Edit\LectorsForm.xaml.cs">
+      <DependentUpon>LectorsForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Edit\TimeInterval.xaml.cs">
-      <DependentUpon>TimeInterval.xaml</DependentUpon>
+    <Compile Include="Forms\Edit\IntervalsForm.xaml.cs">
+      <DependentUpon>IntervalsForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Para.xaml">
+    <Page Include="UserControls\IntervalControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Para.xaml.cs">
-      <DependentUpon>Para.xaml</DependentUpon>
+    <Compile Include="UserControls\IntervalControl.xaml.cs">
+      <DependentUpon>IntervalControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

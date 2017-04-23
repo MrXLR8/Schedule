@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Builder
@@ -23,10 +24,12 @@ namespace Builder
         public int auditory { get; set; }
         public Lector lector { get; set; }
         public int lectionNumber { get; set; } // номер пары в дне
-        public Lection(string _name, Lector _lector, int _auditory,  int _lectionNumber )
+        public Lection(string _name, int _lectionNumber, Lector _lector, int _auditory )
         {
             name = _name; auditory = _auditory; lectionNumber = _lectionNumber; lector.name = _lector.name; lector.middleName = _lector.middleName; lector.lastName = _lector.lastName;
         }
+        public ObservableCollection<LectionSwap> swapList { get; set; }
+
     }
 
 
@@ -59,9 +62,9 @@ namespace Builder
 
     public class LectionSwap
     {
-        public  Lection para { get; set; } 
+        public string para { get; set; } 
         public  DateTime period { get; set; }
-        public LectionSwap(DateTime _period,Lection _para)
+        public LectionSwap(DateTime _period,string _para)
         {
             period = _period;
             para = _para;
@@ -71,7 +74,17 @@ namespace Builder
             get
             {
                 string result;
-                result = string.Format("{0}. {1}", period.Day.ToString(), period.Month.ToString());
+
+                string correctDate(int input)
+                {
+                    if(input<10)
+                    {
+                        return "0" + input.ToString();
+                    }
+                    return input.ToString();
+                }
+
+                result = string.Format("{0}. {1}", correctDate(period.Day), correctDate(period.Month));
                 return result;
             }
 

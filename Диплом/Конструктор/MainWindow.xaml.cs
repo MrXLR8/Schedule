@@ -23,8 +23,10 @@ namespace Builder
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Lection selected = null;
+        public ObservableCollection<LectionSwap> swapListToAdd = new ObservableCollection<LectionSwap>();
         public ObservableCollection<Group> testList { get; set; }
-        public ObservableCollection<LectionSwap> swapList { get; set; }
+        
 
         public MainWindow()
         {
@@ -78,6 +80,7 @@ namespace Builder
             paraCombo.ItemsSource = Global.predmetList;
             classCombo.ItemsSource = Global.classList;
             timeCombo.ItemsSource = Global.intervals.timeList;
+            swapGrid.ItemsSource = swapListToAdd;
             predmetSwapCombo.ItemsSource = Global.predmetList;
         }
 
@@ -97,15 +100,7 @@ namespace Builder
 
         private void newButton_Click(object sender, RoutedEventArgs e)
         {
-            swapList = new ObservableCollection<LectionSwap>();
-            LectionSwap first = new LectionSwap(DateTime.Now,new Lection("Empir", new Lector("Dubinskuy", "Slava", "Gendiyovuch"), 305,2));
-            LectionSwap second = new LectionSwap(DateTime.Now, new Lection("Tryd",new Lector("Fedorov","Andrey","Viacheslavovuch"), 108, 4));
 
-            swapList.Add(first);
-            swapList.Add(second);
-
-            swapGrid.ItemsSource = null;
-            swapGrid.ItemsSource = swapList;
 
           
            
@@ -124,11 +119,7 @@ namespace Builder
          MessageBox.Show(asd.Content.ToString());
          */
            // swapList = new ObservableCollection<LectionSwap>();
-            LectionSwap first = new LectionSwap(DateTime.Now, new Lection("zzzz", new Lector("Dubinskuy", "Slava", "Gendiyovuch"), 305, 2));
-            LectionSwap second = new LectionSwap(DateTime.Now, new Lection("xxxxx", new Lector("Fedorov", "Andrey", "Gendiyovuch"), 108, 4));
 
-            swapList.Add(first);
-            swapList.Add(second);
             
             //swapGrid.ItemsSource = null;
            // swapGrid.ItemsSource = swapList;
@@ -166,15 +157,28 @@ namespace Builder
             Application.Current.Shutdown();
         }
 
-        private void timeCombo_ContextMenuOpening(object sender, ContextMenuEventArgs e)
-        {
-            
-        }
 
         private void timeCombo_MouseEnter(object sender, MouseEventArgs e)
         {
             timeCombo.ItemsSource = Global.intervals.timeList;
             ((ComboBox)sender).Items.Refresh();
+        }
+
+        private void DeleteSwap_Click(object sender, RoutedEventArgs e)
+        {
+            LectionSwap toDel = (LectionSwap)swapGrid.SelectedItem;
+            swapListToAdd.Remove(toDel);
+        }
+
+        private void createSwapButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (swapDatePicker.SelectedDate != null)
+            { if (predmetSwapCombo.SelectedItem != null)
+                {
+                    LectionSwap toAdd = new LectionSwap((DateTime)swapDatePicker.SelectedDate, predmetSwapCombo.SelectedItem.ToString());
+                    swapListToAdd.Add(toAdd);
+                }
+            }
         }
     }
 

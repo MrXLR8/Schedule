@@ -53,7 +53,7 @@ namespace Builder
             window.startMText.Text = window.time.start.Minutes.ToString();
 
             window.endHText.Text = window.time.end.Hours.ToString();
-            window.endMText.Text = window.time.end.Hours.ToString();
+            window.endMText.Text = window.time.end.Minutes.ToString();
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

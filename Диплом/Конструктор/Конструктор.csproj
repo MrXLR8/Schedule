@@ -167,5 +167,8 @@
   <ItemGroup>
     <Resource Include="img\Minus.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\CancelChanges.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Builder
 {
 
-    public class IntervalCollection
+    public class IntervalCollection 
     {
 
         // 1 - 9:00 - 10:20
@@ -18,6 +18,8 @@ namespace Builder
         public int last { get { return timeList.Count; } }
 
         public ObservableCollection<Interval> timeList = new ObservableCollection<Interval>();
+
+
 
         public bool checkCorrect(Interval _input)
         {
@@ -79,9 +81,16 @@ namespace Builder
 
         }
 
+        public IntervalCollection Clone()
+        {
+            IntervalCollection result = new IntervalCollection();
+            result.timeList=Collection.ToCollection<Interval>(Collection.ToList<Interval>(timeList));
+            return result;
+        }
+
     }
 
-    public class Interval
+    public class Interval 
     {
         public int index;
         public TimeSpan start;
@@ -92,6 +101,13 @@ namespace Builder
             start = _start;
             end = _end;
         }
+
+        public Interval(int _index)
+        {
+            index = _index;
+        }
+
+  
 
         public override string ToString()
         {

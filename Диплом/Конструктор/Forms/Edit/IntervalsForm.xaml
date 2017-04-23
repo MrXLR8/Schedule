@@ -76,16 +76,23 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
 
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" ToolTip="Создать новое расписание" x:Name="addButton" Click="newButton_Click">
+                <Button Grid.Column="0" ToolTip="Добавить новую пару" x:Name="addButton" Click="newButton_Click">
                     <Image  Source="../../img/Plus.png" d:IsLocked="True"></Image>
                 </Button>
-                <Button Grid.Column="1" ToolTip="Открыть файл с расписанием" x:Name="removeButton" Click="removeButton_Click" IsEnabled="False">
+                
+                <Button Margin="0,0,5,0" Grid.Column="1" ToolTip="Удалить последнюю пару" x:Name="removeButton" Click="removeButton_Click" IsEnabled="False">
                     <Image   Source="../../img/Minus.png" d:IsLocked="True"></Image>
                 </Button>
-                <Button Grid.Column="2"  ToolTip="Сохранить расписание" x:Name="saveButton" Click="saveButton_Click">
+                
+                <Button Grid.Column="2"  ToolTip="Сохранить интервалы пар" x:Name="saveButton" Click="saveButton_Click">
                     <Image   Source="../../img/Save.png" d:IsLocked="True"/>
+                </Button>
+
+                <Button Grid.Column="3"  ToolTip="Сохранить интервалы пар" x:Name="resetButton" Click="resetButton_Click">
+                    <Image   Source="../../img/CancelChanges.png" d:IsLocked="True"/>
                 </Button>
 
 

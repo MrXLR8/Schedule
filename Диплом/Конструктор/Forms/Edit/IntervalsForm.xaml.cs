@@ -57,12 +57,13 @@ namespace Builder
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            test = new IntervalCollection();
+            test = Global.intervals.Clone();
+            pairs.ItemsSource = test.timeList;
+            pairs.Items.Refresh();
         }
 
-        private void Window_Activated(object sender, EventArgs e)
-        {
-            MessageBox.Show("load");
-        }
+
 
         private void removeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -86,13 +87,23 @@ namespace Builder
         private void newButton_Click(object sender, RoutedEventArgs e)
         {
 
-            Global.intervals.timeList .Add( new Interval(Global.intervals.last+1, new TimeSpan(9, 1, 0), new TimeSpan(10, 20, 0)));
+            //Global.intervals.timeList .Add( new Interval(Global.intervals.last+1, new TimeSpan(9, 1, 0), new TimeSpan(10, 20, 0)));
+            test.timeList.Add(new Interval(test.last + 1));
             removeButton.IsEnabled = true;
         }
 
         private void pairs_Loaded(object sender, RoutedEventArgs e)
         {
-            pairs.ItemsSource = Global.intervals.timeList;
+            
+        }
+
+        private void resetButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            test = Global.intervals.Clone();
+            pairs.ItemsSource = test.timeList;
+            pairs.Items.Refresh();
+            if(pairs.Items.Count==0) { removeButton.IsEnabled = false; }
         }
     }
 }

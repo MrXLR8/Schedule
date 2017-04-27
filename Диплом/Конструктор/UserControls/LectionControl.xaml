@@ -1,26 +1,29 @@
-﻿<UserControl x:Class="Конструктор.UserControls.LectionControl"
+﻿<UserControl x:Class="Builder.LectionControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Конструктор.UserControls"
+             xmlns:local="clr-namespace:Builder"
              mc:Ignorable="d" 
-             d:DesignHeight="75" d:DesignWidth="150">
+             Width="auto" Height="auto">
 
-    <Grid x:Name="GlobalGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="100*"/>
+    <Border Grid.Row="0" BorderThickness="0.6"  BorderBrush="Black" >
+        <Grid x:Name="GlobalGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="100*"/>
 
-        </Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>
 
-        <Viewbox Grid.Column="0" StretchDirection="Both" Stretch="Uniform" >
-            <Grid x:Name="TimeGrid" Height="75" Width="43" >
+
+            <Grid x:Name="TimeGrid" Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-
+                <Viewbox Grid.Column="0" StretchDirection="Both" Stretch="Uniform" >
+                    <Label x:Name="pairIndexLabel" Content="9" FontSize="20" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+                </Viewbox>
                 <Border x:Name="UpBorder" Grid.Row="0" BorderThickness="0.6"  BorderBrush="Black"  />
 
                 <Border x:Name="DownBorder" Grid.Row="1" BorderThickness="0.6" BorderBrush="Black">
@@ -31,66 +34,65 @@
                             <RowDefinition Height="5*"/>
                         </Grid.RowDefinitions>
 
-                        <Label x:Name="startTimeLabel" Grid.Row="0" Content="13:40" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-22,0,0" Grid.RowSpan="3"></Label>
-                        <TextBlock Text="-" FontSize="10" Grid.Row="1" HorizontalAlignment="Center" Margin="0,-5,0,0" />
-                        <Label x:Name="endTimeLabel" Grid.Row="2" Content="15:00" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-6,0,0" Grid.RowSpan="3"></Label>
+                        <Label x:Name="startTimeLabel" Grid.Row="0" Content="13:40" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-17,0,0" Grid.RowSpan="3"></Label>
+                        <TextBlock Text="-" FontSize="10" Grid.Row="1" HorizontalAlignment="Center" Margin="0,5,0,0" />
+                        <Label x:Name="endTimeLabel" Grid.Row="2" Content="15:00" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-11,0,0" Grid.RowSpan="3"></Label>
 
                     </Grid>
 
 
 
                 </Border>
-                <Label x:Name="pairIndexLabel" Content="9" FontSize="20" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
             </Grid>
 
 
-        </Viewbox>
 
 
 
 
-        <Grid Grid.Column="1" x:Name="InfoGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40*"/>
 
-                <RowDefinition Height="9*"/>
+            <Grid Grid.Column="1" x:Name="InfoGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="33*"/>
 
-                <RowDefinition Height="10*"/>
+                    <RowDefinition Height="14*"/>
 
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="10*"/>
+                    <RowDefinition Height="16*"/>
 
-                <RowDefinition Height="4*"/>
-            </Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="23*"/>
 
-            <Viewbox Grid.Row="0" StretchDirection="Both" Stretch="Uniform" Margin="4,0,3,0">
+                    <RowDefinition Height="0*"/>
+                </Grid.RowDefinitions>
 
-                <TextBlock x:Name="predmetLabel" Width="100" TextWrapping="Wrap" TextAlignment="Center" Text="Эмперические методы" FontWeight="Bold" FontFamily="Times New Roman" ></TextBlock>
+                <Viewbox Grid.Row="0" StretchDirection="Both" Stretch="Uniform" Margin="4,0,3,0">
+
+                    <TextBlock Margin="0,5,0,0" x:Name="predmetLabel" Width="100" TextWrapping="Wrap" TextAlignment="Center" Text="Эмперические методы" FontWeight="Bold" FontFamily="Times New Roman" ></TextBlock>
 
 
-            </Viewbox>
+                </Viewbox>
 
-            <Viewbox  Grid.Row="1" StretchDirection="Both" Stretch="Uniform">
-                <TextBlock x:Name="prepodLabel" HorizontalAlignment="Center" TextAlignment="Center" Text="Ткаченко О.И"  FontStyle="Italic" FontFamily="Arial" ></TextBlock>
-            </Viewbox>
+                <Viewbox  Grid.Row="1" StretchDirection="Both" Stretch="Uniform">
+                    <TextBlock x:Name="prepodLabel" HorizontalAlignment="Center" TextAlignment="Center" Text="Ткаченко О.И"  FontStyle="Italic" FontFamily="Arial" ></TextBlock>
+                </Viewbox>
 
-            <Viewbox  Grid.Row="2" StretchDirection="Both" Stretch="Uniform">
-                <TextBlock x:Name="classLabel" TextAlignment="Center" HorizontalAlignment="Center" Text="305"  ></TextBlock>
-            </Viewbox>
+                <Viewbox  Grid.Row="2" StretchDirection="Both" Stretch="Uniform">
+                    <TextBlock x:Name="classLabel" TextAlignment="Center" HorizontalAlignment="Center" Text="305"  ></TextBlock>
+                </Viewbox>
 
-            <Viewbox Grid.Row="4" StretchDirection="Both" Stretch="Uniform">
-                <Button x:Name="swapButton"   HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Замены:"/>
-                        <Label x:Name="swapCountLabel" Content="1"/>
-                    </StackPanel>
-                </Button>
-            </Viewbox>
+               
+                    <Button Grid.Row="3" x:Name="swapButton"   HorizontalAlignment="Center" Visibility="Collapsed">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Замены:"/>
+                            <Label x:Name="swapCountLabel" Content="1"/>
+                        </StackPanel>
+                    </Button>
+         
+
+            </Grid>
+
+
 
         </Grid>
-
-
-
-    </Grid>
-
+    </Border>
 </UserControl>

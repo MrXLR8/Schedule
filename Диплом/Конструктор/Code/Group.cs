@@ -23,10 +23,14 @@ namespace Builder
     {
         public int auditory { get; set; }
         public Lector lector { get; set; }
-        public int lectionNumber { get; set; } // номер пары в дне
-        public Lection(string _name, int _lectionNumber, Lector _lector, int _auditory )
+        public Interval lectionInterval { get; set; } // номер пары в дне
+        public Lection(string _name, Interval _lectionNumber, Lector _lector, int _auditory )
         {
-            name = _name; auditory = _auditory; lectionNumber = _lectionNumber; lector.name = _lector.name; lector.middleName = _lector.middleName; lector.lastName = _lector.lastName;
+            name = _name;
+            auditory = _auditory;
+            lectionInterval = _lectionNumber;
+            lector =_lector;
+            swapList = new ObservableCollection<LectionSwap>();
         }
         public ObservableCollection<LectionSwap> swapList { get; set; }
 

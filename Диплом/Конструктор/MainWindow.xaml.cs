@@ -88,10 +88,9 @@ namespace Builder
 
         private void openButton_Click(object sender, RoutedEventArgs e)
         {
-           
-            testList.Add(new Group("ПІ-1320"));
-            testList.Add(new Group("ПР-19"));
-            testList.Add(new Group("8-Б"));
+            LectionControl toAdd = new LectionControl();
+            toAdd.Lection = new Lection("TEST",new Interval(1,new TimeSpan(13,40,0),new TimeSpan(15,0,0)),new Lector("Fedorov","Andrey","Viacheslavovuch"),305);
+            chMonday.Items.Add(toAdd);
 
 
             //GroupList.ItemsSource = testList;

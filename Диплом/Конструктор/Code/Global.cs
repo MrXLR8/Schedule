@@ -20,6 +20,17 @@ namespace Builder
           .First(f => Grid.GetRow(f) == 0 && Grid.GetColumn(f) == column);
         }
 
+        public static string SpanToString(TimeSpan input)
+        {
+
+            string startH, startM;
+            if (input.Hours < 10) { startH = "0" + input.Hours; } else { startH = input.Hours.ToString(); };
+            if (input.Minutes < 10) { startM = "0" + input.Minutes; } else { startM = input.Minutes.ToString(); };
+
+            return startH + ":" + startM;
+        
+    }
+
         public static LectorsForm prepodWindow;
         public static PredmetsForm predmetWindow;
         public static ClassesForm classesWindow;

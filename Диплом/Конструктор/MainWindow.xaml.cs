@@ -23,9 +23,9 @@ namespace Builder
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Lection selected = null;
+       
         public ObservableCollection<LectionSwap> swapListToAdd = new ObservableCollection<LectionSwap>();
-        public ObservableCollection<Group> testList { get; set; }
+        public ObservableCollection<Group> groupList { get; set; }
         
 
         public MainWindow()
@@ -40,7 +40,7 @@ namespace Builder
 
             // Global.editorWindow.prepodGrid.ItemsSource = Global.lectorList;
 
-            testList = new ObservableCollection<Group>();
+            groupList = new ObservableCollection<Group>();
 
             Global.lectorList = new ObservableCollection<Lector>();
             Global.predmetList = new ObservableCollection<string>();
@@ -208,6 +208,51 @@ namespace Builder
                 Title = "Конструктор расписаний";
             }
         }
+
+        private void AcceptChanges_Click(object sender, RoutedEventArgs e)
+        {
+            string radioPick()
+            {
+                if (ChRadio.IsChecked == true) return "ch";
+                if (ZmRadio.IsChecked == true) return "zm";
+                return "both";
+            }
+            try
+            {
+                string lection_name = paraCombo.SelectedItem.ToString();
+                int classNumber = (int)classCombo.SelectedItem;
+                Lector lector = (Lector)lectorCombo.SelectedItem;
+                int interval = ((Interval)timeCombo.SelectedItem).index;
+                string dayOfWeek = dayInWeekCombo.SelectedItem.ToString();
+                string weekType = radioPick();
+                Lection toAdd = new Lection(lection_name, interval, lector, classNumber);
+                toAdd.swapList = swapListToAdd;
+
+                if(weekType=="ch")
+                {
+                    Global.selectedGroup.chuslutel.pick(dayOfWeek).add(toAdd);
+                    
+                }
+                else if (weekType == "zm")
+                {
+                    Global.selectedGroup.znamenatel.pick(dayOfWeek).add(toAdd);
+                }
+                else
+                {
+                    Global.selectedGroup.chuslutel.pick(dayOfWeek).add(toAdd);
+                    Global.selectedGroup.znamenatel.pick(dayOfWeek).add(toAdd);
+                }
+
+            }
+            catch (NullReferenceException exc)
+            {
+                MessageBox.Show("Одно или несколько полей незаполнено, изменения не внесены.");
+            }
+
+        }
+
+
+
     }
 
 }

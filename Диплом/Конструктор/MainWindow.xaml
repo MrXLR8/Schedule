@@ -106,7 +106,7 @@
 
             <Border x:Name="CenterPanel" Style="{StaticResource Borders}" Grid.Column="2" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
                 <TabControl>
-                    <TabItem Header="Числитель" HorizontalContentAlignment="Stretch">
+                    <TabItem x:Name="chTabItem" Header="Числитель" HorizontalContentAlignment="Stretch">
                         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" d:IsHidden="True">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -140,7 +140,7 @@
                             </Grid>
                         </ScrollViewer>
                     </TabItem>
-                    <TabItem Header="Знаменатель" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" HorizontalContentAlignment="Stretch">
+                    <TabItem x:Name="zmTabItem" Header="Знаменатель" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" HorizontalContentAlignment="Stretch">
                         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" d:IsHidden="True">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -258,6 +258,33 @@
                             <ComboBox x:Name="timeCombo" MouseEnter="timeCombo_MouseEnter"/>
                         </GroupBox>
 
+                       
+                        <GroupBox Padding="0">
+                            <GroupBox.Header>
+                                <Label Margin="0,1,0,0" Content="День недели"/>
+                            </GroupBox.Header>
+
+                                <ComboBox x:Name="dayInWeekCombo"></ComboBox>  
+                
+                        </GroupBox>
+
+
+                        <GroupBox Padding="0">
+                            <GroupBox.Header>
+                                <Label Margin="0,1,0,0" Content="Выбор недели"/>
+                            </GroupBox.Header>
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <RadioButton  Grid.Row="0" Content="Числитель" x:Name="ChRadio"></RadioButton>
+                                <RadioButton Margin="0,10,0,10" Grid.Row="1" Content="Знаменатель" x:Name="ZmRadio"></RadioButton>
+                                <RadioButton Grid.Row="2" Content="Обе недели" x:Name="BothRadio"></RadioButton>
+                            </Grid>
+                        </GroupBox>
+
                         <Expander Padding="2">
                             <Expander.Header>
                                 <Label Content="Замены"/>
@@ -295,35 +322,9 @@
                             </StackPanel>
                         </Expander>
 
-                        <GroupBox Padding="0">
-                            <GroupBox.Header>
-                                <Label Margin="0,10,0,0" Content="День недели"/>
-                            </GroupBox.Header>
-
-                                <ComboBox x:Name="dayInWeekCombo"></ComboBox>  
-                
-                        </GroupBox>
 
 
-                        <GroupBox Padding="0">
-                            <GroupBox.Header>
-                                <Label Margin="0,10,0,0" Content="Выбор недели"/>
-                            </GroupBox.Header>
-                            <Grid >
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <RadioButton  Grid.Row="0" Content="Числитель" x:Name="ChuslCheckBox"></RadioButton>
-                                <RadioButton Margin="0,10,0,10" Grid.Row="1" Content="Знаменатель" x:Name="ZnamCheckBox"></RadioButton>
-                                <RadioButton Grid.Row="2" Content="Обе недели" x:Name="BothCheckBox"></RadioButton>
-                            </Grid>
-                        </GroupBox>
-
-
-
-                        <Button Margin="0,5,5,0" MaxHeight="40" x:Name="AcceptChanges">
+                        <Button Margin="0,5,5,0" MaxHeight="40" x:Name="AcceptChanges" Click="AcceptChanges_Click">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>

@@ -21,8 +21,8 @@ namespace Builder
             name= _name;
         }
 
-        Week chuslutel = new Week("ch");
-        Week znamenatel = new Week("zm");
+        public Week chuslutel = new Week("ch");
+        public Week znamenatel = new Week("zm");
 
     }
 
@@ -112,7 +112,7 @@ namespace Builder
     }
 
 
-    class Week
+    public class Week
     {
         public Day Monday { get; set; }
         public Day  Tuesday { get; set; }
@@ -121,7 +121,7 @@ namespace Builder
         public Day  Friday { get; set; }
         public Day Saturday{ get; set; }
 
-        Day pick( string toFind)
+        public Day pick( string toFind)
         {
             switch (toFind)
             {
@@ -153,16 +153,17 @@ namespace Builder
         }
     }
 
-    class Day: Entry
+    public class Day: Entry
     {
         public ObservableCollection<Lection> lectionList { get; set; }
         string lookname;
         public Day(string _name,string _weekType)
         {
-
-            lookname = _weekType + name;
-            var list = Global.FindChild<ListBox>(Global.main, lookname);
             lectionList = new ObservableCollection<Lection>();
+            ListBox list;
+            lookname = _weekType + _name;
+
+            list = (ListBox) Global.main.FindName(lookname);
             list.ItemsSource = lectionList;
             
         }
@@ -174,7 +175,11 @@ namespace Builder
             duplicate = gotDuplicate(_input.lectionInterval);
             if (duplicate != null) // если в дне уже есть пара в этом интервале
             {
-                duplicate = _input.Clone();
+                duplicate.auditory = _input.auditory;
+                duplicate.lectionInterval = _input.lectionInterval;
+                duplicate.lector = _input.lector;
+                duplicate.name = _input.name;
+                duplicate.swapList = _input.swapList;
             }
             else { lectionList.Add(_input); }
 
@@ -194,8 +199,13 @@ namespace Builder
 
         void reDraw()
         {
-            var list = Global.FindChild<ListBox>(Global.main, lookname);
-            list.ItemsSource = lectionList;
+            ObservableCollection<LectionControl> toShow = new ObservableCollection<LectionControl>();
+            foreach(Lection c in lectionList)
+            {
+                toShow.Add(new LectionControl(c));
+            }
+            var list = (ListBox)Global.main.FindName(lookname);
+            list.ItemsSource = toShow;
             list.Items.Refresh();
         }
 

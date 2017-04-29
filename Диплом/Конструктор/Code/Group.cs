@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Controls;
 
 namespace Builder
 {
@@ -94,4 +95,65 @@ namespace Builder
 
         }
     }
+
+
+    class Week
+    {
+        public Day Monday, Tuesday, Wednesday, Thursday, Friday, Saturday;
+
+        Day pick( string toFind)
+        {
+            switch (toFind)
+            {
+                case "Понедельник":
+                    return Monday;
+                case "Вторник":
+                    return Tuesday;
+                case "Среда":
+                    return Wednesday;
+                case "Четверг":
+                    return Thursday;
+                case "Пятница":
+                    return Friday;
+                case "Суббота":
+                    return Saturday;
+            }
+            return null;
+        }
+
+        public Week(string type)
+        {
+            if(type=="ch")
+            {
+                Monday = new Day("Monday", Global.main.chMonday);
+                Tuesday = new Day("Tuesday", Global.main.chTuesday);
+                Wednesday = new Day("Wednesday", Global.main.chWednesday);
+                Thursday = new Day("Thursday", Global.main.chThursday);
+                Friday = new Day("Friday", Global.main.chFriday);
+                Saturday = new Day("Saturday", Global.main.chSaturday);
+            }
+
+            if (type == "zm")
+            {
+                Monday = new Day("Monday", Global.main.zmMonday);
+                Tuesday = new Day("Tuesday", Global.main.zmTuesday);
+                Wednesday = new Day("Wednesday", Global.main.zmWednesday);
+                Thursday = new Day("Thursday", Global.main.zmThursday);
+                Friday = new Day("Friday", Global.main.zmFriday);
+                Saturday = new Day("Saturday", Global.main.zmSaturday);
+            }
+        }
+    }
+
+    class Day: Entry
+    {
+        public ListBox list;
+        public Day(string _name, ListBox _list)
+        {
+            name = _name;
+            list = _list;
+            list.Items.Clear();
+        }
+    }
+
 }

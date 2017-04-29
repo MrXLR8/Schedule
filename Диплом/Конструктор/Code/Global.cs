@@ -31,6 +31,7 @@ namespace Builder
         
     }
 
+        public static MainWindow main;
         public static LectorsForm prepodWindow;
         public static PredmetsForm predmetWindow;
         public static ClassesForm classesWindow;

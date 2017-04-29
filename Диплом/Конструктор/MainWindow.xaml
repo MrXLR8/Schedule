@@ -118,21 +118,62 @@
                                     <ColumnDefinition Width="200"/>
                                 </Grid.ColumnDefinitions>
                                 <Border Grid.Column="0" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                                    <ListBox HorizontalContentAlignment="Stretch" x:Name="chMonday" >
-                                        
-                                    </ListBox>
-                                    
+                                    <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="chMonday"/>
+
                                 </Border>
-                                <Border Grid.Column="1" BorderThickness="1" BorderBrush="Black" />
-                                <Border Grid.Column="2" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-                                <Border Grid.Column="3" BorderThickness="1" BorderBrush="Black" />
-                                <Border Grid.Column="4" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-                                <Border Grid.Column="5" BorderThickness="1" BorderBrush="Black" />
+                                <Border Grid.Column="1" BorderThickness="1" BorderBrush="Black" >
+                                    <ListBox HorizontalContentAlignment="Stretch" x:Name="chTuesday" />
+                                </Border>
+                                <Border Grid.Column="2" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                                    <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="chWednesday" />
+                                </Border>
+                                <Border Grid.Column="3" BorderThickness="1" BorderBrush="Black">
+                                    <ListBox HorizontalContentAlignment="Stretch" x:Name="chThursday" />
+                                </Border>
+                                <Border Grid.Column="4" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                                    <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="chFriday" />
+                                </Border>
+                                <Border Grid.Column="5" BorderThickness="1" BorderBrush="Black">
+                                    <ListBox HorizontalContentAlignment="Stretch" x:Name="chSaturday" />
+                                </Border>
 
                             </Grid>
                         </ScrollViewer>
                     </TabItem>
-                    <TabItem Header="Знаменатель" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" HorizontalContentAlignment="Stretch">Вторая вкладка</TabItem>
+                    <TabItem Header="Знаменатель" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" HorizontalContentAlignment="Stretch">
+                        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" d:IsHidden="True">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="200"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                                    <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="zmMonday"/>
+
+                                </Border>
+                                <Border Grid.Column="1" BorderThickness="1" BorderBrush="Black" >
+                                    <ListBox HorizontalContentAlignment="Stretch" x:Name="zmTuesday" />
+                                </Border>
+                                <Border Grid.Column="2" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                                    <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="zmWednesday" />
+                                </Border>
+                                <Border Grid.Column="3" BorderThickness="1" BorderBrush="Black">
+                                    <ListBox HorizontalContentAlignment="Stretch" x:Name="zmThursday" />
+                                </Border>
+                                <Border Grid.Column="4" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                                    <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="zmFriday" />
+                                </Border>
+                                <Border Grid.Column="5" BorderThickness="1" BorderBrush="Black">
+                                    <ListBox HorizontalContentAlignment="Stretch" x:Name="zmSaturday" />
+                                </Border>
+
+                            </Grid>
+                        </ScrollViewer>
+                    </TabItem>
                 </TabControl>
             </Border>
 

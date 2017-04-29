@@ -34,6 +34,7 @@ namespace Builder
             Global.predmetWindow = new PredmetsForm();
             Global.classesWindow = new ClassesForm();
             Global.intervalWindow = new IntervalsForm();
+            Global.main = this;
             #region Инициализая глобальных списков
 
             // Global.editorWindow.prepodGrid.ItemsSource = Global.lectorList;

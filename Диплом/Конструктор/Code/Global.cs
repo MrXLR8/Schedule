@@ -44,6 +44,10 @@ namespace Builder
         public static IntervalCollection intervals = new IntervalCollection();
 
 
+
+        public static Group selectedGroup; // текущая выбранная группа
+        public static Lection selectedLection; // текущая выбранная лекция из всех списков
+
     }
 
 

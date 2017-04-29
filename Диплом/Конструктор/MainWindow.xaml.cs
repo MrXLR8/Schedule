@@ -35,6 +35,7 @@ namespace Builder
             Global.classesWindow = new ClassesForm();
             Global.intervalWindow = new IntervalsForm();
             Global.main = this;
+
             #region Инициализая глобальных списков
 
             // Global.editorWindow.prepodGrid.ItemsSource = Global.lectorList;
@@ -56,6 +57,7 @@ namespace Builder
 
             Global.lectorList.Add(new Lector("Бондарь", "Иван", "ФигЕгоЗнаевич"));
             #endregion
+
             #region paru
             Global.predmetList.Add("Эмпирические Методы");
             Global.predmetList.Add("Информатика");
@@ -68,6 +70,11 @@ namespace Builder
             Global.classList.Add(224);
             #endregion
 
+            #region intervals
+            Global.intervals.timeList.Add(new Interval(1, new TimeSpan(9, 0, 0), new TimeSpan(10, 20, 0)));
+            Global.intervals.timeList.Add(new Interval(1, new TimeSpan(10, 30, 0), new TimeSpan(11, 50, 0)));
+            Global.intervals.timeList.Add(new Interval(1, new TimeSpan(12, 10, 0), new TimeSpan(13, 30, 0)));
+            #endregion
 
             #endregion
 
@@ -85,6 +92,7 @@ namespace Builder
             swapGrid.ItemsSource = swapListToAdd;
             predmetSwapCombo.ItemsSource = Global.predmetList;
             GroupListBox.ItemsSource = Global.groupList;
+            dayInWeekCombo.ItemsSource = new string[] { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" };
         }
 
         private void openButton_Click(object sender, RoutedEventArgs e)
@@ -186,6 +194,19 @@ namespace Builder
 
         }
 
+        private void GroupListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            Global.selectedGroup = (Group)GroupListBox.SelectedItem;
+            try
+            {
+                Title = "Конструктор расписаний. Выбранная группа: " + Global.selectedGroup.name;
+            }
+            catch (NullReferenceException exc)
+            {
+                Title = "Конструктор расписаний";
+            }
+        }
     }
 
 }

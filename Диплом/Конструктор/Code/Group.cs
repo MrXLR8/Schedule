@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 
@@ -18,6 +19,10 @@ namespace Builder
         {
             name= _name;
         }
+
+        Week chuslutel = new Week("ch");
+        Week znamenatel = new Week("zm");
+
     }
 
     public class Lection: Entry
@@ -25,6 +30,7 @@ namespace Builder
         public int auditory { get; set; }
         public Lector lector { get; set; }
         public int lectionInterval { get; set; } // номер пары в дне
+
         public Lection(string _name, int _lectionNumber, Lector _lector, int _auditory )
         {
             name = _name;
@@ -32,6 +38,14 @@ namespace Builder
             lectionInterval = _lectionNumber;
             lector =_lector;
             swapList = new ObservableCollection<LectionSwap>();
+        }
+
+        public Lection Clone()
+        {
+            Lection toReturn;
+            toReturn = new Lection(name, lectionInterval, lector, auditory);
+            toReturn.swapList = swapList;
+            return toReturn;
         }
         public ObservableCollection<LectionSwap> swapList { get; set; }
 
@@ -99,7 +113,12 @@ namespace Builder
 
     class Week
     {
-        public Day Monday, Tuesday, Wednesday, Thursday, Friday, Saturday;
+        public Day Monday { get; set; }
+        public Day  Tuesday { get; set; }
+        public Day Wednesday { get; set; }
+        public Day Thursday { get; set; }
+        public Day  Friday { get; set; }
+        public Day Saturday{ get; set; }
 
         Day pick( string toFind)
         {
@@ -147,13 +166,47 @@ namespace Builder
 
     class Day: Entry
     {
+        public ObservableCollection<Lection> lectionList { get; set; }
         public ListBox list;
         public Day(string _name, ListBox _list)
         {
             name = _name;
             list = _list;
             list.Items.Clear();
+            lectionList = new ObservableCollection<Lection>();
         }
+
+        public void add(Lection _input)
+        {
+            
+            Lection duplicate;
+            duplicate = gotDuplicate(_input.lectionInterval);
+            if (duplicate != null) // если в дне уже есть пара в этом интервале
+            {
+                duplicate = _input.Clone();
+            }
+            else { lectionList.Add(_input); }
+
+            lectionList.OrderBy(s => s.lectionInterval);
+            reDraw();
+
+        }
+
+        Lection gotDuplicate (int look)
+        {
+            foreach (Lection c in lectionList)
+            {
+                if (c.lectionInterval == look) return c;
+            }
+            return null;
+        }
+
+        void reDraw()
+        {
+            list.ItemsSource = lectionList;
+            list.Items.Refresh();
+        }
+
     }
 
 }

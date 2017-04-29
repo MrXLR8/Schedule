@@ -59,7 +59,7 @@
                     </Grid.RowDefinitions>
 
                     <Label Content="Список групп:" HorizontalContentAlignment="Center" VerticalAlignment="Center" Height="25"/>
-                    <ListBox x:Name="GroupListBox" Grid.Row="1"  Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=testList,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                    <ListBox x:Name="GroupListBox" Grid.Row="1"  Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=testList,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="GroupListBox_SelectionChanged" >
                         <ListBox.ItemTemplate>
                             <DataTemplate>
 

@@ -23,8 +23,8 @@ namespace Builder
     {
         public int auditory { get; set; }
         public Lector lector { get; set; }
-        public Interval lectionInterval { get; set; } // номер пары в дне
-        public Lection(string _name, Interval _lectionNumber, Lector _lector, int _auditory )
+        public int lectionInterval { get; set; } // номер пары в дне
+        public Lection(string _name, int _lectionNumber, Lector _lector, int _auditory )
         {
             name = _name;
             auditory = _auditory;

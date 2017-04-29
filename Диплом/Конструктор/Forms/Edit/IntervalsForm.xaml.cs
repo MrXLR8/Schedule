@@ -42,6 +42,22 @@ namespace Builder
             return true;
         }
 
+        public bool checkAllWithAdd()
+        {
+            List<Interval> toCheck = new List<Interval>();
+
+            foreach (Interval c in pairs.Items)
+            {
+                toCheck.Add(c);
+            }
+                foreach (Interval c in toCheck)
+            {
+
+                if (!test.setTime(c)) { return false; }
+            }
+            return true;
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
@@ -80,6 +96,7 @@ namespace Builder
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
+            checkAllWithAdd();
             Global.intervals = test.Clone();
             resetButton_Click(null, null);
             saveButton.IsEnabled = false;
@@ -112,7 +129,7 @@ namespace Builder
             bool localcheck = test.setTime(sender.time);
            System.Diagnostics.Debug.Write("\n \n Local: "+ localcheck);
 
-            bool globalCheck = checkAll();
+            bool globalCheck = checkAllWithAdd();
             System.Diagnostics.Debug.Write("\n \n GLOBAL: " + globalCheck);
 
             saveButton.IsEnabled = globalCheck&localcheck;

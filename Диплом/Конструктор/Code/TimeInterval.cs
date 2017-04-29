@@ -23,7 +23,9 @@ namespace Builder
 
         public bool checkCorrect(Interval _input)
         {
+            TimeSpan empty = new TimeSpan();
             int index = _input.index-1;
+            if (_input.start == new TimeSpan() | _input.end == new TimeSpan()) return false;
             if (_input.start > _input.end)
             {
                 return false;
@@ -37,18 +39,21 @@ namespace Builder
                     {
                         if (_input.start <= c.start)
                         { // если у ранних начальная дата больше
-                            return false;
+                            if (c.end != empty & c.start != empty)
+                                return false;
                         }
 
                         if (_input.end <= c.end)
                         { // если у ранних конечная дата больше
-                            return false;
+                            if (c.end != empty & c.start != empty)
+                                return false;
                         }
 
                         if(_input.start<=c.end)
                         {
-                            //если старт находиться внутри промежутка
-                            return false;
+                            if (c.end != empty & c.start != empty)
+                                //если старт находиться внутри промежутка
+                                return false;
                         }
                     }
                 }
@@ -58,29 +63,33 @@ namespace Builder
                 Interval c = timeList[i];
                 if (c != null)
                 {
-                    if (_input.start >= c.start)
+                    if (_input.start > c.start)
                     { // если у поздних начальная дата меньше
+                        if(c.start!=empty)
                         return false;
                     }
 
                     if (_input.end >= c.end)
                     { // если у поздних конечная дата меньше
-                        return false;
+                        if (c.end != empty)
+                            return false;
                     }
 
                     if (_input.end >= c.start)
                     { // его конец не может залазить в его старт
-                        return false;
+                        if (c.end != empty& c.start != empty)
+                            return false;
                     }
                 }
 
             }
+            
             return true;
 
         }
 
         public bool setTime(Interval _input)
-        {
+         {
             if (checkCorrect(_input))
             {
                 try { timeList[_input.index - 1] = _input; }

@@ -25,6 +25,13 @@ namespace Builder
             InitializeComponent();
         }
 
+
+        public LectionControl(Lection input)
+        {
+            InitializeComponent();
+            Lection = input;
+        }
+
         public static readonly DependencyProperty lectionProperty =
           DependencyProperty.Register("Lection", typeof(Lection), typeof(LectionControl), new FrameworkPropertyMetadata(new PropertyChangedCallback(LectionChanged)));
 
@@ -34,15 +41,30 @@ namespace Builder
             set { SetValue(lectionProperty, value); }
         }
 
+
+        public bool reDraw()
+        {
+            try
+            {
+                LectionChanged(this, new DependencyPropertyChangedEventArgs());
+                return true;
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                MessageBox.Show("Этого времени больше нет");
+                return false;
+            }
+        }
+
         private static void LectionChanged(DependencyObject sender,
    DependencyPropertyChangedEventArgs e)
         {
             LectionControl window = (LectionControl)sender;
-            window.pairIndexLabel.Content = window.Lection.lectionInterval.index;
+            window.pairIndexLabel.Content = window.Lection.lectionInterval;
 
-            window.startTimeLabel.Content = Global.SpanToString(window.Lection.lectionInterval.start);
+            window.startTimeLabel.Content = Global.SpanToString(Global.intervals.timeList[window.Lection.lectionInterval-1].start);
 
-            window.endTimeLabel.Content = Global.SpanToString(window.Lection.lectionInterval.end);
+            window.endTimeLabel.Content = Global.SpanToString(Global.intervals.timeList[window.Lection.lectionInterval-1].end);
 
             window.predmetLabel.Text = window.Lection.name;
 

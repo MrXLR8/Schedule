@@ -88,15 +88,13 @@ namespace Builder
 
         private void openButton_Click(object sender, RoutedEventArgs e)
         {
-            LectionControl toAdd = new LectionControl();
-            toAdd.Lection = new Lection("TEST",new Interval(1,new TimeSpan(13,40,0),new TimeSpan(15,0,0)),new Lector("Fedorov","Andrey","Viacheslavovuch"),305);
+            LectionControl toAdd = new LectionControl(new Lection("TEST", 1, new Lector("Fedorov", "Andrey", "Viacheslavovuch"), 305));
             chMonday.Items.Add(toAdd);
 
-
-            //GroupList.ItemsSource = testList;
-           // GroupList.ItemsSource = new[] { new { nameOfTheGroup = "TEST1" }, new { nameOfTheGroup = "TEST2" } };
-           
-            System.Diagnostics.Debug.Write("\n loaded");
+            LectionControl toAdd2 = new LectionControl(new Lection("SWAP", 2, new Lector("Fedorov", "Andrey", "Viacheslavovuch"), 305));
+            toAdd2.Lection.swapList.Add(new LectionSwap(DateTime.Now, "Informatuka"));
+            chMonday.Items.Add(toAdd2);
+            toAdd2.reDraw();
         }
 
         private void newButton_Click(object sender, RoutedEventArgs e)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Controls;
 
@@ -142,38 +143,28 @@ namespace Builder
 
         public Week(string type)
         {
-            if(type=="ch")
-            {
-                Monday = new Day("Monday", Global.main.chMonday);
-                Tuesday = new Day("Tuesday", Global.main.chTuesday);
-                Wednesday = new Day("Wednesday", Global.main.chWednesday);
-                Thursday = new Day("Thursday", Global.main.chThursday);
-                Friday = new Day("Friday", Global.main.chFriday);
-                Saturday = new Day("Saturday", Global.main.chSaturday);
-            }
-
-            if (type == "zm")
-            {
-                Monday = new Day("Monday", Global.main.zmMonday);
-                Tuesday = new Day("Tuesday", Global.main.zmTuesday);
-                Wednesday = new Day("Wednesday", Global.main.zmWednesday);
-                Thursday = new Day("Thursday", Global.main.zmThursday);
-                Friday = new Day("Friday", Global.main.zmFriday);
-                Saturday = new Day("Saturday", Global.main.zmSaturday);
-            }
+                Monday = new Day("Monday", type);
+                Tuesday = new Day("Tuesday", type);
+                Wednesday = new Day("Wednesday", type);
+                Thursday = new Day("Thursday", type);
+                Friday = new Day("Friday", type);
+                Saturday = new Day("Saturday", type);
+            
         }
     }
 
     class Day: Entry
     {
         public ObservableCollection<Lection> lectionList { get; set; }
-        public ListBox list;
-        public Day(string _name, ListBox _list)
+        string lookname;
+        public Day(string _name,string _weekType)
         {
-            name = _name;
-            list = _list;
-            list.Items.Clear();
+
+            lookname = _weekType + name;
+            var list = Global.FindChild<ListBox>(Global.main, lookname);
             lectionList = new ObservableCollection<Lection>();
+            list.ItemsSource = lectionList;
+            
         }
 
         public void add(Lection _input)
@@ -203,6 +194,7 @@ namespace Builder
 
         void reDraw()
         {
+            var list = Global.FindChild<ListBox>(Global.main, lookname);
             list.ItemsSource = lectionList;
             list.Items.Refresh();
         }

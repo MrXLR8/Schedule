@@ -108,7 +108,8 @@ namespace Builder
 
         private void newButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Day test = new Day("Tuesday", "ch");
+            
 
           
            

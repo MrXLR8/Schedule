@@ -24,6 +24,12 @@ namespace Builder
         public Week chuslutel = new Week("ch");
         public Week znamenatel = new Week("zm");
 
+        public void massReDraw()
+        {
+            chuslutel.redraw();
+            znamenatel.redraw();
+        }
+
     }
 
     public class Lection: Entry
@@ -151,6 +157,15 @@ namespace Builder
                 Saturday = new Day("Saturday", type);
             
         }
+
+        public void redraw()
+        {
+            Monday.reDraw();
+            Tuesday.reDraw();
+            Thursday.reDraw();
+            Friday.reDraw();
+            Saturday.reDraw();
+        }
     }
 
     public class Day: Entry
@@ -183,7 +198,9 @@ namespace Builder
             }
             else { lectionList.Add(_input); }
 
-            lectionList.OrderBy(s => s.lectionInterval);
+
+             var look = lectionList.OrderBy(s => s.lectionInterval);
+            lectionList = Collection.ToCollectionFromNum<Lection>(look);
             reDraw();
 
         }
@@ -197,16 +214,34 @@ namespace Builder
             return null;
         }
 
-        void reDraw()
+
+       public void reDraw()
         {
-            ObservableCollection<LectionControl> toShow = new ObservableCollection<LectionControl>();
-            foreach(Lection c in lectionList)
+            try
             {
-                toShow.Add(new LectionControl(c));
-            }
+                ObservableCollection<LectionControl> toShow = new ObservableCollection<LectionControl>();
+      
+                foreach (Lection c in lectionList)
+                {
+                    try
+                    {
+                        toShow.Add(new LectionControl(c));
+                    }
+                    catch (Exception e)
+                    {
+                        lectionList.Remove(c);
+ 
+                    }
+                }
+
             var list = (ListBox)Global.main.FindName(lookname);
             list.ItemsSource = toShow;
             list.Items.Refresh();
+            }
+            catch (InvalidOperationException exc)
+            {
+                reDraw();
+            }
         }
 
     }

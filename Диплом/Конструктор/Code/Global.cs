@@ -82,7 +82,16 @@ namespace Builder
             return output;
         }
 
+        public static ObservableCollection<T> ToCollectionFromNum<T>(IEnumerable<T> _input)
+        {
+            ObservableCollection<T> output = new ObservableCollection<T>();
 
+            foreach (T c in _input)
+            {
+                output.Add(c);
+            }
+            return output;
+        }
     }
 
 }

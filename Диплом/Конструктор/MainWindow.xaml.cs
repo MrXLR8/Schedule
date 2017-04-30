@@ -72,8 +72,8 @@ namespace Builder
 
             #region intervals
             Global.intervals.timeList.Add(new Interval(1, new TimeSpan(9, 0, 0), new TimeSpan(10, 20, 0)));
-            Global.intervals.timeList.Add(new Interval(1, new TimeSpan(10, 30, 0), new TimeSpan(11, 50, 0)));
-            Global.intervals.timeList.Add(new Interval(1, new TimeSpan(12, 10, 0), new TimeSpan(13, 30, 0)));
+            Global.intervals.timeList.Add(new Interval(2, new TimeSpan(10, 30, 0), new TimeSpan(11, 50, 0)));
+            Global.intervals.timeList.Add(new Interval(3, new TimeSpan(12, 10, 0), new TimeSpan(13, 30, 0)));
             #endregion
 
             #endregion
@@ -242,7 +242,7 @@ namespace Builder
                     Global.selectedGroup.chuslutel.pick(dayOfWeek).add(toAdd);
                     Global.selectedGroup.znamenatel.pick(dayOfWeek).add(toAdd);
                 }
-
+                Global.selectedGroup.massReDraw();
             }
             catch (NullReferenceException exc)
             {

@@ -96,7 +96,7 @@
                         <TextBox x:Name="groupNameText" Margin="0,0,0,1" Grid.Row="1" Grid.Column="0" TextAlignment="Center" VerticalContentAlignment="Center" />
 
                         <Label Grid.Row="0" FontSize="10" HorizontalContentAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Content="Добавить группу" Height="22" Margin="0,4"></Label>
-                        <Button x:Name="deleteGroupButton" Click="deleteGroup_Click" Grid.Row="2" Margin="0,0,0,1" FontSize="11" Grid.ColumnSpan="2" Content="Удалить выбранную группу"/>
+                        <Button x:Name="deleteGroupButton" Click="deleteGroup_Click" Grid.Row="2" Margin="0,0,0,1" FontSize="11" Grid.ColumnSpan="2" Content="Удалить выбранную группу" IsEnabled="False"/>
                     </Grid>
 
                 </Grid>
@@ -117,24 +117,47 @@
                                     <ColumnDefinition Width="200"/>
                                     <ColumnDefinition Width="200"/>
                                 </Grid.ColumnDefinitions>
+                                
                                 <Border Grid.Column="0" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Понедельник" TextAlignment="Center" Background="Beige"></TextBlock>
                                     <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="chMonday"/>
-
+                                    </StackPanel>
                                 </Border>
+                                
                                 <Border Grid.Column="1" BorderThickness="1" BorderBrush="Black" >
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Вторник" TextAlignment="Center" Background="FloralWhite"></TextBlock>
                                     <ListBox HorizontalContentAlignment="Stretch" x:Name="chTuesday" />
+                                    </StackPanel>
                                 </Border>
+                                
                                 <Border Grid.Column="2" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                                    <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="chWednesday" />
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Среда" TextAlignment="Center" Background="Beige"></TextBlock>
+                                        <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="chWednesday" />
+                                    </StackPanel>
                                 </Border>
+                                
                                 <Border Grid.Column="3" BorderThickness="1" BorderBrush="Black">
-                                    <ListBox HorizontalContentAlignment="Stretch" x:Name="chThursday" />
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Четверг" TextAlignment="Center" Background="FloralWhite"></TextBlock>
+                                        <ListBox HorizontalContentAlignment="Stretch" x:Name="chThursday" />
+                                    </StackPanel>
                                 </Border>
+                                
                                 <Border Grid.Column="4" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                                    <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="chFriday" />
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Пятница" TextAlignment="Center" Background="Beige"></TextBlock>
+                                        <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="chFriday" />
+                                    </StackPanel>
                                 </Border>
+                                
                                 <Border Grid.Column="5" BorderThickness="1" BorderBrush="Black">
-                                    <ListBox HorizontalContentAlignment="Stretch" x:Name="chSaturday" />
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Суббота" TextAlignment="Center" Background="FloralWhite"></TextBlock>
+                                        <ListBox HorizontalContentAlignment="Stretch" x:Name="chSaturday" />
+                                    </StackPanel>
                                 </Border>
 
                             </Grid>
@@ -152,23 +175,48 @@
                                     <ColumnDefinition Width="200"/>
                                 </Grid.ColumnDefinitions>
                                 <Border Grid.Column="0" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                                    <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="zmMonday"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Понедельник" TextAlignment="Center" Background="Beige"></TextBlock>
 
+                                        <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="zmMonday"/>
+                                    </StackPanel>
                                 </Border>
+                                
                                 <Border Grid.Column="1" BorderThickness="1" BorderBrush="Black" >
-                                    <ListBox HorizontalContentAlignment="Stretch" x:Name="zmTuesday" />
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Вторник" TextAlignment="Center" Background="FloralWhite"></TextBlock>
+                                        <ListBox HorizontalContentAlignment="Stretch" x:Name="zmTuesday" />
+                                    </StackPanel>
                                 </Border>
+                                
                                 <Border Grid.Column="2" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                                    <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="zmWednesday" />
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Среда" TextAlignment="Center" Background="Beige"></TextBlock>
+
+                                        <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="zmWednesday" />
+                                    </StackPanel>
                                 </Border>
+                                
                                 <Border Grid.Column="3" BorderThickness="1" BorderBrush="Black">
-                                    <ListBox HorizontalContentAlignment="Stretch" x:Name="zmThursday" />
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Четверг" TextAlignment="Center" Background="FloralWhite"></TextBlock>
+                                        <ListBox HorizontalContentAlignment="Stretch" x:Name="zmThursday" />
+                                    </StackPanel>
                                 </Border>
+                                
                                 <Border Grid.Column="4" BorderThickness="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                                    <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="zmFriday" />
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Пятница" TextAlignment="Center" Background="Beige"></TextBlock>
+
+                                        <ListBox HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" x:Name="zmFriday" />
+                                    </StackPanel>
                                 </Border>
+                                
                                 <Border Grid.Column="5" BorderThickness="1" BorderBrush="Black">
-                                    <ListBox HorizontalContentAlignment="Stretch" x:Name="zmSaturday" />
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Суббота" TextAlignment="Center" Background="FloralWhite"></TextBlock>
+                                        <ListBox HorizontalContentAlignment="Stretch" x:Name="zmSaturday" />
+                                    </StackPanel>
                                 </Border>
 
                             </Grid>

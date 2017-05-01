@@ -187,27 +187,23 @@ namespace Builder
 
         private void deleteGroup_Click(object sender, RoutedEventArgs e)
         {
-
-
-
             Global.groupList.Remove((Group)GroupListBox.SelectedItem);
-
-
         }
 
         private void GroupListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
             Global.selectedGroup = (Group)GroupListBox.SelectedItem;
             try
             {
                 Title = "Конструктор расписаний. Выбранная группа: " + Global.selectedGroup.name;
                 RightPanel.IsEnabled = true;
+                deleteGroupButton.IsEnabled = true;
                 Global.selectedGroup.massReDraw();
             }
-            catch (NullReferenceException exc)
+            catch (NullReferenceException exc) //если не выбранна ни одна группа, или была недавно удленна
             {
                 Title = "Конструктор расписаний";
+                deleteGroupButton.IsEnabled = false;
                 RightPanel.IsEnabled = false;
             }
         }

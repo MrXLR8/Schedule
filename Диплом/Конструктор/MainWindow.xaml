@@ -179,7 +179,7 @@
 
 
 
-            <Border x:Name="RightPanel" Style="{StaticResource Borders}" Grid.Column="4" >
+            <Border x:Name="RightPanel" Style="{StaticResource Borders}" Grid.Column="4" IsEnabled="False" >
                 <Border.BorderBrush>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>
                 </Border.BorderBrush>

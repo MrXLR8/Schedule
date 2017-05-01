@@ -202,10 +202,13 @@ namespace Builder
             try
             {
                 Title = "Конструктор расписаний. Выбранная группа: " + Global.selectedGroup.name;
+                RightPanel.IsEnabled = true;
+                Global.selectedGroup.massReDraw();
             }
             catch (NullReferenceException exc)
             {
                 Title = "Конструктор расписаний";
+                RightPanel.IsEnabled = false;
             }
         }
 
@@ -239,8 +242,9 @@ namespace Builder
                 }
                 else
                 {
-                    Global.selectedGroup.chuslutel.pick(dayOfWeek).add(toAdd);
-                    Global.selectedGroup.znamenatel.pick(dayOfWeek).add(toAdd);
+
+                    Global.selectedGroup.chuslutel.pick(dayOfWeek).add(toAdd.Clone());
+                    Global.selectedGroup.znamenatel.pick(dayOfWeek).add(toAdd.Clone());
                 }
                 Global.selectedGroup.massReDraw();
             }

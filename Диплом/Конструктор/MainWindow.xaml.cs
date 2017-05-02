@@ -26,7 +26,7 @@ namespace Builder
        
         public ObservableCollection<LectionSwap> swapListToAdd = new ObservableCollection<LectionSwap>();
         public ObservableCollection<Group> groupList { get; set; }
-        
+        public List<ListBox> days;
 
         public MainWindow()
         {
@@ -35,6 +35,7 @@ namespace Builder
             Global.classesWindow = new ClassesForm();
             Global.intervalWindow = new IntervalsForm();
             Global.main = this;
+            
 
             #region Инициализая глобальных списков
 
@@ -46,7 +47,7 @@ namespace Builder
             Global.predmetList = new ObservableCollection<string>();
             Global.classList = new ObservableCollection<int>();
             Global.groupList = new ObservableCollection<Group>();
-            #endregion
+                       #endregion
 
             #region ТЕСТОВЫЕ ЗАПОЛНЕНИЯ В СПИСКАХ
 
@@ -93,6 +94,8 @@ namespace Builder
             predmetSwapCombo.ItemsSource = Global.predmetList;
             GroupListBox.ItemsSource = Global.groupList;
             dayInWeekCombo.ItemsSource = new string[] { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" };
+            days = new List<ListBox>() { chMonday, chTuesday, chThursday, chWednesday, chTuesday, chFriday, chSaturday, zmMonday, zmTuesday, zmWednesday, zmThursday, zmFriday, zmSaturday };
+
         }
 
         private void openButton_Click(object sender, RoutedEventArgs e)
@@ -169,6 +172,7 @@ namespace Builder
                 {
                     LectionSwap toAdd = new LectionSwap((DateTime)swapDatePicker.SelectedDate, predmetSwapCombo.SelectedItem.ToString());
                     swapListToAdd.Add(toAdd);
+                    swapGrid.ItemsSource = swapListToAdd;
                 }
             }
         }
@@ -181,6 +185,7 @@ namespace Builder
             {
                 toAdd = new Group(text);
                 Global.groupList.Add(toAdd);
+                GroupListBox.SelectedItem = toAdd;
                 groupNameText.Clear();
             }
         }
@@ -192,6 +197,7 @@ namespace Builder
 
         private void GroupListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Global.resetForm();
             Global.selectedGroup = (Group)GroupListBox.SelectedItem;
             try
             {
@@ -203,6 +209,7 @@ namespace Builder
             catch (NullReferenceException exc) //если не выбранна ни одна группа, или была недавно удленна
             {
                 Title = "Конструктор расписаний";
+                Global.resetForm();
                 deleteGroupButton.IsEnabled = false;
                 RightPanel.IsEnabled = false;
             }
@@ -225,8 +232,10 @@ namespace Builder
                 string dayOfWeek = dayInWeekCombo.SelectedItem.ToString();
                 string weekType = radioPick();
                 Lection toAdd = new Lection(lection_name, interval, lector, classNumber);
-                toAdd.swapList = swapListToAdd;
 
+                toAdd.swapList = swapListToAdd;
+                swapListToAdd = new ObservableCollection<LectionSwap>();
+                swapGrid.ItemsSource = swapListToAdd;
                 if(weekType=="ch")
                 {
                     Global.selectedGroup.chuslutel.pick(dayOfWeek).add(toAdd);
@@ -251,8 +260,24 @@ namespace Builder
 
         }
 
+        private void days_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            ListBox caller = (ListBox)sender;
+            LectionControl picked = (LectionControl) caller.SelectedItem;
+            if (picked != null)
+            {
+                foreach (ListBox c in days)
+                {
+                    if (c != caller)
+                        c.SelectedItem = null;
+                }
 
-
+                caller.SelectedItem = picked;
+                Global.selectedLection = picked.Lection;
+                Global.setEdits(Global.selectedLection);
+            }
+        }
     }
 
 }

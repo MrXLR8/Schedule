@@ -33,6 +33,51 @@ namespace Builder
         
     }
 
+        public static void resetForm()
+        {
+            foreach (ListBox c in main.days)
+            {
+                c.ItemsSource = null;
+            }
+
+            setEdits(null);
+
+         
+        }
+
+        public static void setEdits(Lection input)
+        {
+            if (input != null)
+            {
+                main.lectorCombo.SelectedItem = input.lector;
+                main.paraCombo.SelectedItem = input.name;
+                main.classCombo.SelectedItem = input.auditory;
+                main.timeCombo.SelectedItem = input.lectionInterval;
+
+                main.swapListToAdd.Clear();
+                main.swapGrid.ItemsSource = null;
+                foreach (LectionSwap c in input.swapList)
+                {
+                    main.swapListToAdd.Add(c);
+                }
+                main.swapGrid.ItemsSource = main.swapListToAdd;
+              
+                main.predmetSwapCombo.SelectedItem = null;
+                main.dayInWeekCombo.SelectedItem = null; // TODO: надо как то узнать какому дню принадлежит эта лекция
+            }
+            else
+            {
+                main.paraCombo.SelectedItem = null;
+                main.lectorCombo.SelectedItem = null;
+                main.classCombo.SelectedItem = null;
+                main.timeCombo.SelectedItem = null;
+                main.swapGrid.SelectedItem = null;
+                main.predmetSwapCombo.SelectedItem = null;
+                main.dayInWeekCombo.SelectedItem = null;
+            }
+
+        }
+
         public static MainWindow main;
         public static LectorsForm prepodWindow;
         public static PredmetsForm predmetWindow;

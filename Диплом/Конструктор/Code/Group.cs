@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Builder
@@ -37,6 +38,7 @@ namespace Builder
         public int auditory { get; set; }
         public Lector lector { get; set; }
         public int lectionInterval { get; set; } // номер пары в дне
+        public ObservableCollection<LectionSwap> swapList { get; set; }
 
         public Lection(string _name, int _lectionNumber, Lector _lector, int _auditory )
         {
@@ -54,8 +56,12 @@ namespace Builder
             toReturn.swapList = swapList;
             return toReturn;
         }
-        public ObservableCollection<LectionSwap> swapList { get; set; }
 
+
+        public void showSwapDetails()
+        {
+            MessageBox.Show(swapList.Count.ToString());
+        }
     }
 
 
@@ -103,7 +109,7 @@ namespace Builder
 
                 string correctDate(int input)
                 {
-                    if(input<10)
+                    if (input < 10)
                     {
                         return "0" + input.ToString();
                     }
@@ -113,8 +119,15 @@ namespace Builder
                 result = string.Format("{0}. {1}", correctDate(period.Day), correctDate(period.Month));
                 return result;
             }
-
         }
+
+                    public override string ToString()
+        {
+          return periodString+" ["+para+"]";
+        }
+
+
+
     }
 
 

@@ -86,6 +86,9 @@ namespace Builder
 
         }
 
-
+        private void swapButton_Click(object sender, RoutedEventArgs e)
+        {
+            Lection.showSwapDetails();
+        }
     }
 }

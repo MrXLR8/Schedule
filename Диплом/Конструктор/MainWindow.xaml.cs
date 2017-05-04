@@ -25,7 +25,6 @@ namespace Builder
     {
        
         public ObservableCollection<LectionSwap> swapListToAdd = new ObservableCollection<LectionSwap>();
-        public ObservableCollection<Group> groupList { get; set; }
         public List<ListBox> days;
 
         public MainWindow()
@@ -41,7 +40,6 @@ namespace Builder
 
             // Global.editorWindow.prepodGrid.ItemsSource = Global.lectorList;
 
-            groupList = new ObservableCollection<Group>();
 
             Global.lectorList = new ObservableCollection<Lector>();
             Global.predmetList = new ObservableCollection<string>();
@@ -105,12 +103,7 @@ namespace Builder
         #region Кнопки нижней панели
         private void newButton_Click(object sender, RoutedEventArgs e)
         {
-
-
-
-
-
-
+            Data.reset();
         }
         private void openButton_Click(object sender, RoutedEventArgs e)
         {

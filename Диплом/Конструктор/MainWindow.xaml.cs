@@ -232,7 +232,14 @@ namespace Builder
 
                 toAdd.swapList = swapListToAdd;
                 swapListToAdd = new ObservableCollection<LectionSwap>();
+
+                foreach(LectionSwap c in toAdd.swapList)
+                {
+                    swapListToAdd.Add(c);
+                }
+
                 swapGrid.ItemsSource = swapListToAdd;
+
                 if (weekType == "ch")
                 {
                     Global.selectedGroup.chuslutel.pick(dayOfWeek).add(toAdd);
@@ -260,11 +267,6 @@ namespace Builder
 
         private void DeleteSelected_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            MessageBox.Show(Global.selectedLection.day.lookname);
-            ListBox target = (ListBox)FindName(Global.selectedLection.day.lookname);
-            target?.Items.Remove(Global.selectedLection)
-            */
 
             Day target = Global.selectedLection.day;
             target.lectionList.Remove(Global.selectedLection);

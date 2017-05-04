@@ -55,15 +55,54 @@ namespace Builder
                 main.timeCombo.SelectedItem = input.lectionInterval;
 
                 main.swapListToAdd.Clear();
-                main.swapGrid.ItemsSource = null;
+             //   main.swapGrid.ItemsSource = null;
                 foreach (LectionSwap c in input.swapList)
                 {
                     main.swapListToAdd.Add(c);
                 }
                 main.swapGrid.ItemsSource = main.swapListToAdd;
-              
+
+
+                string lookname = input.day.lookname;
+
+                
+
+                switch (input.week.name)
+                {
+                    case "ch":
+                        main.ChRadio.IsChecked = true;
+                        break;
+                    case "zm":
+                        main.ZmRadio.IsChecked = true;
+                        break;
+
+                }
+
+
+                switch (input.day.name)
+                {
+                    case "Monday":
+                        main.dayInWeekCombo.SelectedItem = "Понедельник";
+                        break;
+                    case "Tuesday":
+                        main.dayInWeekCombo.SelectedItem = "Вторник";
+                        break;
+                    case "Wednesday":
+                        main.dayInWeekCombo.SelectedItem = "Среда";
+                        break;
+                    case "Thursday":
+                        main.dayInWeekCombo.SelectedItem = "Четверг";
+                        break;
+                    case "Friday":
+                        main.dayInWeekCombo.SelectedItem = "Пятница";
+                        break;
+                    case "Saturday":
+                        main.dayInWeekCombo.SelectedItem = "Суббота";
+                        break;
+                }
+
+
                 main.predmetSwapCombo.SelectedItem = null;
-                main.dayInWeekCombo.SelectedItem = null; // TODO: надо как то узнать какому дню принадлежит эта лекция
             }
             else
             {

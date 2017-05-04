@@ -383,6 +383,20 @@
                             </Grid>
                         </Button>
 
+                        <Button Margin="0,5,5,0" MaxHeight="40" x:Name="DeleteSelected" Click="DeleteSelected_Click" IsEnabled="False">
+                            <Button.ToolTip>
+                                <local:LectionControl Visibility="Collapsed" x:Name="DeleteToolTip"></local:LectionControl>
+                            </Button.ToolTip>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="0.3*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" FontSize="11" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Удалить выбранную пару"/>
+                                <Image Grid.Column="1"  Source="img\Delete.png"/>
+                            </Grid>
+                        </Button>
+
                     </StackPanel>
                 </ScrollViewer>
             </Border>
@@ -402,24 +416,30 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Создать новое расписание" x:Name="newButton" Click="newButton_Click">
+                <Button  Grid.Column="0" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Создать новое расписание" x:Name="newButton" Click="newButton_Click">
                     <Image Style="{StaticResource ImageWithMargin}" Source="img/New.png" d:IsLocked="True"></Image>
                 </Button>
-                <Button Grid.Column="1" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Открыть файл с расписанием" x:Name="openButton" Click="openButton_Click">
+                <Button Margin="5,5,10,5" Grid.Column="1" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Открыть файл с расписанием" x:Name="openButton" Click="openButton_Click">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Open.png" d:IsLocked="True"></Image>
                 </Button>
+                
                 <Button Grid.Column="2" Style="{StaticResource MenuButtonWithMargin}"  ToolTip="Сохранить расписание" x:Name="saveButton" IsEnabled="False">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Save.png" d:IsLocked="True"/>
                 </Button>
                 <Button Grid.Column="3" Style="{StaticResource MenuButtonWithMargin}"  ToolTip="Сохранить расписание как" x:Name="saveAsButton" IsEnabled="False">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Save as.png" d:IsLocked="True"></Image>
                 </Button>
-                <Button Grid.Column="4" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Задать временные интервалы занятий" x:Name="IntervalButton" IsEnabled="False">
-                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Interval.png" d:IsLocked="True"></Image>
+                <Button Margin="5,5,10,5" Grid.Column="4" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Синхронизация с сервером" x:Name="SyncButton" IsEnabled="True">
+                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Sync.png" d:IsLocked="True"></Image>
                 </Button>
-                <Button Grid.Column="5" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Редактирование списка предметов,аудиторий" x:Name="ListsButton" IsEnabled="True" >
-                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Lists.png" d:IsLocked="True"></Image>
+                
+                <Button Grid.Column="5" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Инструкция/Справка" x:Name="ManualButton" IsEnabled="True" >
+                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/Manual.png" d:IsLocked="True"></Image>
+                </Button>
+                <Button Grid.Column="6" Style="{StaticResource MenuButtonWithMargin}" ToolTip="О программе" x:Name="AboutButton" IsEnabled="True" >
+                    <Image Style="{StaticResource ImageWithMargin}"  Source="img/About.png" d:IsLocked="True"></Image>
                 </Button>
 
             </Grid>

@@ -97,91 +97,37 @@ namespace Builder
             days = new List<ListBox>() { chMonday, chTuesday, chThursday, chWednesday, chTuesday, chFriday, chSaturday, zmMonday, zmTuesday, zmWednesday, zmThursday, zmFriday, zmSaturday };
 
         }
-
-        private void openButton_Click(object sender, RoutedEventArgs e)
-        {
-            LectionControl toAdd = new LectionControl(new Lection("TEST", 1, new Lector("Fedorov", "Andrey", "Viacheslavovuch"), 305));
-            chMonday.Items.Add(toAdd);
-
-            LectionControl toAdd2 = new LectionControl(new Lection("SWAP", 2, new Lector("Fedorov", "Andrey", "Viacheslavovuch"), 305));
-            toAdd2.Lection.swapList.Add(new LectionSwap(DateTime.Now, "Informatuka"));
-            chMonday.Items.Add(toAdd2);
-            toAdd2.reDraw();
-        }
-
-        private void newButton_Click(object sender, RoutedEventArgs e)
-        {
-            Day test = new Day("Tuesday", "ch");
-            
-
-          
-           
-
-        }
-
-
-
-
-
-        private void prepodEdit_Click(object sender, RoutedEventArgs e)
-        {
-            Global.prepodWindow.Show();
-            Global.prepodWindow.Activate();
-        }
-
-        private void predmetEdit_Click(object sender, RoutedEventArgs e)
-        {
-            Global.predmetWindow.Show();
-            Global.predmetWindow.Activate();
-        }
-
-        private void classEdit_Click(object sender, RoutedEventArgs e)
-        {
-            Global.classesWindow.Show();
-            Global.classesWindow.Activate();
-        }
-
-        private void paraEdit_Click(object sender, RoutedEventArgs e)
-        {
-            Global.intervalWindow.Show();
-            Global.intervalWindow.Activate();
-        }
-
         private void Window_Closed(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
         }
 
-
-        private void timeCombo_MouseEnter(object sender, MouseEventArgs e)
+        #region Кнопки нижней панели
+        private void newButton_Click(object sender, RoutedEventArgs e)
         {
-            timeCombo.ItemsSource = Global.intervals.timeList;
-            ((ComboBox)sender).Items.Refresh();
-        }
 
-        private void DeleteSwap_Click(object sender, RoutedEventArgs e)
-        {
-            LectionSwap toDel = (LectionSwap)swapGrid.SelectedItem;
-            swapListToAdd.Remove(toDel);
-        }
 
-        private void createSwapButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (swapDatePicker.SelectedDate != null)
-            { if (predmetSwapCombo.SelectedItem != null)
-                {
-                    LectionSwap toAdd = new LectionSwap((DateTime)swapDatePicker.SelectedDate, predmetSwapCombo.SelectedItem.ToString());
-                    swapListToAdd.Add(toAdd);
-                    swapGrid.ItemsSource = swapListToAdd;
-                }
-            }
+
+
+
+
         }
+        private void openButton_Click(object sender, RoutedEventArgs e)
+        {
+            Group toSelect = new Group("TESTGROUP");
+            Global.groupList.Add(toSelect);
+            GroupListBox.SelectedItem=toSelect;
+     
+        }
+        #endregion
+
+
 
         private void addGroup_Click(object sender, RoutedEventArgs e)
         {
             string text = groupNameText.Text;
             Group toAdd;
-            if(!string.IsNullOrEmpty(text))
+            if (!string.IsNullOrEmpty(text))
             {
                 toAdd = new Group(text);
                 Global.groupList.Add(toAdd);
@@ -215,6 +161,57 @@ namespace Builder
             }
         }
 
+        #region Редактирование / Создание 
+
+        private void prepodEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Global.prepodWindow.Show();
+            Global.prepodWindow.Activate();
+        }
+
+        private void predmetEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Global.predmetWindow.Show();
+            Global.predmetWindow.Activate();
+        }
+
+        private void classEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Global.classesWindow.Show();
+            Global.classesWindow.Activate();
+        }
+
+        private void paraEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Global.intervalWindow.Show();
+            Global.intervalWindow.Activate();
+        }
+
+        private void timeCombo_MouseEnter(object sender, MouseEventArgs e)
+        {
+            timeCombo.ItemsSource = Global.intervals.timeList;
+            ((ComboBox)sender).Items.Refresh();
+        }
+
+        private void createSwapButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (swapDatePicker.SelectedDate != null)
+            {
+                if (predmetSwapCombo.SelectedItem != null)
+                {
+                    LectionSwap toAdd = new LectionSwap((DateTime)swapDatePicker.SelectedDate, predmetSwapCombo.SelectedItem.ToString());
+                    swapListToAdd.Add(toAdd);
+                    swapGrid.ItemsSource = swapListToAdd;
+                }
+            }
+        }
+
+        private void DeleteSwap_Click(object sender, RoutedEventArgs e)
+        {
+            LectionSwap toDel = (LectionSwap)swapGrid.SelectedItem;
+            swapListToAdd.Remove(toDel);
+        }
+
         private void AcceptChanges_Click(object sender, RoutedEventArgs e)
         {
             string radioPick()
@@ -236,10 +233,10 @@ namespace Builder
                 toAdd.swapList = swapListToAdd;
                 swapListToAdd = new ObservableCollection<LectionSwap>();
                 swapGrid.ItemsSource = swapListToAdd;
-                if(weekType=="ch")
+                if (weekType == "ch")
                 {
                     Global.selectedGroup.chuslutel.pick(dayOfWeek).add(toAdd);
-                    
+
                 }
                 else if (weekType == "zm")
                 {
@@ -260,6 +257,37 @@ namespace Builder
 
         }
 
+
+        private void DeleteSelected_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            MessageBox.Show(Global.selectedLection.day.lookname);
+            ListBox target = (ListBox)FindName(Global.selectedLection.day.lookname);
+            target?.Items.Remove(Global.selectedLection)
+            */
+
+            Day target = Global.selectedLection.day;
+            target.lectionList.Remove(Global.selectedLection);
+            Global.selectedLection = null;
+            Global.setEdits(null);
+            Global.selectedGroup.massReDraw();
+
+        }
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private void days_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
@@ -276,8 +304,14 @@ namespace Builder
                 caller.SelectedItem = picked;
                 Global.selectedLection = picked.Lection;
                 Global.setEdits(Global.selectedLection);
+
+                DeleteSelected.IsEnabled = true;
+                DeleteToolTip.Lection = picked.Lection;
+                DeleteToolTip.Visibility = Visibility.Visible;
             }
         }
+
+
     }
 
 }

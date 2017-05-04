@@ -35,18 +35,37 @@ namespace Builder
 
     public class Lection: Entry
     {
+        public struct WeekInfo
+        {
+            string day;
+            string week;
+        }
+
         public int auditory { get; set; }
         public Lector lector { get; set; }
         public int lectionInterval { get; set; } // номер пары в дне
         public ObservableCollection<LectionSwap> swapList { get; set; }
 
-        public Lection(string _name, int _lectionNumber, Lector _lector, int _auditory )
+        public Week week;
+        public Day day;
+
+ 
+
+        public Lection(string _name, int _lectionNumber, Lector _lector, int _auditory)
         {
+  
+
             name = _name;
             auditory = _auditory;
             lectionInterval = _lectionNumber;
             lector =_lector;
             swapList = new ObservableCollection<LectionSwap>();
+        }
+
+        public void setParents(Day _parent)
+        {
+            day = _parent;
+            week = day.week;
         }
 
         public Lection Clone()
@@ -57,11 +76,6 @@ namespace Builder
             return toReturn;
         }
 
-
-        public void showSwapDetails()
-        {
-            MessageBox.Show(swapList.Count.ToString());
-        }
     }
 
 
@@ -131,8 +145,9 @@ namespace Builder
     }
 
 
-    public class Week
+    public class Week: Entry
     {
+
         public Day Monday { get; set; }
         public Day  Tuesday { get; set; }
         public Day Wednesday { get; set; }
@@ -162,12 +177,13 @@ namespace Builder
 
         public Week(string type)
         {
-                Monday = new Day("Monday", type);
-                Tuesday = new Day("Tuesday", type);
-                Wednesday = new Day("Wednesday", type);
-                Thursday = new Day("Thursday", type);
-                Friday = new Day("Friday", type);
-                Saturday = new Day("Saturday", type);
+                name = type;
+                Monday = new Day("Monday",this);
+                Tuesday = new Day("Tuesday", this);
+                Wednesday = new Day("Wednesday", this);
+                Thursday = new Day("Thursday", this);
+                Friday = new Day("Friday", this);
+                Saturday = new Day("Saturday", this);
             
         }
 
@@ -183,13 +199,20 @@ namespace Builder
 
     public class Day: Entry
     {
+        public Week week;
+
+
         public ObservableCollection<Lection> lectionList { get; set; }
-        string lookname;
-        public Day(string _name,string _weekType)
+        public string lookname;
+       
+        public Day(string _name, Week parent)
         {
+            week = parent;
+            name = _name;
+
             lectionList = new ObservableCollection<Lection>();
             ListBox list;
-            lookname = _weekType + _name;
+            lookname = week.name +_name;
 
             list = (ListBox) Global.main.FindName(lookname);
             list.ItemsSource = lectionList;
@@ -208,8 +231,9 @@ namespace Builder
                 duplicate.lector = _input.lector;
                 duplicate.name = _input.name;
                 duplicate.swapList = _input.swapList;
+                duplicate.setParents(this);
             }
-            else { lectionList.Add(_input); }
+            else { _input.setParents(this);  lectionList.Add(_input);  }
 
 
              var look = lectionList.OrderBy(s => s.lectionInterval);

@@ -67,6 +67,9 @@ namespace Builder
             }
             else
             {
+                main.DeleteSelected.IsEnabled = false;
+                main.DeleteToolTip.Visibility = Visibility.Collapsed;
+
                 main.paraCombo.SelectedItem = null;
                 main.lectorCombo.SelectedItem = null;
                 main.classCombo.SelectedItem = null;
@@ -77,6 +80,7 @@ namespace Builder
             }
 
         }
+
 
         public static MainWindow main;
         public static LectorsForm prepodWindow;

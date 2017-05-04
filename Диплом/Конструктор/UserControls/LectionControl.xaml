@@ -81,8 +81,17 @@
                 </Viewbox>
 
                
-                    <Button Margin="0,0,0,5" Grid.Row="3" x:Name="swapButton"  HorizontalAlignment="Center" Click="swapButton_Click">
+                    <Button Margin="0,0,0,5" Grid.Row="3" x:Name="swapButton"  HorizontalAlignment="Center" Click="swapButton_Click" >
+                    <Button.ToolTip x:Uid="swapToolTip">
+                        <DataGrid ItemsSource="{Binding Path=Lection.swapList}" AutoGenerateColumns="False" x:Name="swapGrid" VerticalScrollBarVisibility="Auto"    HorizontalScrollBarVisibility="Hidden">
+                            <DataGrid.Columns >
+                                <DataGridTextColumn Width="SizeToCells" Header="Дата" Binding="{Binding Path=periodString}"/>
+                                <DataGridTextColumn Width="SizeToCells" Header="Предмет" Binding="{Binding Path=para}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Button.ToolTip>
                         <StackPanel Orientation="Horizontal">
+
                             <Label Content="Замены:"/>
                             <Label x:Name="swapCountLabel" Content="1"/>
                         </StackPanel>

@@ -30,6 +30,7 @@ namespace Builder
         {
             InitializeComponent();
             Lection = input;
+            
         }
 
         public static readonly DependencyProperty lectionProperty =
@@ -59,6 +60,7 @@ namespace Builder
         private static void LectionChanged(DependencyObject sender,
    DependencyPropertyChangedEventArgs e)
         {
+            
             LectionControl window = (LectionControl)sender;
             window.pairIndexLabel.Content = window.Lection.lectionInterval;
 
@@ -88,7 +90,9 @@ namespace Builder
 
         private void swapButton_Click(object sender, RoutedEventArgs e)
         {
-            Lection.showSwapDetails();
+            ToolTip hint = swapButton.ToolTip as ToolTip;
+            
+            
         }
     }
 }

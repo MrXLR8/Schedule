@@ -1,0 +1,57 @@
+﻿<Window x:Class="Builder.CommentaryForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Commentary" Height="600" Width="500" Closing="Window_Closing" Loaded="Window_Loaded"
+        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="215*"/>
+            <RowDefinition Height="54*"/>
+
+        </Grid.RowDefinitions>
+        <RichTextBox x:Name="CommentaryText" VerticalScrollBarVisibility="Visible" FontSize="40" TextChanged="CommentaryText_TextChanged">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+
+        <Viewbox  Grid.Row="1" StretchDirection="Both" Stretch="Uniform" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <GroupBox>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Комментарий для группы:" VerticalContentAlignment="Center" FontSize="40"/>
+
+                        <Label x:Name="groupName" Content="#groupname" VerticalContentAlignment="Center" FontSize="40" FontFamily="Times New Roman"/>
+                    
+                </StackPanel>
+                </GroupBox>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+
+                    <Button x:Name="SaveButton" Margin="7" Click="SaveButton_Click" IsEnabled="False">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Сохранить изменения" VerticalContentAlignment="Center" FontSize="30"/>
+                            <Image Source="..\..\img\Save.png"></Image>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="CancelButton" Margin="7" Click="CancelButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Отменить изменения" VerticalContentAlignment="Center" FontSize="30"/>
+                            <Image Source="..\..\img\Delete.png"></Image>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</Window>

@@ -20,10 +20,13 @@ namespace Builder
         public Group(string _name)
         {
             name= _name;
+            commentary = "";
         }
 
         public Week chuslutel = new Week("ch");
         public Week znamenatel = new Week("zm");
+
+        public string commentary;
 
         public void massReDraw()
         {

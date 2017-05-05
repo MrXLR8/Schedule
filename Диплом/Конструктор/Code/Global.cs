@@ -121,11 +121,13 @@ namespace Builder
         }
 
 
+
         public static MainWindow main;
         public static LectorsForm prepodWindow;
         public static PredmetsForm predmetWindow;
         public static ClassesForm classesWindow;
         public static IntervalsForm intervalWindow;
+        public static CommentaryForm commentaryWindow;
 
         public static ObservableCollection<Lector> lectorList { get; set; }
         public static ObservableCollection<string> predmetList { get; set; }

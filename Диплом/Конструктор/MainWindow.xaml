@@ -398,7 +398,19 @@
                                 <Image Grid.Column="1"  Source="img\Delete.png"/>
                             </Grid>
                         </Button>
+                        <GroupBox Margin="0,20,5,0">
+                        <Button  MaxHeight="40" x:Name="CommentaryButton" Click="CommentaryButton_Click" ToolTip="Открыть окно изменений комментариев к расписанию для текущей группы">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="0.3*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" FontSize="11" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Комментарии"/>
+                                <Image Grid.Column="1"  Source="img\Commentary.png"/>
+                            </Grid>
+                        </Button>
 
+                        </GroupBox>
                     </StackPanel>
                 </ScrollViewer>
             </Border>

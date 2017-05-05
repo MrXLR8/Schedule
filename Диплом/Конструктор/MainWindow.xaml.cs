@@ -306,7 +306,11 @@ namespace Builder
             }
         }
 
-
+        private void CommentaryButton_Click(object sender, RoutedEventArgs e)
+        {
+            Global.commentaryWindow = new CommentaryForm(Global.selectedGroup);
+            Global.commentaryWindow.Show();
+        }
     }
 
 }

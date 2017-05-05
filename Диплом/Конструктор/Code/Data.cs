@@ -32,7 +32,13 @@ namespace Builder
             Global.predmetList.Clear();
             Global.intervals.timeList.Clear();
 
-            foreach(Group c in Global.groupList)
+            Global.classesWindow.Close();
+            Global.predmetWindow.Close();
+            Global.prepodWindow.Close();
+            Global.intervalWindow.Close();
+            Global.intervalWindow = new IntervalsForm();
+
+            foreach (Group c in Global.groupList)
             {
                 clearWeek(c.chuslutel);
                 clearWeek(c.znamenatel);
@@ -42,5 +48,17 @@ namespace Builder
             Global.selectedLection = null;
             // добавить сюда очищение ссылки на файл
         }
+
+
+    }
+
+    public class Schedule
+    {
+        public string encodedData;
+        public string hash;
+
+        public DateTime modified;
+        public string pcName;
+
     }
 }

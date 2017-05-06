@@ -349,7 +349,6 @@ namespace Builder
 
         private void SyncButton_Click(object sender, RoutedEventArgs e)
         {
-            EncodedGroup test = new EncodedGroup(Global.selectedGroup);
 
         }
     }

@@ -18,6 +18,7 @@ namespace Builder
 
     public class Group: Entry
     {
+        public Group() { }
         public Group(string _name)
         {
             name= _name;
@@ -59,6 +60,8 @@ namespace Builder
             }
             return result;
         }
+
+        public Lector() { }
 
         public Lector(string _lastName, string _name, string _middleName)
         {
@@ -140,6 +143,7 @@ namespace Builder
             return null;
         }
 
+        public Week() { }
         public Week(string type)
         {
                 name = type;
@@ -171,6 +175,8 @@ namespace Builder
         public ObservableCollection<Lection> lectionList { get; set; }
         public string lookname;
        
+        public Day() { }
+
         public Day(string _name, string weekParent)
         {
             week = weekParent;
@@ -264,7 +270,7 @@ namespace Builder
         
         public string day;
 
-
+        public Lection() { }
 
         public Lection(string _name, int _lectionNumber, Lector _lector, int _auditory)
         {

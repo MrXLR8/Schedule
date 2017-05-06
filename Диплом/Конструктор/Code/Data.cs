@@ -118,15 +118,24 @@ namespace Builder
 
     public class EncodedGroup
     {
-        
-
-        string json;
-        string hash;
+        public string json;
+        public string hash;
         public EncodedGroup(Group input)
         {
           json= JsonConvert.SerializeObject(input);
           hash = Data.Hash.GetMd5Hash(json);
         }
+
+        public Group getGroup()
+        {
+            return JsonConvert.DeserializeObject<Group>(json);
+        }
+
+       /* bool compare(string otherHash)
+        {
+            return Data.Hash.VerifyMd5Hash(hash, otherHash);
+        }
+        */
     }
 
 }

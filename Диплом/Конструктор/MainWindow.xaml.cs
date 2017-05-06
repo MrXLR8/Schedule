@@ -318,6 +318,12 @@ namespace Builder
             Global.commentaryWindow.Show();
             Global.commentaryWindow.Focus();
         }
+
+        private void SyncButton_Click(object sender, RoutedEventArgs e)
+        {
+            EncodedGroup test = new EncodedGroup(Global.selectedGroup);
+
+        }
     }
 
 }

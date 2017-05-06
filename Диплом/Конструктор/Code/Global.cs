@@ -52,7 +52,7 @@ namespace Builder
                 main.lectorCombo.SelectedItem = input.lector;
                 main.paraCombo.SelectedItem = input.name;
                 main.classCombo.SelectedItem = input.auditory;
-                main.timeCombo.SelectedItem = input.lectionInterval;
+                main.timeCombo.SelectedItem = Global.intervals.timeList[input.lectionInterval-1];
 
                 main.swapListToAdd.Clear();
              //   main.swapGrid.ItemsSource = null;

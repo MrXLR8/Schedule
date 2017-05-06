@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+//author : viacheslav dubinskuy
 namespace Builder
 {
     static class Cipher

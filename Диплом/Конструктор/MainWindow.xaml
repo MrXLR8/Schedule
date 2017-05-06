@@ -445,7 +445,7 @@
                 <Button Grid.Column="3" Style="{StaticResource MenuButtonWithMargin}"  ToolTip="Сохранить расписание как" x:Name="saveAsButton" IsEnabled="False">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Save as.png" d:IsLocked="True"></Image>
                 </Button>
-                <Button Margin="5,5,10,5" Grid.Column="4" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Синхронизация с сервером" x:Name="SyncButton" IsEnabled="True">
+                <Button Margin="5,5,10,5" Grid.Column="4" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Синхронизация с сервером" x:Name="SyncButton" IsEnabled="True" Click="SyncButton_Click">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Sync.png" d:IsLocked="True"></Image>
                 </Button>
                 

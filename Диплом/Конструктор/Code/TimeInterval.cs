@@ -15,6 +15,8 @@ namespace Builder
         // 2 - 10:20 - 11:50
         // 3 - INSERT (12:10 - 13:30)
         //4 -  13:40 - 15:00
+        public IntervalCollection() { }
+
         public int last { get { return timeList.Count; } }
 
         public ObservableCollection<Interval> timeList = new ObservableCollection<Interval>();
@@ -116,6 +118,9 @@ namespace Builder
         public int index;
         public TimeSpan start;
         public TimeSpan end;
+
+        public Interval() { }
+
         public Interval(int _index, TimeSpan _start, TimeSpan _end)
         {
             index = _index;

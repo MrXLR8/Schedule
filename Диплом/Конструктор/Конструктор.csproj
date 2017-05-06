@@ -88,6 +88,7 @@
     </ApplicationDefinition>
     <Compile Include="Code\Cipher.cs" />
     <Compile Include="Code\Data.cs" />
+    <Compile Include="Code\FileInteraction.cs" />
     <Compile Include="Forms\Edit\CommentaryForm.xaml.cs">
       <DependentUpon>CommentaryForm.xaml</DependentUpon>
     </Compile>

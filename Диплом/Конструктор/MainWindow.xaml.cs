@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -75,6 +76,8 @@ namespace Builder
             Global.intervals.timeList.Add(new Interval(3, new TimeSpan(12, 10, 0), new TimeSpan(13, 30, 0)));
             #endregion
 
+
+
             #endregion
 
             InitializeComponent();
@@ -94,25 +97,27 @@ namespace Builder
             dayInWeekCombo.ItemsSource = new string[] { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" };
             days = new List<ListBox>() { chMonday, chTuesday, chThursday, chWednesday, chTuesday, chFriday, chSaturday, zmMonday, zmTuesday, zmWednesday, zmThursday, zmFriday, zmSaturday };
 
+
+            #region group
+            Group toSelect = new Group("TESTGROUP");
+            Global.groupList.Add(toSelect);
+            GroupListBox.SelectedItem = toSelect;
+            #endregion
+
+            #region test lections
+            Lection test;
+            test = new Lection("Информатика", 1, new Lector("Федоров", "Андрей", "Вячеславович"), 308);
+            Global.selectedGroup.chuslutel.pick("Понедельник").add(test.Clone());
+            # endregion
+
+
         }
         private void Window_Closed(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
         }
 
-        #region Кнопки нижней панели
-        private void newButton_Click(object sender, RoutedEventArgs e)
-        {
-            Data.reset();
-        }
-        private void openButton_Click(object sender, RoutedEventArgs e)
-        {
-            Group toSelect = new Group("TESTGROUP");
-            Global.groupList.Add(toSelect);
-            GroupListBox.SelectedItem=toSelect;
-     
-        }
-        #endregion
+
 
 
 
@@ -146,6 +151,7 @@ namespace Builder
             {
                 Title = "Конструктор расписаний. Выбранная группа: " + Global.selectedGroup.name;
                 RightPanel.IsEnabled = true;
+                saveAsButton.IsEnabled = true;
                 deleteGroupButton.IsEnabled = true;
                 Global.selectedGroup.massReDraw();
             }
@@ -155,6 +161,7 @@ namespace Builder
                 Global.resetForm();
                 deleteGroupButton.IsEnabled = false;
                 RightPanel.IsEnabled = false;
+                saveAsButton.IsEnabled = false;
             }
         }
 
@@ -261,7 +268,6 @@ namespace Builder
 
         }
 
-
         private void DeleteSelected_Click(object sender, RoutedEventArgs e)
         {
             Lection target = Global.selectedLection;
@@ -300,18 +306,16 @@ namespace Builder
             Global.selectedGroup.massReDraw();
 
         }
+
+        private void CommentaryButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Global.commentaryWindow == null)
+                Global.commentaryWindow = new CommentaryForm(Global.selectedGroup);
+
+            Global.commentaryWindow.Show();
+            Global.commentaryWindow.Focus();
+        }
         #endregion
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -338,19 +342,40 @@ namespace Builder
             }
         }
 
-        private void CommentaryButton_Click(object sender, RoutedEventArgs e)
-        {
-            if(Global.commentaryWindow==null)
-            Global.commentaryWindow = new CommentaryForm(Global.selectedGroup);
+       
 
-            Global.commentaryWindow.Show();
-            Global.commentaryWindow.Focus();
+
+        #region Кнопки нижней панели
+        private void newButton_Click(object sender, RoutedEventArgs e)
+        {
+            Data.reset();
+        }
+
+        private void openButton_Click(object sender, RoutedEventArgs e)
+        {
+            Schedule test = new Schedule();
+            string json =test.formJson();
+            Schedule newone = Schedule.getSchedule(json);
+
+            Group test2 =newone.encodedGroups[0].getGroup();
         }
 
         private void SyncButton_Click(object sender, RoutedEventArgs e)
         {
+            Schedule test;
+            test = new Schedule();
+            string look = test.formJson();
+        }
+
+        private void saveAsButton_Click(object sender, RoutedEventArgs e)
+        {
 
         }
+
+    }
+        #endregion
+
+
     }
 
-}
+

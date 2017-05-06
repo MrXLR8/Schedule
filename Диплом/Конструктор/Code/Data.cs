@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -108,11 +109,41 @@ namespace Builder
 
     public class Schedule
     {
-        public string encodedData;
-        public string hash;
+        public List<EncodedGroup> encodedGroups=new List<EncodedGroup>();
+        public IntervalCollection intervals;
+
+        public static ObservableCollection<Lector> lectorList { get; set; }
+        public static ObservableCollection<string> predmetList { get; set; }
+        public static ObservableCollection<Group> groupList { get; set; }
+        public static ObservableCollection<int> classList { get; set; }
 
         public DateTime modified;
         public string pcName;
+
+        public string formJson() {
+
+            foreach(Group g in Global.groupList)
+            {
+                encodedGroups.Add(new EncodedGroup(g));
+            }
+
+            intervals = Global.intervals;
+            lectorList = Global.lectorList;
+            predmetList = Global.predmetList;
+            groupList = Global.groupList;
+            classList = Global.classList;
+
+            modified = DateTime.Now;
+            pcName = Environment.MachineName;
+
+
+            return JsonConvert.SerializeObject(this);
+        }
+
+        public static Schedule getSchedule(string json)
+        {
+            return JsonConvert.DeserializeObject<Schedule>(json);
+        }
 
     }
 
@@ -122,13 +153,15 @@ namespace Builder
         public string hash;
         public EncodedGroup(Group input)
         {
-          json= JsonConvert.SerializeObject(input);
+            
+            json = Cipher.encryption(JsonConvert.SerializeObject(input));
+
           hash = Data.Hash.GetMd5Hash(json);
         }
 
         public Group getGroup()
         {
-            return JsonConvert.DeserializeObject<Group>(json);
+            return JsonConvert.DeserializeObject<Group>(Cipher.transcript(json));
         }
 
        /* bool compare(string otherHash)

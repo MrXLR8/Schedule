@@ -356,25 +356,31 @@ namespace Builder
 
         private void openButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            json =test.formJson();
-    
+            Schedule toSet = new Schedule();
+            try
+            {
+                toSet = Schedule.getSchedule(FileInteraction.openFile());
+                toSet.applyMe();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Не удалось прочитать файл. Детали ошибки: " + exc.Message);
+            }
         }
 
         private void SyncButton_Click(object sender, RoutedEventArgs e)
         {
-            Schedule test;
-            test = new Schedule();
-            string look = test.formJson();
+            
+
+            Schedule newone = new Schedule();
+            newone = Schedule.getSchedule(json);
+            newone.applyMe();
         }
 
         private void saveAsButton_Click(object sender, RoutedEventArgs e)
         {
-            Schedule newone = new Schedule();
-            newone = Schedule.getSchedule(json);
-            newone.applyMe();
-            
-            
+            Schedule prepareToWire = new Schedule();
+            FileInteraction.saveToFile(prepareToWire.formJson());
         }
 
     }

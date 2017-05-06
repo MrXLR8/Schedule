@@ -25,6 +25,7 @@ namespace Builder
                 saveFileDialog.DefaultExt = "schd";
                 if (saveFileDialog.ShowDialog() == true)
                 {
+                    fileName = System.IO.Path.GetFileName(saveFileDialog.FileName);
                     filePath = saveFileDialog.FileName;
                     File.WriteAllText(filePath, toSave);
                     return true;
@@ -36,5 +37,29 @@ namespace Builder
                 return false;
             }
         }
+
+        public static string openFile()
+        {
+            try
+            {
+                openFileDialog.Filter = "Файл расписания | *.schd";
+                openFileDialog.DefaultExt = "schd";
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    
+                    filePath =openFileDialog.FileName;
+                    fileName = System.IO.Path.GetFileName(openFileDialog.FileName);
+                    return File.ReadAllText(filePath);
+
+
+                }
+                return "";
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
+        }
+
     }
 }

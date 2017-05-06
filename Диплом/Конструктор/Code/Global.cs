@@ -127,6 +127,7 @@ namespace Builder
         public static void fixItemSource()
         {
             main.GroupListBox.ItemsSource = groupList;
+            main.GroupListBox.SelectedItem = selectedGroup;
             }
 
         public static MainWindow main;

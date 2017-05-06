@@ -6,24 +6,15 @@ namespace Server
 {
     public class CommandLine
     {
-        public class Argument
-        {
-            public string argument;
-            public string parametr;
 
-            public Argument(string aug, string param) {
-            argument=aug;
-           parametr=param;
-
-            }
-        }
 
         public string command;
         public Argument[] arguments;
 
-        public CommandLine(string input)
+        public CommandLine get()
         {
-         var raw=input.Split(' ');
+           
+         var raw= Console.ReadLine().ToLower().Split(' ');
             arguments = new Argument[10];
             command = raw[0];
             for(int i=1;i<raw.Length;i++)
@@ -32,18 +23,47 @@ namespace Server
 
                 arguments[i - 1] = new Argument(split[0], split[1]);
             }
+            if(!check()) { Console.WriteLine("Команда " + command + " не выполнена. Не хватает параметра(ов)"); return null; }
+            return this;
         }
 
-        public string getParametr(string lookingfor)
+        bool check()
+        {
+            switch (command)
+            {
+                case "start":
+                    if (getParametr("port")!=null) return true;
+                    break;
+            }
+            return false;
+        }
+
+        public Argument getParametr(string lookingfor)
         {
             foreach(Argument a in arguments)
             {
-                if(a.argument==lookingfor)
+                
+                if(a?.argument==lookingfor)
                 {
-                    return a.parametr;
+                    return a;
                 }
             }
-            return "";
+            return null;
+        }
+
+
+    }
+
+    public class Argument
+    {
+        public string argument;
+        public string parametr;
+
+        public Argument(string aug, string param)
+        {
+            argument = aug;
+            parametr = param;
+
         }
     }
 }

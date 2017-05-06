@@ -7,12 +7,15 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            Console.OutputEncoding = Encoding.UTF8;
-
-            Console.WriteLine("Hello World!");
-            if(Console.ReadLine()== "start")
+            while (true)
             {
-                Server.Initialize(11000);
+                Console.OutputEncoding = Encoding.UTF8;
+
+                Console.WriteLine("Hello World!");
+
+                Function.execute(new CommandLine().get());
+
+                
             }
         }
     }

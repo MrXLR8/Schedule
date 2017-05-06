@@ -75,11 +75,12 @@ namespace Builder
             }
 
             Global.setEdits(null);
-            Global.classList.Clear();
-            Global.groupList.Clear();
-            Global.lectorList.Clear();
-            Global.predmetList.Clear();
-            Global.intervals.timeList.Clear();
+
+            Global.classList = new ObservableCollection<int>();
+
+            Global.lectorList = new ObservableCollection<Lector>();
+            Global.predmetList = new ObservableCollection<string>();
+            Global.intervals.timeList = new ObservableCollection<Interval>();
 
             Global.classesWindow.Close();
             Global.predmetWindow.Close();
@@ -96,6 +97,7 @@ namespace Builder
                 clearWeek(c.chuslutel);
                 clearWeek(c.znamenatel);
             }
+            Global.groupList = new ObservableCollection<Group>();
 
             Global.selectedGroup = null;
             Global.selectedLection = null;
@@ -112,10 +114,10 @@ namespace Builder
         public List<EncodedGroup> encodedGroups=new List<EncodedGroup>();
         public IntervalCollection intervals;
 
-        public static ObservableCollection<Lector> lectorList { get; set; }
-        public static ObservableCollection<string> predmetList { get; set; }
-        public static ObservableCollection<Group> groupList { get; set; }
-        public static ObservableCollection<int> classList { get; set; }
+        public ObservableCollection<Lector> lectorList { get; set; }
+        public  ObservableCollection<string> predmetList { get; set; }
+        public  ObservableCollection<Group> groupList { get; set; }
+        public  ObservableCollection<int> classList { get; set; }
 
         public DateTime modified;
         public string pcName;
@@ -130,7 +132,6 @@ namespace Builder
             intervals = Global.intervals;
             lectorList = Global.lectorList;
             predmetList = Global.predmetList;
-            groupList = Global.groupList;
             classList = Global.classList;
 
             modified = DateTime.Now;
@@ -145,6 +146,30 @@ namespace Builder
             return JsonConvert.DeserializeObject<Schedule>(json);
         }
 
+        public void applyMe()
+        {
+
+
+            Data.reset();
+
+
+            Global.intervals = intervals;
+            Global.lectorList = lectorList;
+            Global.predmetList = predmetList;
+            Global.classList = classList;
+
+            foreach(EncodedGroup eg in encodedGroups)
+            {
+                Global.groupList.Add(eg.getGroup());
+            }
+            try
+            {
+                Global.selectedGroup = Global.groupList[0];
+                Global.selectedGroup.massReDraw();
+            }
+            catch (Exception e) { }
+            Global.fixItemSource();
+        }
     }
 
     public class EncodedGroup

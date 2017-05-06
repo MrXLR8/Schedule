@@ -15,6 +15,7 @@ namespace Builder
     {
 
 
+
         public static UIElement getFromGrid(Grid _toLook, int column, int row)
         {
             return _toLook.Children
@@ -118,11 +119,15 @@ namespace Builder
                 main.swapGrid.SelectedItem = null;
                 main.predmetSwapCombo.SelectedItem = null;
                 main.dayInWeekCombo.SelectedItem = null;
+                
             }
 
         }
 
-
+        public static void fixItemSource()
+        {
+            main.GroupListBox.ItemsSource = groupList;
+            }
 
         public static MainWindow main;
         public static LectorsForm prepodWindow;

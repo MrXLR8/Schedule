@@ -351,13 +351,14 @@ namespace Builder
             Data.reset();
         }
 
+        public Schedule test = new Schedule(); //DELETE!
+        public string json;
+
         private void openButton_Click(object sender, RoutedEventArgs e)
         {
-            Schedule test = new Schedule();
-            string json =test.formJson();
-            Schedule newone = Schedule.getSchedule(json);
-
-            Group test2 =newone.encodedGroups[0].getGroup();
+            
+            json =test.formJson();
+    
         }
 
         private void SyncButton_Click(object sender, RoutedEventArgs e)
@@ -369,7 +370,11 @@ namespace Builder
 
         private void saveAsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Schedule newone = new Schedule();
+            newone = Schedule.getSchedule(json);
+            newone.applyMe();
+            
+            
         }
 
     }

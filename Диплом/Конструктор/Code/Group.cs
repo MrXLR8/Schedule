@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -36,50 +37,7 @@ namespace Builder
 
     }
 
-    public class Lection: Entry
-    {
-        public struct WeekInfo
-        {
-            string day;
-            string week;
-        }
-
-        public int auditory { get; set; }
-        public Lector lector { get; set; }
-        public int lectionInterval { get; set; } // номер пары в дне
-        public ObservableCollection<LectionSwap> swapList { get; set; }
-
-        public Week week;
-        public Day day;
-
- 
-
-        public Lection(string _name, int _lectionNumber, Lector _lector, int _auditory)
-        {
-  
-
-            name = _name;
-            auditory = _auditory;
-            lectionInterval = _lectionNumber;
-            lector =_lector;
-            swapList = new ObservableCollection<LectionSwap>();
-        }
-
-        public void setParents(Day _parent)
-        {
-            day = _parent;
-            week = day.week;
-        }
-
-        public Lection Clone()
-        {
-            Lection toReturn;
-            toReturn = new Lection(name, lectionInterval, lector, auditory);
-            toReturn.swapList = swapList;
-            return toReturn;
-        }
-
-    }
+    
 
 
     public class Lector : Entry
@@ -148,6 +106,10 @@ namespace Builder
     }
 
 
+
+
+
+
     public class Week: Entry
     {
 
@@ -202,6 +164,7 @@ namespace Builder
 
     public class Day: Entry
     {
+        [JsonIgnore]
         public Week week;
 
 
@@ -282,6 +245,54 @@ namespace Builder
             {
                 reDraw();
             }
+        }
+
+    }
+
+    public class Lection : Entry
+    {
+        public struct WeekInfo
+        {
+            string day;
+            string week;
+        }
+
+        public int auditory { get; set; }
+        public Lector lector { get; set; }
+        public int lectionInterval { get; set; } // номер пары в дне
+        public ObservableCollection<LectionSwap> swapList { get; set; }
+
+        [JsonIgnore]
+        public Week week;
+
+        [JsonIgnore]
+        public Day day;
+
+
+
+        public Lection(string _name, int _lectionNumber, Lector _lector, int _auditory)
+        {
+
+
+            name = _name;
+            auditory = _auditory;
+            lectionInterval = _lectionNumber;
+            lector = _lector;
+            swapList = new ObservableCollection<LectionSwap>();
+        }
+
+        public void setParents(Day _parent)
+        {
+            day = _parent;
+            week = day.week;
+        }
+
+        public Lection Clone()
+        {
+            Lection toReturn;
+            toReturn = new Lection(name, lectionInterval, lector, auditory);
+            toReturn.swapList = swapList;
+            return toReturn;
         }
 
     }

@@ -125,7 +125,7 @@ namespace Builder
         public EncodedGroup(Group input)
         {
           json= JsonConvert.SerializeObject(input);
-            hash = Data.Hash.GetMd5Hash(json);
+          hash = Data.Hash.GetMd5Hash(json);
         }
     }
 

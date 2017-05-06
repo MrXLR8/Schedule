@@ -439,7 +439,7 @@
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Open.png" d:IsLocked="True"></Image>
                 </Button>
                 
-                <Button Grid.Column="2" Style="{StaticResource MenuButtonWithMargin}"  ToolTip="Сохранить расписание" x:Name="saveButton" IsEnabled="False">
+                <Button Grid.Column="2" Style="{StaticResource MenuButtonWithMargin}"  ToolTip="Сохранить расписание" x:Name="saveButton" IsEnabled="False" Click="saveButton_Click">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Save.png" d:IsLocked="True"/>
                 </Button>
                 <Button Grid.Column="3" Style="{StaticResource MenuButtonWithMargin}"  ToolTip="Сохранить расписание как" x:Name="saveAsButton" Click="saveAsButton_Click">

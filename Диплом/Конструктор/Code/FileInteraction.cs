@@ -43,6 +43,22 @@ namespace Builder
             }
         }
 
+        public static bool saveToSavedPath(string toSave)
+        {
+            try
+            {
+                File.WriteAllText(filePath, toSave);
+
+                Global.setSaveButton();
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            }
+
         public static string openFile()
         {
             try

@@ -386,6 +386,12 @@ namespace Builder
             FileInteraction.saveToFile(prepareToWire.formJson());
         }
 
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+            Schedule prepareToWire = new Schedule();
+
+            FileInteraction.saveToSavedPath(prepareToWire.formJson());
+        }
     }
         #endregion
 

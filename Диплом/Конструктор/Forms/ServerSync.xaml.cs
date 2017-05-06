@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Share;
+using Newtonsoft.Json;
 
 namespace Builder
 {
@@ -78,6 +80,7 @@ namespace Builder
         }
         private void ip_TextChanged(object sender, TextChangedEventArgs e)
         {
+            ip = "";
             TextBox target = (TextBox)sender;
             int value;
             try
@@ -98,7 +101,8 @@ namespace Builder
                 }
 
 
-                ip.Remove(ip.Length);
+                ip=ip.Remove(ip.Length-1);
+                
             }
             catch (Exception exc) { }
         }
@@ -108,6 +112,27 @@ namespace Builder
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ips = new TextBox[4] { ip1, ip2, ip3, ip4 };
+        }
+
+        private void Check_Click(object sender, RoutedEventArgs e)
+        {
+            Command toSend=new Command();
+            Net.Initialize(ip, portNumber);
+
+            toSend.type = "check";
+            toSend.arguments.Add("good");
+
+            if (Net.Send(JsonConvert.SerializeObject(toSend)) == "good")
+            {
+                Send.IsEnabled = true;
+                Get.IsEnabled = true;
+            }
+            else
+            {
+                Send.IsEnabled = false;
+                Get.IsEnabled = false;
+            }
+            
         }
     }
 }

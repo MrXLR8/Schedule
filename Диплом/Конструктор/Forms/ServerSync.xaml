@@ -33,13 +33,13 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBox MaxLength="3" Grid.Column="0" PreviewTextInput="NumberValidationTextBox" x:Name="ip1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged">127</TextBox>
-                    <TextBox MaxLength="3" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" x:Name="ip2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged">127</TextBox>
-                    <TextBox MaxLength="3" Grid.Column="2" PreviewTextInput="NumberValidationTextBox" x:Name="ip3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged">127</TextBox>
-                    <TextBox MaxLength="3" Grid.Column="3" PreviewTextInput="NumberValidationTextBox" x:Name="ip4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged">127</TextBox>
+                    <TextBox MaxLength="3" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" x:Name="ip2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged"/>
+                    <TextBox MaxLength="3" Grid.Column="2" PreviewTextInput="NumberValidationTextBox" x:Name="ip3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged"/>
+                    <TextBox MaxLength="3" Grid.Column="3" PreviewTextInput="NumberValidationTextBox" x:Name="ip4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged"/>
                 </Grid>
 
-                <Label HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="2" Content="Порт"/>
-                <TextBox TextChanged="port_TextChanged" MaxLength="5" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Grid.Row="3" x:Name="port">27015</TextBox>
+                <Label HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="2" Content=" Порт"/>
+                <TextBox TextChanged="port_TextChanged" MaxLength="5" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Grid.Row="3" x:Name="port"/>
 
                 <Label HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="4" x:Name="Status" Content="[Информации нет]" FontFamily="Times New Roman"></Label>
                 <Grid Grid.Row="5">
@@ -56,7 +56,7 @@
                         <Image Source="..\img\Download.png"></Image>
                     </Button>
                     
-                    <Button Grid.Column="2" x:Name="Check" IsEnabled="False">
+                    <Button Grid.Column="2" x:Name="Check" IsEnabled="False" Click="Check_Click">
                         <Image Source="..\img\Compare.png"></Image>
                     </Button>
                 </Grid>

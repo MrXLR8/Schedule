@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace Builder
 {
-    public static class Client
+    public static class Net
     {
         public static IPHostEntry ipHost;
         public static IPAddress ipAddr;

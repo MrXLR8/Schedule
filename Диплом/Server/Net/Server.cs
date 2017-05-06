@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -6,6 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Share;
 
 namespace Server
 {
@@ -41,11 +43,16 @@ namespace Server
         private static string Connected(Socket _handler)
         {
             Console.WriteLine("Входящее подключение от  " + _handler.RemoteEndPoint);
+
             data = null;
             byte[] bytes = new byte[Int32.MaxValue/100];
             int bytesRec = _handler.Receive(bytes);
-
             data += Encoding.UTF8.GetString(bytes, 0, bytesRec);
+
+            Command recived = JsonConvert.DeserializeObject<Command>(data);
+            recived.checkCommand();
+            SendResponse(_handler, recived.toAnswer);
+
             return data;
         }
 
@@ -59,7 +66,7 @@ namespace Server
 
         public static void Activate()
         {
-            Console.WriteLine("Активирую сервер...");
+            
             sListener = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             sListener.Bind(ipEndPoint);
 
@@ -68,6 +75,7 @@ namespace Server
             
             Thread potok = new Thread(Listen);
             potok.Start();
+            Console.WriteLine("Сервер Активен!");
         }
 
         public static void Listen()
@@ -78,10 +86,11 @@ namespace Server
 
                 sListener.Listen(10);
                 Socket handler = sListener.Accept();
+                Task.Run(() => Connected(handler));
+                
+             //   text();
 
-                text(Connected(handler));
-
-                SendResponse(handler,"все ништяк");
+                
 
             }
 

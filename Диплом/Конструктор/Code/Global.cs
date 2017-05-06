@@ -63,11 +63,11 @@ namespace Builder
                 main.swapGrid.ItemsSource = main.swapListToAdd;
 
 
-                string lookname = input.day.lookname;
+                
 
                 
 
-                switch (input.week.name)
+                switch (input.week)
                 {
                     case "ch":
                         main.ChRadio.IsChecked = true;
@@ -79,7 +79,7 @@ namespace Builder
                 }
 
 
-                switch (input.day.name)
+                switch (input.day)
                 {
                     case "Monday":
                         main.dayInWeekCombo.SelectedItem = "Понедельник";

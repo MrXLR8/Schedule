@@ -264,9 +264,37 @@ namespace Builder
 
         private void DeleteSelected_Click(object sender, RoutedEventArgs e)
         {
+            Lection target = Global.selectedLection;
+            Week week=null;
+            if (target.week == "ch") week = Global.selectedGroup.chuslutel;
+            if (target.week == "zm") week = Global.selectedGroup.znamenatel;
 
-            Day target = Global.selectedLection.day;
-            target.lectionList.Remove(Global.selectedLection);
+            Day day=null;
+
+            switch (target.day)
+            {
+                case "Monday":
+                    day = week.Monday;
+                    break;
+                case "Tuesday":
+                    day = week.Tuesday;
+                    break;
+                case "Wednesday":
+                    day = week.Wednesday;
+                    break;
+                case "Thursday":
+                    day = week.Thursday;
+                    break;
+                case "Friday":
+                    day = week.Friday;
+                    break;
+                case "Saturday":
+                    day = week.Saturday;
+                    break;
+            }
+
+
+            day.lectionList.Remove(Global.selectedLection);
             Global.selectedLection = null;
             Global.setEdits(null);
             Global.selectedGroup.massReDraw();

@@ -143,12 +143,12 @@ namespace Builder
         public Week(string type)
         {
                 name = type;
-                Monday = new Day("Monday",this);
-                Tuesday = new Day("Tuesday", this);
-                Wednesday = new Day("Wednesday", this);
-                Thursday = new Day("Thursday", this);
-                Friday = new Day("Friday", this);
-                Saturday = new Day("Saturday", this);
+                Monday = new Day("Monday",name);
+                Tuesday = new Day("Tuesday", name);
+                Wednesday = new Day("Wednesday", name);
+                Thursday = new Day("Thursday", name);
+                Friday = new Day("Friday", name);
+                Saturday = new Day("Saturday", name);
             
         }
 
@@ -164,21 +164,21 @@ namespace Builder
 
     public class Day: Entry
     {
-        [JsonIgnore]
-        public Week week;
+        
+        public string week;
 
 
         public ObservableCollection<Lection> lectionList { get; set; }
         public string lookname;
        
-        public Day(string _name, Week parent)
+        public Day(string _name, string weekParent)
         {
-            week = parent;
+            week = weekParent;
             name = _name;
 
             lectionList = new ObservableCollection<Lection>();
             ListBox list;
-            lookname = week.name +_name;
+            lookname = week +_name;
 
             list = (ListBox) Global.main.FindName(lookname);
             list.ItemsSource = lectionList;
@@ -197,9 +197,9 @@ namespace Builder
                 duplicate.lector = _input.lector;
                 duplicate.name = _input.name;
                 duplicate.swapList = _input.swapList;
-                duplicate.setParents(this);
+                duplicate.setParents(week,name);
             }
-            else { _input.setParents(this);  lectionList.Add(_input);  }
+            else { _input.setParents(week, name);  lectionList.Add(_input);  }
 
 
              var look = lectionList.OrderBy(s => s.lectionInterval);
@@ -251,22 +251,18 @@ namespace Builder
 
     public class Lection : Entry
     {
-        public struct WeekInfo
-        {
-            string day;
-            string week;
-        }
+
 
         public int auditory { get; set; }
         public Lector lector { get; set; }
         public int lectionInterval { get; set; } // номер пары в дне
         public ObservableCollection<LectionSwap> swapList { get; set; }
 
-        [JsonIgnore]
-        public Week week;
+        
+        public string week;
 
-        [JsonIgnore]
-        public Day day;
+        
+        public string day;
 
 
 
@@ -281,10 +277,10 @@ namespace Builder
             swapList = new ObservableCollection<LectionSwap>();
         }
 
-        public void setParents(Day _parent)
+        public void setParents(string weekname,string dayname)
         {
-            day = _parent;
-            week = day.week;
+            day = dayname;
+            week = weekname;
         }
 
         public Lection Clone()

@@ -124,11 +124,25 @@ namespace Builder
 
         }
 
+        public static void setSaveButton()
+        {
+            if (!string.IsNullOrWhiteSpace(FileInteraction.fileName)) main.saveButton.IsEnabled = true;
+            else { main.saveButton.IsEnabled = false; }
+        }
+
         public static void fixItemSource()
         {
             main.GroupListBox.ItemsSource = groupList;
             main.GroupListBox.SelectedItem = selectedGroup;
-            }
+
+            main.lectorCombo.ItemsSource = lectorList;
+            main.paraCombo.ItemsSource = predmetList;
+            main.classCombo.ItemsSource = classList;
+            main.timeCombo.ItemsSource = intervals.timeList;
+            //main.swapGrid.ItemsSource = swapListToAdd;
+            main.predmetSwapCombo.ItemsSource = predmetList;
+
+        }
 
         public static MainWindow main;
         public static LectorsForm prepodWindow;

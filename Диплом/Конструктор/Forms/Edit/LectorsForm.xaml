@@ -18,7 +18,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid  AutoGenerateColumns="False" x:Name="prepodGrid" VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Path=lectorList}" >
+            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" x:Name="prepodGrid" VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Path=lectorList}" >
                 <DataGrid.Columns >
                     <DataGridTextColumn Width="*" Header="Фамилия" Binding="{Binding Path=lastName}"/>
                     <DataGridTextColumn Width="*" Header="Имя" Binding="{Binding Path=name}"/>

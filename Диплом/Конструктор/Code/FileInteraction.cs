@@ -28,12 +28,17 @@ namespace Builder
                     fileName = System.IO.Path.GetFileName(saveFileDialog.FileName);
                     filePath = saveFileDialog.FileName;
                     File.WriteAllText(filePath, toSave);
+
+                    Global.setSaveButton();
                     return true;
                 }
                 return false;
             }
             catch (Exception e)
             {
+                filePath = "";
+                fileName = "";
+                Global.setSaveButton();
                 return false;
             }
         }
@@ -49,14 +54,19 @@ namespace Builder
                     
                     filePath =openFileDialog.FileName;
                     fileName = System.IO.Path.GetFileName(openFileDialog.FileName);
+                    Global.setSaveButton();
                     return File.ReadAllText(filePath);
 
 
                 }
+                Global.setSaveButton();
                 return "";
             }
             catch (Exception e)
             {
+                filePath = "";
+                fileName = "";
+                Global.setSaveButton();
                 return "";
             }
         }

@@ -101,7 +101,13 @@ namespace Builder
 
             Global.selectedGroup = null;
             Global.selectedLection = null;
-            // добавить сюда очищение ссылки на файл
+
+            Global.fixItemSource();
+
+
+
+       
+            
         }
 
 

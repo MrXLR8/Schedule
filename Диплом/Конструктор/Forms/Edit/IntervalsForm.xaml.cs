@@ -100,6 +100,8 @@ namespace Builder
             Global.intervals = test.Clone();
             resetButton_Click(null, null);
             saveButton.IsEnabled = false;
+            this.Visibility = Visibility.Hidden;
+
         }
 
         private void newButton_Click(object sender, RoutedEventArgs e)
@@ -136,6 +138,9 @@ namespace Builder
 
         }
 
-
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            if(pairs.Items.Count>0) { removeButton.IsEnabled = true;}
+        }
     }
 }

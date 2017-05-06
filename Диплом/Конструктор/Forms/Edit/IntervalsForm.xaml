@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Builder"
         Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
         mc:Ignorable="d"
-        Title="Редактирование интервала пар" ResizeMode="CanResize" Height="300" Width="450" Closing="Window_Closing" Loaded="Window_Loaded">
+        Title="Редактирование интервала пар" ResizeMode="CanResize" Height="300" Width="450" Closing="Window_Closing" Loaded="Window_Loaded" Activated="Window_Activated">
     <Window.Resources>
         <Style TargetType="Border" x:Key="Borders">
             <Setter Property="BorderThickness" Value="1"/>

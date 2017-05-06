@@ -151,7 +151,7 @@ namespace Builder
             {
                 Title = "Конструктор расписаний. Выбранная группа: " + Global.selectedGroup.name;
                 RightPanel.IsEnabled = true;
-                saveAsButton.IsEnabled = true;
+             //   saveAsButton.IsEnabled = true;
                 deleteGroupButton.IsEnabled = true;
                 Global.selectedGroup.massReDraw();
             }
@@ -161,7 +161,7 @@ namespace Builder
                 Global.resetForm();
                 deleteGroupButton.IsEnabled = false;
                 RightPanel.IsEnabled = false;
-                saveAsButton.IsEnabled = false;
+              //  saveAsButton.IsEnabled = false;
             }
         }
 
@@ -349,6 +349,9 @@ namespace Builder
         private void newButton_Click(object sender, RoutedEventArgs e)
         {
             Data.reset();
+            FileInteraction.fileName = "";
+            FileInteraction.filePath = "";
+            Global.setSaveButton();
         }
 
         public Schedule test = new Schedule(); //DELETE!

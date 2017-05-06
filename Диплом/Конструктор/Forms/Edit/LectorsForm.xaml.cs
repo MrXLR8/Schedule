@@ -51,7 +51,7 @@ namespace Builder
 
         private void addEntry_Click(object sender, RoutedEventArgs e)
         {
-            Global.lectorList.Add(new Lector(prepodName.Text, prepodMiddleName.Text, prepodMiddleName.Text));
+            Global.lectorList.Add(new Lector(prepodLastName.Text,prepodName.Text, prepodMiddleName.Text));
             clearFields();
         }
         void clearFields()

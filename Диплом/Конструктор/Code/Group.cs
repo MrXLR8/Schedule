@@ -159,6 +159,7 @@ namespace Builder
         public void redraw()
         {
             Monday.reDraw();
+            Wednesday.reDraw();
             Tuesday.reDraw();
             Thursday.reDraw();
             Friday.reDraw();

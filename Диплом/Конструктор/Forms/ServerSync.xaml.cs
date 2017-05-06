@@ -20,10 +20,24 @@ namespace Builder
     /// </summary>
     public partial class ServerSync : Window
     {
+
+        TextBox[] ips;
+
+        string ip = "";
+        int portNumber;
+
         public ServerSync()
         {
             InitializeComponent();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            this.Visibility = Visibility.Hidden;
+
+        }
+
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
@@ -33,11 +47,67 @@ namespace Builder
 
         private void port_TextChanged(object sender, TextChangedEventArgs e)
         {
-            int portNumber = Convert.ToInt32(port.Text);
+            int test;
+            try
+            {
+                test = Convert.ToInt32(port.Text);
+            }
+            catch(FormatException exc)
+            {
+                port.Text = "0";
+                return;
+            }
 
-            if (portNumber <= 0) port.Clear();
-            if (portNumber > 65535) port.Clear();
+            if (test <= 0) {port.Text = "0"; return; }
+            if (test > 65535) { port.Text = "0"; return; }
+
+            portNumber = test;
+
+            checkBoth();
 ;
+        }
+
+        void checkBoth()
+        {
+            if (portNumber <= 0) { port.Text = "0"; return; }
+            if (portNumber > 65535) { port.Text = "0"; return; }
+            if (string.IsNullOrWhiteSpace(ip)) return;
+
+            Check.IsEnabled = true;
+            
+        }
+        private void ip_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox target = (TextBox)sender;
+            int value;
+            try
+            {
+                value = Convert.ToInt32(target.Text);
+            }
+            catch(FormatException exc) { return; }
+            if (value < 0 || value > 255) { target.Text="0"; return; }
+
+            try
+            {
+                
+                foreach (TextBox t in ips)
+                {
+                    var octat = Convert.ToInt32(t.Text);
+                    ip += octat;
+                    ip += ".";
+                }
+
+
+                ip.Remove(ip.Length);
+            }
+            catch (Exception exc) { }
+        }
+
+
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ips = new TextBox[4] { ip1, ip2, ip3, ip4 };
         }
     }
 }

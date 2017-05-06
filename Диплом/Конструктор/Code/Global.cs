@@ -150,6 +150,7 @@ namespace Builder
         public static ClassesForm classesWindow;
         public static IntervalsForm intervalWindow;
         public static CommentaryForm commentaryWindow;
+        public static ServerSync syncForm;
 
         public static ObservableCollection<Lector> lectorList { get; set; }
         public static ObservableCollection<string> predmetList { get; set; }

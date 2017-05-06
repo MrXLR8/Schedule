@@ -6,7 +6,7 @@
         mc:Ignorable="d"
          Height="278.39" Width="198.305"
          Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
-        Title="Инструмент синхронизации с сервером"
+        Title="Инструмент синхронизации с сервером" Loaded="Window_Loaded" Closing="Window_Closing"
         >
 
     <Grid>
@@ -32,10 +32,10 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBox MaxLength="3" Grid.Column="0" PreviewTextInput="NumberValidationTextBox" x:Name="ip1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20">127</TextBox>
-                    <TextBox MaxLength="3" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" x:Name="ip2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20">127</TextBox>
-                    <TextBox MaxLength="3" Grid.Column="2" PreviewTextInput="NumberValidationTextBox" x:Name="ip3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20">127</TextBox>
-                    <TextBox MaxLength="3" Grid.Column="3" PreviewTextInput="NumberValidationTextBox" x:Name="ip4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20">127</TextBox>
+                    <TextBox MaxLength="3" Grid.Column="0" PreviewTextInput="NumberValidationTextBox" x:Name="ip1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged">127</TextBox>
+                    <TextBox MaxLength="3" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" x:Name="ip2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged">127</TextBox>
+                    <TextBox MaxLength="3" Grid.Column="2" PreviewTextInput="NumberValidationTextBox" x:Name="ip3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged">127</TextBox>
+                    <TextBox MaxLength="3" Grid.Column="3" PreviewTextInput="NumberValidationTextBox" x:Name="ip4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged">127</TextBox>
                 </Grid>
 
                 <Label HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="2" Content="Порт"/>
@@ -48,15 +48,15 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" x:Name="Send">
+                    <Button Grid.Column="0" x:Name="Send" IsEnabled="False">
                         <Image Source="..\img\Upload.png"></Image>
                     </Button>
                     
-                    <Button Grid.Column="1" x:Name="Get">
+                    <Button Grid.Column="1" x:Name="Get" IsEnabled="False">
                         <Image Source="..\img\Download.png"></Image>
                     </Button>
                     
-                    <Button Grid.Column="2" x:Name="Check">
+                    <Button Grid.Column="2" x:Name="Check" IsEnabled="False">
                         <Image Source="..\img\Compare.png"></Image>
                     </Button>
                 </Grid>

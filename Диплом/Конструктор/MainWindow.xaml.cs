@@ -34,6 +34,7 @@ namespace Builder
             Global.predmetWindow = new PredmetsForm();
             Global.classesWindow = new ClassesForm();
             Global.intervalWindow = new IntervalsForm();
+            Global.syncForm = new ServerSync();
             Global.main = this;
             
 
@@ -373,11 +374,7 @@ namespace Builder
 
         private void SyncButton_Click(object sender, RoutedEventArgs e)
         {
-            
-
-            Schedule newone = new Schedule();
-            newone = Schedule.getSchedule(json);
-            newone.applyMe();
+            Global.syncForm.Show();
         }
 
         private void saveAsButton_Click(object sender, RoutedEventArgs e)

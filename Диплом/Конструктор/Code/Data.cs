@@ -35,6 +35,10 @@ namespace Builder
             Global.classesWindow.Close();
             Global.predmetWindow.Close();
             Global.prepodWindow.Close();
+
+            Global.commentaryWindow?.Close();
+           // Global.commentaryWindow = null;
+
             Global.intervalWindow.Close();
             Global.intervalWindow = new IntervalsForm();
 

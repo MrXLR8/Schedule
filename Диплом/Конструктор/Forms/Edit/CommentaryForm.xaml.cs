@@ -78,6 +78,12 @@ namespace Builder
            var toSet = new TextRange(CommentaryText.Document.ContentStart, CommentaryText.Document.ContentEnd);
             
             toSet.Text = selected.commentary;
+            SaveButton.IsEnabled = false;
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Global.commentaryWindow = null;
         }
     }
 }

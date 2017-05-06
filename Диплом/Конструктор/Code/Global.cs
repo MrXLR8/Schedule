@@ -109,6 +109,8 @@ namespace Builder
                 main.DeleteSelected.IsEnabled = false;
                 main.DeleteToolTip.Visibility = Visibility.Collapsed;
 
+
+
                 main.paraCombo.SelectedItem = null;
                 main.lectorCombo.SelectedItem = null;
                 main.classCombo.SelectedItem = null;

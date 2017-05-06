@@ -5,14 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Commentary" Height="600" Width="500" Closing="Window_Closing" Loaded="Window_Loaded"
-        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Closed="Window_Closed">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="61*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="215*"/>
             <RowDefinition Height="54*"/>
 
         </Grid.RowDefinitions>
-        <RichTextBox x:Name="CommentaryText" VerticalScrollBarVisibility="Visible" FontSize="40" TextChanged="CommentaryText_TextChanged">
+        <RichTextBox x:Name="CommentaryText" VerticalScrollBarVisibility="Visible" FontSize="40" TextChanged="CommentaryText_TextChanged" Grid.ColumnSpan="2">
             <FlowDocument>
                 <Paragraph>
                     <Run Text="RichTextBox"/>
@@ -20,19 +24,19 @@
             </FlowDocument>
         </RichTextBox>
 
-        <Viewbox  Grid.Row="1" StretchDirection="Both" Stretch="Uniform" >
+        <Viewbox  Grid.Row="1" StretchDirection="Both" Stretch="Uniform" Grid.ColumnSpan="2" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <GroupBox>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Комментарий для группы:" VerticalContentAlignment="Center" FontSize="40"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Комментарий для группы:" VerticalContentAlignment="Center" FontSize="40"/>
 
                         <Label x:Name="groupName" Content="#groupname" VerticalContentAlignment="Center" FontSize="40" FontFamily="Times New Roman"/>
-                    
-                </StackPanel>
+
+                    </StackPanel>
                 </GroupBox>
 
                 <StackPanel Grid.Row="1" Orientation="Horizontal">

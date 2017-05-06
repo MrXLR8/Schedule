@@ -138,6 +138,10 @@ namespace Builder
         {
             Global.resetForm();
             Global.selectedGroup = (Group)GroupListBox.SelectedItem;
+
+            Global.commentaryWindow?.Close();
+         //   Global.commentaryWindow = null;
+
             try
             {
                 Title = "Конструктор расписаний. Выбранная группа: " + Global.selectedGroup.name;
@@ -308,8 +312,11 @@ namespace Builder
 
         private void CommentaryButton_Click(object sender, RoutedEventArgs e)
         {
+            if(Global.commentaryWindow==null)
             Global.commentaryWindow = new CommentaryForm(Global.selectedGroup);
+
             Global.commentaryWindow.Show();
+            Global.commentaryWindow.Focus();
         }
     }
 

@@ -1,0 +1,67 @@
+﻿<Window x:Class="Builder.ServerSync"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+         Height="278.39" Width="198.305"
+         Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
+        Title="Инструмент синхронизации с сервером"
+        >
+
+    <Grid>
+        <GroupBox Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+
+                </Grid.RowDefinitions>
+
+                <Label HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0" Content="IP-адресс"/>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox MaxLength="3" Grid.Column="0" PreviewTextInput="NumberValidationTextBox" x:Name="ip1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20">127</TextBox>
+                    <TextBox MaxLength="3" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" x:Name="ip2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20">127</TextBox>
+                    <TextBox MaxLength="3" Grid.Column="2" PreviewTextInput="NumberValidationTextBox" x:Name="ip3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20">127</TextBox>
+                    <TextBox MaxLength="3" Grid.Column="3" PreviewTextInput="NumberValidationTextBox" x:Name="ip4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20">127</TextBox>
+                </Grid>
+
+                <Label HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="2" Content="Порт"/>
+                <TextBox TextChanged="port_TextChanged" MaxLength="5" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Grid.Row="3" x:Name="port">27015</TextBox>
+
+                <Label HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="4" x:Name="Status" Content="[Информации нет]" FontFamily="Times New Roman"></Label>
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" x:Name="Send">
+                        <Image Source="..\img\Upload.png"></Image>
+                    </Button>
+                    
+                    <Button Grid.Column="1" x:Name="Get">
+                        <Image Source="..\img\Download.png"></Image>
+                    </Button>
+                    
+                    <Button Grid.Column="2" x:Name="Check">
+                        <Image Source="..\img\Compare.png"></Image>
+                    </Button>
+                </Grid>
+            </Grid>
+
+        </GroupBox>
+    </Grid>
+</Window>

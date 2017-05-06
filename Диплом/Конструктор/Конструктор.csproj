@@ -89,8 +89,12 @@
     <Compile Include="Code\Cipher.cs" />
     <Compile Include="Code\Data.cs" />
     <Compile Include="Code\FileInteraction.cs" />
+    <Compile Include="Code\Net.cs" />
     <Compile Include="Forms\Edit\CommentaryForm.xaml.cs">
       <DependentUpon>CommentaryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ServerSync.xaml.cs">
+      <DependentUpon>ServerSync.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\LectionControl.xaml.cs">
       <DependentUpon>LectionControl.xaml</DependentUpon>
@@ -112,6 +116,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\Edit\IntervalsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ServerSync.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,6 +255,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\Commentary.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Upload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Compare.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

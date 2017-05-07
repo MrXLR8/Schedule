@@ -9,7 +9,9 @@
     <Import_RootNamespace>SharedStructure</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Command.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Group.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SharedCipher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SharedCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SharedGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SharedTimeInterval.cs" />
   </ItemGroup>
 </Project>

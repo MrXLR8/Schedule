@@ -39,6 +39,7 @@ namespace Builder
   
                 if(!test.checkCorrect(c)) { return false; }
             }
+            saveButton.IsEnabled = true;
             return true;
         }
 
@@ -92,6 +93,7 @@ namespace Builder
                     ((Button)sender).IsEnabled = false;
                 }
             }
+            checkAll();
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
@@ -101,6 +103,7 @@ namespace Builder
             resetButton_Click(null, null);
             saveButton.IsEnabled = false;
             this.Visibility = Visibility.Hidden;
+            Global.selectedGroup.massReDraw();
 
         }
 
@@ -110,6 +113,7 @@ namespace Builder
             //Global.intervals.timeList .Add( new Interval(Global.intervals.last+1, new TimeSpan(9, 1, 0), new TimeSpan(10, 20, 0)));
             test.timeList.Add(new Interval(test.last + 1));
             removeButton.IsEnabled = true;
+            checkAll();
         }
 
         private void pairs_Loaded(object sender, RoutedEventArgs e)

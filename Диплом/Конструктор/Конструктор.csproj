@@ -86,7 +86,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Code\Cipher.cs" />
     <Compile Include="Code\Data.cs" />
     <Compile Include="Code\FileInteraction.cs" />
     <Compile Include="Code\Net\Net.cs" />

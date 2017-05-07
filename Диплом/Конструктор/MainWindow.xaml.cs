@@ -189,6 +189,7 @@ namespace Builder
         private void paraEdit_Click(object sender, RoutedEventArgs e)
         {
             Global.intervalWindow.Show();
+            Global.intervalWindow.removeButton.IsEnabled = (Global.intervals.timeList.Count > 0);
             Global.intervalWindow.Activate();
         }
 

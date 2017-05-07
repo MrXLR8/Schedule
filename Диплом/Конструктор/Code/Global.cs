@@ -50,7 +50,21 @@ namespace Builder
         {
             if (input != null)
             {
-                main.lectorCombo.SelectedItem = input.lector;
+                Lector pickLector(Lector search)
+                {
+                    foreach(Lector l in main.lectorCombo.ItemsSource)
+                    {
+                        if (l.lastName == search.lastName)
+
+                            if (l.middleName == search.middleName)
+                                if (l.name == l.name)
+                                    return l;
+                        
+                    }
+                    return null;
+                }
+
+                main.lectorCombo.SelectedItem = pickLector(input.lector);
                 main.paraCombo.SelectedItem = input.name;
                 main.classCombo.SelectedItem = input.auditory;
                 main.timeCombo.SelectedItem = Global.intervals.timeList[input.lectionInterval-1];

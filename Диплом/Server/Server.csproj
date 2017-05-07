@@ -10,4 +10,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
   </ItemGroup>
 
+  <Import Project="..\SharedStructure\SharedStructure.projitems" Label="Shared" />
+
 </Project>

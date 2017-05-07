@@ -4,16 +4,8 @@ using System.Text;
 
 namespace Share
 {
-    public class Command
+    public partial class Command
     {
-        public Command() { }
-
-        public string type;
-        public List<string> arguments=new List<string>();
-
-
-        public string toAnswer;
-
         public void qualify()
         {
             switch (type)

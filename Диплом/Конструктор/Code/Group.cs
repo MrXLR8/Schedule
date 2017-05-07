@@ -11,119 +11,23 @@ using System.Windows.Controls;
 namespace Builder
 {
 
-    public abstract class Entry
+
+
+
+    public partial class Week : Entry
     {
-        public string name { get; set; }
-    }
-
-    public class Group: Entry
-    {
-        public Group() { }
-        public Group(string _name)
+        public Week(string type)
         {
-            name= _name;
-            commentary = "";
+            name = type;
+            Monday = new Day("Monday", name);
+            Tuesday = new Day("Tuesday", name);
+            Wednesday = new Day("Wednesday", name);
+            Thursday = new Day("Thursday", name);
+            Friday = new Day("Friday", name);
+            Saturday = new Day("Saturday", name);
+
         }
-
-        public Week chuslutel = new Week("ch");
-        public Week znamenatel = new Week("zm");
-
-        public string commentary;
-
-        public void massReDraw()
-        {
-            chuslutel.redraw();
-            znamenatel.redraw();
-        }
-
-    }
-
-    
-
-
-    public class Lector : Entry
-    {
-        public string lastName { get; set; }
-        public string middleName { get; set; }
-
-        public override string ToString()
-        {
-            string result;
-            result = lastName;
-            try
-            {
-                result += " " + name[0] + ". " + middleName[0] + ".";
-            }
-            catch (Exception e)
-            {
-                result = lastName;
-            }
-            return result;
-        }
-
-        public Lector() { }
-
-        public Lector(string _lastName, string _name, string _middleName)
-        {
-            name = _name; middleName = _middleName; lastName = _lastName;
-        }
-    }
-
-
-    public class LectionSwap
-    {
-        public string para { get; set; } 
-        public  DateTime period { get; set; }
-        public LectionSwap(DateTime _period,string _para)
-        {
-            period = _period;
-            para = _para;
-        }
-        public string periodString
-        {
-            get
-            {
-                string result;
-
-                string correctDate(int input)
-                {
-                    if (input < 10)
-                    {
-                        return "0" + input.ToString();
-                    }
-                    return input.ToString();
-                }
-
-                result = string.Format("{0}. {1}", correctDate(period.Day), correctDate(period.Month));
-                return result;
-            }
-        }
-
-                    public override string ToString()
-        {
-          return periodString+" ["+para+"]";
-        }
-
-
-
-    }
-
-
-
-
-
-
-    public class Week: Entry
-    {
-
-        public Day Monday { get; set; }
-        public Day  Tuesday { get; set; }
-        public Day Wednesday { get; set; }
-        public Day Thursday { get; set; }
-        public Day  Friday { get; set; }
-        public Day Saturday{ get; set; }
-
-        public Day pick( string toFind)
+        public Day pick(string toFind)
         {
             switch (toFind)
             {
@@ -143,19 +47,6 @@ namespace Builder
             return null;
         }
 
-        public Week() { }
-        public Week(string type)
-        {
-                name = type;
-                Monday = new Day("Monday",name);
-                Tuesday = new Day("Tuesday", name);
-                Wednesday = new Day("Wednesday", name);
-                Thursday = new Day("Thursday", name);
-                Friday = new Day("Friday", name);
-                Saturday = new Day("Saturday", name);
-            
-        }
-
         public void redraw()
         {
             Monday.reDraw();
@@ -166,18 +57,89 @@ namespace Builder
             Saturday.reDraw();
         }
     }
-
-    public class Day: Entry
+    public partial class Group: Entry
     {
-        
-        public string week;
+        public Group(string _name)
+        {
+            chuslutel = new Week("ch");
+            znamenatel = new Week("zm");
+            
+            name = _name;
+            commentary = "";
+        }
+        public void massReDraw()
+        {
+            chuslutel.redraw();
+            znamenatel.redraw();
+        }
+
+    }
+
+    
 
 
-        public ObservableCollection<Lection> lectionList { get; set; }
-        public string lookname;
-       
-        public Day() { }
+    public partial class Lector : Entry
+    {
+        public Lector(string _lastName, string _name, string _middleName)
+        {
+            name = _name; middleName = _middleName; lastName = _lastName;
+        }
 
+        public override string ToString()
+        {
+            string result;
+            result = lastName;
+            try
+            {
+                result += " " + name[0] + ". " + middleName[0] + ".";
+            }
+            catch (Exception e)
+            {
+                result = lastName;
+            }
+            return result;
+        }
+
+    }
+
+
+    public partial class LectionSwap
+    {
+        public LectionSwap(DateTime _period, string _para)
+        {
+            period = _period;
+            para = _para;
+        }
+
+        public string periodString
+        {
+            get
+            {
+                string result;
+
+                string correctDate(int input)
+                {
+                    if (input < 10)
+                    {
+                        return "0" + input.ToString();
+                    }
+                    return input.ToString();
+                }
+
+                result = string.Format("{0}. {1}", correctDate(period.Day), correctDate(period.Month));
+                return result;
+            }
+        }
+       public override string ToString()
+        {
+          return periodString+" ["+para+"]";
+        }
+
+
+    }
+
+    public partial class Day: Entry
+    {
         public Day(string _name, string weekParent)
         {
             week = weekParent;
@@ -185,13 +147,12 @@ namespace Builder
 
             lectionList = new ObservableCollection<Lection>();
             ListBox list;
-            lookname = week +_name;
+            lookname = week + _name;
 
-            list = (ListBox) Global.main.FindName(lookname);
+            list = (ListBox)Global.main.FindName(lookname);
             list.ItemsSource = lectionList;
-            
-        }
 
+        }
         public void add(Lection _input)
         {
             
@@ -224,7 +185,6 @@ namespace Builder
             return null;
         }
 
-
        public void reDraw()
         {
             try
@@ -256,23 +216,8 @@ namespace Builder
 
     }
 
-    public class Lection : Entry
+    public partial class Lection : Entry
     {
-
-
-        public int auditory { get; set; }
-        public Lector lector { get; set; }
-        public int lectionInterval { get; set; } // номер пары в дне
-        public ObservableCollection<LectionSwap> swapList { get; set; }
-
-        
-        public string week;
-
-        
-        public string day;
-
-        public Lection() { }
-
         public Lection(string _name, int _lectionNumber, Lector _lector, int _auditory)
         {
 

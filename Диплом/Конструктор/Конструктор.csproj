@@ -89,7 +89,6 @@
     <Compile Include="Code\Cipher.cs" />
     <Compile Include="Code\Data.cs" />
     <Compile Include="Code\FileInteraction.cs" />
-    <Compile Include="Code\Net\Command.cs" />
     <Compile Include="Code\Net\Net.cs" />
     <Compile Include="Forms\Edit\CommentaryForm.xaml.cs">
       <DependentUpon>CommentaryForm.xaml</DependentUpon>
@@ -266,5 +265,6 @@
   <ItemGroup>
     <Resource Include="img\Compare.png" />
   </ItemGroup>
+  <Import Project="..\SharedStructure\SharedStructure.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

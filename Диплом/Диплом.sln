@@ -11,7 +11,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerTest", "ServerTest\ServerTest.csproj", "{DDE27FD8-5F30-46BC-A4BF-860D7867F702}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5B45DFF1-9271-4D4E-B934-9AEDA91E68FD}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedStructure", "SharedStructure\SharedStructure.shproj", "{45420DD6-7F62-45B8-A25E-F75D065D6711}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SharedStructure\SharedStructure.projitems*{45420dd6-7f62-45b8-a25e-f75d065d6711}*SharedItemsImports = 13
+		SharedStructure\SharedStructure.projitems*{8b8f19f7-e15d-4af8-9c74-685ea5e6be91}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -36,5 +44,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F71DFDB2-1D22-497F-B354-5CEBD357A12F} = {5B45DFF1-9271-4D4E-B934-9AEDA91E68FD}
+		{DDE27FD8-5F30-46BC-A4BF-860D7867F702} = {5B45DFF1-9271-4D4E-B934-9AEDA91E68FD}
 	EndGlobalSection
 EndGlobal

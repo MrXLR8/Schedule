@@ -13,6 +13,12 @@ namespace Builder
     public  abstract class Entry
     {
         public string name { get; set; }
+
+        
+        public string hash()
+        {
+             return Data.Hash.GetMd5Hash(JsonConvert.SerializeObject(this));
+        }
     }
 
 

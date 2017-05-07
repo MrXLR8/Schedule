@@ -9,6 +9,7 @@
     <Import_RootNamespace>SharedStructure</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)SharedData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SharedCipher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SharedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SharedGroup.cs" />

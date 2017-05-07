@@ -359,36 +359,45 @@ namespace Builder
         public Schedule test = new Schedule(); //DELETE!
         public string json;
 
-        private void openButton_Click(object sender, RoutedEventArgs e)
-        {
-            Schedule toSet = new Schedule();
-            try
-            {
-                toSet = Schedule.getSchedule(FileInteraction.openFile());
-                toSet.applyMe();
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show("Не удалось прочитать файл. Детали ошибки: " + exc.Message);
-            }
-        }
+
 
         private void SyncButton_Click(object sender, RoutedEventArgs e)
         {
             Global.syncForm.Show();
         }
+        private void openButton_Click(object sender, RoutedEventArgs e)
+        {
+            Schedule toSet = new Schedule();
+            try
+            {
 
+                string fileText = FileInteraction.openFile();
+                //toSet = Schedule.getSchedule(fileText);
+                toSet.fillMe(fileText);
+                toSet.applyMe();
+            }
+            catch(Exception exc)
+            {
+                MessageBox.Show("Не удалось занести данные с файла. Детали ошибки : \n" + exc.Message);
+                Data.reset();
+            }
+            
+
+        }
         private void saveAsButton_Click(object sender, RoutedEventArgs e)
         {
             Schedule prepareToWire = new Schedule();
-            FileInteraction.saveToFile(prepareToWire.formJson());
+            prepareToWire.fillMe();
+
+            FileInteraction.saveToFile(prepareToWire.json());
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             Schedule prepareToWire = new Schedule();
+            prepareToWire.fillMe();
 
-            FileInteraction.saveToSavedPath(prepareToWire.formJson());
+            FileInteraction.saveToSavedPath(prepareToWire.json());
         }
     }
         #endregion

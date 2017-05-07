@@ -373,7 +373,7 @@ namespace Builder
 
                 string fileText = FileInteraction.openFile();
                 //toSet = Schedule.getSchedule(fileText);
-                toSet.fillMe(fileText);
+                toSet= Schedule.fillMe(fileText);
                 toSet.applyMe();
             }
             catch(Exception exc)

@@ -20,10 +20,13 @@ namespace Server
             for(int i=1;i<raw.Length;i++)
             {
                 string[] split = raw[i].Split(':');
-
-                arguments[i - 1] = new Argument(split[0], split[1]);
+                try
+                {
+                    arguments[i - 1] = new Argument(split[0], split[1]);
+                }
+                catch(IndexOutOfRangeException exc) { Console.WriteLine("[CONSOLE]Комманда " + command + " не существует или произведен некоректный ввод параметра"); return null; }
             }
-            if(!check()) { Console.WriteLine("Команда " + command + " не выполнена. Не хватает параметра(ов)"); return null; }
+            if(!check()) { Console.WriteLine("[CONSOLE]Команда " + command + " не выполнена. Не хватает параметра(ов)"); return null; }
             return this;
         }
 

@@ -122,13 +122,42 @@ namespace Builder
 
             Schedule toSend = new Schedule();
             toSend.fillMe();
-            bool answer = NetFunctions.compareSchedule(toSend);
-
+            bool answer;
+            try
+            {
+                answer = NetFunctions.compareSchedule(toSend);
+            }
+            catch (Exception exc)
+            {
+                Status.Content = "[Не удалось соединиться]";
+                return;
+            }
             Send.IsEnabled = answer;
             Get.IsEnabled = answer;
 
             if (answer) Status.Content = "[Версии расписаний отличаються]";
             else { Status.Content = "[Версии расписаний идентичны]"; }
+
+        }
+
+        private void Send_Click(object sender, RoutedEventArgs e)
+        {
+            Schedule toSend = new Schedule();
+            toSend.fillMe();
+            bool answer;
+            try
+            {
+                answer = NetFunctions.sendSchedule(toSend);
+            }
+            catch (Exception exc)
+            {
+                Status.Content = "[Не удалось соединиться]";
+                return;
+            }
+
+            if (answer) Status.Content = "[Расписание успешно загружено]";
+            else { Status.Content = "[Расписание не установлено]"; }
+
 
         }
     }

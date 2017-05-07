@@ -48,7 +48,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" x:Name="Send" IsEnabled="False">
+                    <Button Grid.Column="0" x:Name="Send" IsEnabled="False" Click="Send_Click">
                         <Image Source="..\img\Upload.png"></Image>
                     </Button>
                     

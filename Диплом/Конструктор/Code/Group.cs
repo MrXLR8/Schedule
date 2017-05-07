@@ -111,6 +111,7 @@ namespace Builder
             para = _para;
         }
 
+        [JsonIgnore]
         public string periodString
         {
             get

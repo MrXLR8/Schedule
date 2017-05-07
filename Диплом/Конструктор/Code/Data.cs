@@ -87,7 +87,6 @@ namespace Builder
             classList = Global.classList;
             groupList = Global.groupList;
 
-            modified = DateTime.Now;
             pcName = Environment.MachineName;
 
         }

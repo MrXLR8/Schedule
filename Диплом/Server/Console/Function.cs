@@ -8,7 +8,15 @@ namespace Server
     {
         public static void execute(CommandLine input)
         {
-            string command = input.command;
+            string command;
+            try
+            {
+                command = input.command;
+            }
+            catch(NullReferenceException exc)
+            {
+                return;
+            }
 
             switch (command)
             {

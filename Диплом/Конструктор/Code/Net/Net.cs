@@ -33,13 +33,12 @@ namespace Builder
 
         public static string Send(string mess)
         {
-            try
-            {
+
 
                 byte[] responseBytes = new byte[Int32.MaxValue / 100]; // Буфер для получения данных
                 int responseBytesCount;  // Количество байтов которые получим
 
-                if (socket == null) connect();// Соединяем сокет с удаленной точкой
+                if (socket == null||socket.Connected==false) connect();// Соединяем сокет с удаленной точкой
 
                 
 
@@ -56,12 +55,7 @@ namespace Builder
 
 
               
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.ToString());
-                return "";
-            }
+            
 
         }
 

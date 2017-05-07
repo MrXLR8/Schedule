@@ -15,8 +15,9 @@ namespace Builder
         public static bool compareSchedule(Schedule input)
         {
             
-            string json = JsonConvert.SerializeObject(input);
-            string hash = Data.Hash.GetMd5Hash(json);
+
+            string hash = input.hash();
+
 
             Command execute = new Command();
             execute.type = "ScheduleHashVerify";
@@ -29,6 +30,23 @@ namespace Builder
             if (answer == "different") return true;
             else { return false; }
             
+        }
+
+        public static bool sendSchedule(Schedule input)
+        {
+
+            string json = JsonConvert.SerializeObject(input);
+
+            Command execute = new Command();
+            execute.type = "ScheduleUpload";
+            execute.arguments.Add(Cipher.encryption(json));
+
+            Net.Initialize(ip, portNumber);
+
+            string answer = Net.Send(JsonConvert.SerializeObject(execute));
+
+            if (answer == "accepted") return true;
+            else { return false; }
 
         }
     }

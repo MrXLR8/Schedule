@@ -76,23 +76,26 @@ namespace Builder
 
       
 
-        public DateTime modified;
+
         public string pcName;
 
         public string json() { return Cipher.encryption(JsonConvert.SerializeObject(this)); }
 
-        public void fillMe(string _Encodedjson)
+        public static Schedule fillMe(string _Encodedjson)
         {
             if (string.IsNullOrWhiteSpace(_Encodedjson)) throw new Exception("Файл не прочитан, или его содержимое пустое");
             string _json = Cipher.transcript(_Encodedjson);
 
             Schedule newone =JsonConvert.DeserializeObject<Schedule>(_json);
 
-            intervals = newone.intervals;
-            lectorList = newone.lectorList;
-            predmetList = newone.predmetList;
-            groupList = newone.groupList;
-            classList = newone.classList;
+            return newone;
+        }
+
+        public string hash()
+        {
+            string firstJson = JsonConvert.SerializeObject(this);
+            return Data.Hash.GetMd5Hash(firstJson);
+            // так надо ибо некоторые типы интерпритируються по разному после десериализации
         }
 
 

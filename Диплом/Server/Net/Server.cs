@@ -25,7 +25,7 @@ namespace Server
 
         public static  void Initialize(int port)
         {
-            Console.WriteLine("Создаю сервер на порте: " + port);
+            Console.WriteLine("[NET]Создаю сервер на порте: " + port);
 
            if(sListener != null)
             {
@@ -42,7 +42,7 @@ namespace Server
 
         private static string Connected(Socket _handler)
         {
-            Console.WriteLine("Входящее подключение от  " + _handler.RemoteEndPoint);
+            Console.WriteLine("[NET]Входящее подключение от  " + _handler.RemoteEndPoint);
 
             data = null;
             byte[] bytes = new byte[Int32.MaxValue/100];
@@ -50,7 +50,7 @@ namespace Server
             data += Encoding.UTF8.GetString(bytes, 0, bytesRec);
 
             Command recived = JsonConvert.DeserializeObject<Command>(data);
-            recived.checkCommand();
+            recived.qualify();
             SendResponse(_handler, recived.toAnswer);
 
             return data;
@@ -58,10 +58,10 @@ namespace Server
 
         private static void SendResponse(Socket _handler, string toSend)
         {
-            Console.WriteLine("Создают ответ для " + _handler.RemoteEndPoint);
+            
             byte[] msg = Encoding.UTF8.GetBytes(toSend);
             _handler.Send(msg);
-            Console.WriteLine("Отправил ответ для " + _handler.RemoteEndPoint);
+            Console.WriteLine("[NET]Отправил ответ для " + _handler.RemoteEndPoint);
         }
 
         public static void Activate()
@@ -75,7 +75,7 @@ namespace Server
             
             Thread potok = new Thread(Listen);
             potok.Start();
-            Console.WriteLine("Сервер Активен!");
+            Console.WriteLine("[NET]Сервер Активен!");
         }
 
         public static void Listen()
@@ -99,7 +99,7 @@ namespace Server
 
         private static void text(string write)
         {
-            Console.WriteLine("ПОЛУЧЕН ОТВЕТ. СОДЕРЖАНИЕ:");
+            Console.WriteLine("[NET]ПОЛУЧЕН ОТВЕТ. СОДЕРЖАНИЕ:");
             Console.WriteLine(write);
         }
     }

@@ -89,6 +89,7 @@
     <Compile Include="Code\Data.cs" />
     <Compile Include="Code\FileInteraction.cs" />
     <Compile Include="Code\Net\Net.cs" />
+    <Compile Include="Code\Net\NetFunctions.cs" />
     <Compile Include="Forms\Edit\CommentaryForm.xaml.cs">
       <DependentUpon>CommentaryForm.xaml</DependentUpon>
     </Compile>

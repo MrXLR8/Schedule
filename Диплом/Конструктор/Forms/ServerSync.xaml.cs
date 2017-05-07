@@ -76,6 +76,9 @@ namespace Builder
             if (string.IsNullOrWhiteSpace(ip)) return;
 
             Check.IsEnabled = true;
+
+            NetFunctions.ip = ip;
+            NetFunctions.portNumber = portNumber;
             
         }
         private void ip_TextChanged(object sender, TextChangedEventArgs e)
@@ -116,23 +119,17 @@ namespace Builder
 
         private void Check_Click(object sender, RoutedEventArgs e)
         {
-            Command toSend=new Command();
-            Net.Initialize(ip, portNumber);
 
-            toSend.type = "check";
-            toSend.arguments.Add("good");
+            Schedule toSend = new Schedule();
+            toSend.fillMe();
+            bool answer = NetFunctions.compareSchedule(toSend);
 
-            if (Net.Send(JsonConvert.SerializeObject(toSend)) == "good")
-            {
-                Send.IsEnabled = true;
-                Get.IsEnabled = true;
-            }
-            else
-            {
-                Send.IsEnabled = false;
-                Get.IsEnabled = false;
-            }
-            
+            Send.IsEnabled = answer;
+            Get.IsEnabled = answer;
+
+            if (answer) Status.Content = "[Версии расписаний отличаються]";
+            else { Status.Content = "[Версии расписаний идентичны]"; }
+
         }
     }
 }

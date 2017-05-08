@@ -43,6 +43,27 @@ namespace Builder
             }
         }
 
+        public static bool saveToFile(string toSave, string path)
+        {
+            try
+            {
+
+                    fileName = System.IO.Path.GetFileName(path);
+                    filePath = saveFileDialog.FileName;
+                    File.WriteAllText(path, toSave);
+
+                    Global.setSaveButton();
+                    return true;
+            }
+            catch (Exception e)
+            {
+                filePath = "";
+                fileName = "";
+                Global.setSaveButton();
+                return false;
+            }
+        }
+
         public static bool saveToSavedPath(string toSave)
         {
             try
@@ -87,5 +108,26 @@ namespace Builder
             }
         }
 
+
+        public static string openFile(string path)
+        {
+            try
+            {
+
+                     filePath = path;
+                    fileName = System.IO.Path.GetFileName(path);
+                    Global.setSaveButton();
+                    return File.ReadAllText(filePath);
+
+                return "";
+            }
+            catch (Exception e)
+            {
+                filePath = "";
+                fileName = "";
+                Global.setSaveButton();
+                return "";
+            }
+        }
     }
 }

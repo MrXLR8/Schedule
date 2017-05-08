@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
 
 
 namespace Builder
@@ -99,11 +100,22 @@ namespace Builder
             dayInWeekCombo.ItemsSource = new string[] { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" };
             days = new List<ListBox>() { chMonday, chTuesday, chThursday, chWednesday, chTuesday, chFriday, chSaturday, zmMonday, zmTuesday, zmWednesday, zmThursday, zmFriday, zmSaturday };
 
-
+            try { 
+                   
+                    Schedule get;
+                    string encrypted = FileInteraction.openFile("last.schd");
+                    string decrypted = Cipher.transcript(encrypted);
+                    get = JsonConvert.DeserializeObject<Schedule>(decrypted);
+                    get.applyMe();
+                    
+            }
+            catch (Exception exc) { }
             #region group
+            /*
             Group toSelect = new Group("TESTGROUP");
             Global.groupList.Add(toSelect);
             GroupListBox.SelectedItem = toSelect;
+            */
             #endregion
 
             #region test lections

@@ -204,7 +204,7 @@ namespace Builder
         {
             ObservableCollection<T> output = new ObservableCollection<T>();
 
-            foreach (T c in _input)
+            foreach (T c in     _input)
             {
                 output.Add(c);
             }

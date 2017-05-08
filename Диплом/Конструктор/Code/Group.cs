@@ -67,8 +67,22 @@ namespace Builder
             name = _name;
             commentary = "";
         }
+        [JsonIgnore]
+        bool allowNewTemp = true;
         public void massReDraw()
         {
+            if (allowNewTemp)
+            {
+                allowNewTemp = false;
+                Schedule prepareToWire = new Schedule();
+                prepareToWire.fillMe();
+
+                string json = prepareToWire.json();
+
+                FileInteraction.saveToFile(json, "last.schd");
+                allowNewTemp = true;
+            }
+
             chuslutel.redraw();
             znamenatel.redraw();
         }

@@ -120,18 +120,34 @@ namespace Builder
         }
 
 
-
+        Group group;
         private void GetGroup_Click(object sender, RoutedEventArgs e)
         {
-            Group recived = NetFunctions.GroupDownload(groupCombo.SelectedItem as string);
+            try
+            {
+                if (Global.selectedGroup != null)
+            {
+                if (NetFunctions.compareGroup(Global.selectedGroup))
+                {
+                    Global.selectedGroup = NetFunctions.GroupDownload(groupCombo.SelectedItem as string);
+                    Global.selectedGroup.massReDraw();
+                }
+            }
         }
+            catch (Exception exc) { Status.Content = "[Не удалось получить группу]"; }
+
+}
 
         private void RefreshGroups_Click(object sender, RoutedEventArgs e)
         {
-
-            List<string> recived = NetFunctions.GroupListDownload();
-            groupList = Collection.ToCollection<string>(recived);
-            if (groupList.Count > 0) { groupCombo.ItemsSource = groupList; groupCombo.IsEnabled = true; }
+            try
+            {
+                List<string> recived = NetFunctions.GroupListDownload();
+                groupList = Collection.ToCollection<string>(recived);
+                if (groupList.Count > 0) { groupCombo.ItemsSource = groupList; groupCombo.IsEnabled = true; }
+            }
+            catch (Exception exc) { Status.Content = "[Не удалось обновить список групп]"; }
+           
         }
 
         private void groupCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)

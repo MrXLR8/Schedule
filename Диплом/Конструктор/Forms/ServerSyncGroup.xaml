@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-         Height="600" Width="400"
+         Height="399" Width="273"
          Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
         Title="Инструмент синхронизации с сервером" Loaded="Window_Loaded" Closing="Window_Closing"
         >
@@ -33,39 +33,39 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBox MaxLength="3" Grid.Column="0" PreviewTextInput="NumberValidationTextBox" x:Name="ip1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged">127</TextBox>
-                    <TextBox MaxLength="3" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" x:Name="ip2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged"/>
-                    <TextBox MaxLength="3" Grid.Column="2" PreviewTextInput="NumberValidationTextBox" x:Name="ip3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged"/>
-                    <TextBox MaxLength="3" Grid.Column="3" PreviewTextInput="NumberValidationTextBox" x:Name="ip4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged"/>
+                    <TextBox Margin="5" MaxLength="3" Grid.Column="0" PreviewTextInput="NumberValidationTextBox" x:Name="ip1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged">127</TextBox>
+                    <TextBox  Margin="5" MaxLength="3" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" x:Name="ip2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged"/>
+                    <TextBox  Margin="5" MaxLength="3" Grid.Column="2" PreviewTextInput="NumberValidationTextBox" x:Name="ip3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged"/>
+                    <TextBox   Margin="5" MaxLength="3" Grid.Column="3" PreviewTextInput="NumberValidationTextBox" x:Name="ip4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged"/>
                 </Grid>
 
                 <Label FontSize="30" HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="2" Content=" Порт"/>
-                <TextBox TextChanged="port_TextChanged" MaxLength="5" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Grid.Row="3" x:Name="port"/>
+                <TextBox  Margin="5" TextChanged="port_TextChanged" MaxLength="5" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Grid.Row="3" x:Name="port"/>
 
-                <Label FontSize="20" HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="4" x:Name="Status" Content="[Информации нет]" FontFamily="Times New Roman"></Label>
+                <Label FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="4" x:Name="Status" Content="" FontFamily="Times New Roman"></Label>
                 <GroupBox Margin="5" Grid.Row="5">
                     <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="31*"/>
-                        <ColumnDefinition Width="29*"/>
-                        <ColumnDefinition Width="14*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Content="Группа:" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="30"/>
-                    <ComboBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" x:Name="groupCombo" Margin="10" Grid.Column="1" IsEnabled="False" SelectionChanged="groupCombo_SelectionChanged"></ComboBox>
-                    <Button x:Name="RefreshGroups" Margin="10" Grid.Column="2" Click="RefreshGroups_Click">
-                        <Image Source="..\img\Refresh.png"></Image>
-                    </Button>
-                </Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="31*"/>
+                            <ColumnDefinition Width="29*"/>
+                            <ColumnDefinition Width="14*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Группа:" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15"/>
+                        <ComboBox VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" x:Name="groupCombo" Margin="2" Grid.Column="1" IsEnabled="False" SelectionChanged="groupCombo_SelectionChanged"></ComboBox>
+                        <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="RefreshGroups" Margin="10,6,4,6" Grid.Column="2" Click="RefreshGroups_Click">
+                            <Image Source="..\img\Refresh.png"></Image>
+                        </Button>
+                    </Grid>
                 </GroupBox>
                 <Button Grid.Row="6" x:Name="GetGroup" IsEnabled="False" Click="GetGroup_Click">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="..\img\Download.png"></Image>
-                        <Label Content="Загрузить группу" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" FontSize="30"/>
+                        <Label Content="Загрузить группу" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" FontSize="20"/>
                     </StackPanel>
                 </Button>
             </Grid>
-    
 
-    </GroupBox>
+
+        </GroupBox>
     </Grid>
 </Window>

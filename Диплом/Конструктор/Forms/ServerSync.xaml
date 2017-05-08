@@ -52,7 +52,7 @@
                         <Image Source="..\img\Upload.png"></Image>
                     </Button>
                     
-                    <Button Grid.Column="1" x:Name="Get" IsEnabled="False">
+                    <Button Grid.Column="1" x:Name="Get" IsEnabled="False" Click="Get_Click">
                         <Image Source="..\img\Download.png"></Image>
                     </Button>
                     

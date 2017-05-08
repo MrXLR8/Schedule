@@ -40,6 +40,7 @@ namespace Builder
             Command execute = new Command();
             execute.type = "ScheduleUpload";
             execute.arguments.Add(Cipher.encryption(json));
+            execute.arguments.Add(input.hash());
 
             Net.Initialize(ip, portNumber);
 
@@ -48,6 +49,25 @@ namespace Builder
             if (answer == "accepted") return true;
             else { return false; }
 
+        }
+
+        public static Schedule getSchedule()
+        {
+            Command execute = new Command();
+            execute.type = "ScheduleDownload";
+            Net.Initialize(ip, portNumber);
+
+            string answer = Net.Send(JsonConvert.SerializeObject(execute));
+            if (answer == "bad") return null;
+
+            Command response;
+            response = JsonConvert.DeserializeObject<Command>(answer);
+
+            Schedule get = JsonConvert.DeserializeObject<Schedule>(Cipher.transcript(response.arguments[0]));
+
+            if (get.hash() != response.arguments[1]) { return null; } //error
+
+            return get;
         }
     }
 }

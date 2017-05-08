@@ -160,5 +160,11 @@ namespace Builder
 
 
         }
+
+        private void Get_Click(object sender, RoutedEventArgs e)
+        {
+            Schedule recive = NetFunctions.getSchedule();
+            recive?.applyMe();
+        }
     }
 }

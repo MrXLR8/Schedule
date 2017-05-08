@@ -12,6 +12,7 @@ namespace Builder
         public static string ip;
         public static int portNumber;
 
+    #region Schedule
         public static bool compareSchedule(Schedule input)
         {
             
@@ -69,5 +70,71 @@ namespace Builder
 
             return get;
         }
+
+        #endregion schedule
+
+        #region group
+        public static bool compareGroup(Group input)
+        {
+
+            string hash = input.hash();
+
+            Command execute = new Command();
+
+            execute.type = "GroupHashVerify";
+            execute.arguments.Add(input.name);
+            execute.arguments.Add(hash);
+
+            Net.Initialize(ip, portNumber);
+
+            string answer = Net.Send(JsonConvert.SerializeObject(execute));
+
+            if (answer == "different") return true;
+            else { return false; }
+
+        }
+
+        public static List<String> GroupListDownload()
+        {
+            Command execute = new Command();
+
+            execute.type = "GroupListDownload";
+
+            Net.Initialize(ip, portNumber);
+
+            string json = Net.Send(JsonConvert.SerializeObject(execute));
+            try
+            {
+                List<string> result = JsonConvert.DeserializeObject<List<string>>(json);
+                return result;
+            }
+            catch (Exception exc) { return null; }
+            
+        }
+
+        public static Group GroupDownload(string groupName)
+        {
+            Command execute = new Command();
+
+            execute.type = "GroupDownload";
+            execute.arguments.Add(groupName);
+
+            Net.Initialize(ip, portNumber);
+            try
+            {
+                string json = Net.Send(JsonConvert.SerializeObject(execute));
+                
+                Command response = JsonConvert.DeserializeObject<Command>(json);
+                string decoded = Cipher.transcript(response.arguments[0]);
+                Group result = JsonConvert.DeserializeObject<Group>(decoded);
+                if (result.hash() == response.arguments[1]) return result;
+
+                return null;
+            }
+            catch (Exception exc) { return null; }
+
+        }
+        #endregion
+
     }
 }

@@ -14,21 +14,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Share;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 
 namespace Builder
 {
     /// <summary>
     /// Логика взаимодействия для ServerSync.xaml
     /// </summary>
-    public partial class ServerSync : Window
+    public partial class ServerSyncGroup : Window
     {
 
         TextBox[] ips;
 
         string ip = "";
         int portNumber;
-
-        public ServerSync()
+        ObservableCollection<string> groupList;
+        public ServerSyncGroup()
         {
             InitializeComponent();
         }
@@ -71,11 +72,12 @@ namespace Builder
 
         void checkBoth()
         {
-            if (portNumber <= 0) { Check.IsEnabled = false; port.Text = "0"; return; }
-            if (portNumber > 65535) { Check.IsEnabled = false; port.Text = "0"; return; }
-            if (string.IsNullOrWhiteSpace(ip)) {Check.IsEnabled = false; return; }
+            if (portNumber <= 0) { port.Text = "0"; RefreshGroups.IsEnabled = false; GetGroup.IsEnabled = false; return; }
+            if (portNumber > 65535) { port.Text = "0"; RefreshGroups.IsEnabled = false; GetGroup.IsEnabled = false; return; }
+            if (string.IsNullOrWhiteSpace(ip)) { RefreshGroups.IsEnabled = false; GetGroup.IsEnabled = false; return;  }
 
-            Check.IsEnabled = true;
+            RefreshGroups.IsEnabled = true;
+            groupCombo_SelectionChanged(null, null);
 
             NetFunctions.ip = ip;
             NetFunctions.portNumber = portNumber;
@@ -117,54 +119,26 @@ namespace Builder
             ips = new TextBox[4] { ip1, ip2, ip3, ip4 };
         }
 
-        private void Check_Click(object sender, RoutedEventArgs e)
+
+
+        private void GetGroup_Click(object sender, RoutedEventArgs e)
         {
-
-            Schedule toSend = new Schedule();
-            toSend.fillMe();
-            bool answer;
-            try
-            {
-                answer = NetFunctions.compareSchedule(toSend);
-            }
-            catch (Exception exc)
-            {
-                Status.Content = "[Не удалось соединиться]";
-                return;
-            }
-            Send.IsEnabled = answer;
-            Get.IsEnabled = answer;
-
-            if (answer) Status.Content = "[Версии расписаний отличаються]";
-            else { Status.Content = "[Версии расписаний идентичны]"; }
-
+            Group recived = NetFunctions.GroupDownload(groupCombo.SelectedItem as string);
         }
 
-        private void Send_Click(object sender, RoutedEventArgs e)
+        private void RefreshGroups_Click(object sender, RoutedEventArgs e)
         {
-            Schedule toSend = new Schedule();
-            toSend.fillMe();
-            bool answer;
-            try
-            {
-                answer = NetFunctions.sendSchedule(toSend);
-            }
-            catch (Exception exc)
-            {
-                Status.Content = "[Не удалось соединиться]";
-                return;
-            }
 
-            if (answer) Status.Content = "[Расписание успешно загружено]";
-            else { Status.Content = "[Расписание не установлено]"; }
-
-
+            List<string> recived = NetFunctions.GroupListDownload();
+            groupList = Collection.ToCollection<string>(recived);
+            if (groupList.Count > 0) { groupCombo.ItemsSource = groupList; groupCombo.IsEnabled = true; }
         }
 
-        private void Get_Click(object sender, RoutedEventArgs e)
+        private void groupCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Schedule recive = NetFunctions.getSchedule();
-            recive?.applyMe();
+            string selection = groupCombo.SelectedItem as string;
+            if (string.IsNullOrEmpty(selection)) { GetGroup.IsEnabled = false; return;  }
+            GetGroup.IsEnabled = true;
         }
     }
 }

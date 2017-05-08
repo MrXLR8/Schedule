@@ -165,11 +165,13 @@ namespace Builder
         public static IntervalsForm intervalWindow;
         public static CommentaryForm commentaryWindow;
         public static ServerSync syncForm;
+        public static ServerSyncGroup syncGroupForm;
 
         public static ObservableCollection<Lector> lectorList { get; set; }
         public static ObservableCollection<string> predmetList { get; set; }
         public static ObservableCollection<Group> groupList { get; set; }
         public static ObservableCollection<int> classList { get; set; }
+
         public static IntervalCollection intervals = new IntervalCollection();
 
 

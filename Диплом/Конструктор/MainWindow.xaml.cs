@@ -35,6 +35,7 @@ namespace Builder
             Global.classesWindow = new ClassesForm();
             Global.intervalWindow = new IntervalsForm();
             Global.syncForm = new ServerSync();
+            Global.syncGroupForm = new ServerSyncGroup();
             Global.main = this;
             
 
@@ -363,7 +364,8 @@ namespace Builder
 
         private void SyncButton_Click(object sender, RoutedEventArgs e)
         {
-            Global.syncForm.Show();
+             Global.syncForm.Show();
+            Global.syncGroupForm.Show();
         }
         private void openButton_Click(object sender, RoutedEventArgs e)
         {

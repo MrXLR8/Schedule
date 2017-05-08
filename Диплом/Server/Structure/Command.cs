@@ -20,6 +20,18 @@ namespace Share
                 case "ScheduleDownload":
                     ScheduleDownload();
                     return;
+
+                case "GroupHashVerify":
+                    GroupHashVerify();
+                    return;
+                case "GroupListDownload":
+                    GroupListDownload();
+                    return;
+                case "GroupDownload":
+                    GroupDownload();
+                    return;
+
+
                 default:
                     toAnswer = "bad";
                     return;

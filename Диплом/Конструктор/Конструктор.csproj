@@ -93,6 +93,9 @@
     <Compile Include="Forms\Edit\CommentaryForm.xaml.cs">
       <DependentUpon>CommentaryForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ServerSyncGroup.xaml.cs">
+      <DependentUpon>ServerSyncGroup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ServerSync.xaml.cs">
       <DependentUpon>ServerSync.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,10 @@
     <Page Include="Forms\Edit\IntervalsForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ServerSyncGroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Forms\ServerSync.xaml">
       <SubType>Designer</SubType>
@@ -264,6 +271,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\Compare.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Refresh.png" />
   </ItemGroup>
   <Import Project="..\SharedStructure\SharedStructure.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

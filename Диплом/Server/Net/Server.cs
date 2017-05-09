@@ -32,7 +32,11 @@ namespace Server
 
            if(sListener != null)
             {
-                sListener.Shutdown(SocketShutdown.Both);
+                try
+                {
+                    sListener.Shutdown(SocketShutdown.Both);
+                }
+                catch (Exception exc) { }
             }
            
            
@@ -43,7 +47,7 @@ namespace Server
             Activate();
         }
 
-        private static string Connected(Socket _handler)
+        private static void Connected(Socket _handler)
         {
             IPAddress address = ((IPEndPoint)_handler.RemoteEndPoint).Address;
             Log.write(LOGTYPE, address, "Входящее подключение", ConsoleColor.Magenta);
@@ -53,14 +57,21 @@ namespace Server
             byte[] bytes = new byte[Int32.MaxValue/100];
             int bytesRec = _handler.Receive(bytes);
             data += Encoding.UTF8.GetString(bytes, 0, bytesRec);
-
-            Command recived = JsonConvert.DeserializeObject<Command>(data);
-
+            Command recived;
+            try
+            {
+                recived = JsonConvert.DeserializeObject<Command>(data);
+            }
+            catch (Exception e)
+            {
+                Log.write(LOGTYPE, "Не удаеться разобрать запрос", ConsoleColor.Red);
+                return;
+            }
            
             recived.qualify(address);
             SendResponse(_handler, recived.toAnswer);
 
-            return data;
+        
         }
 
         private static void SendResponse(Socket _handler, string toSend)
@@ -81,18 +92,29 @@ namespace Server
             
             Thread potok = new Thread(Listen);
             potok.Start();
-
+            
             Log.write(LOGTYPE, "Сервер успешно запущен", ConsoleColor.Green);
         }
 
+        public static void DeActivate()
+        {
+            Log.write(LOGTYPE, "Останавливаю сервер", ConsoleColor.Blue);
+            enabled = false;
+            sListener.Dispose();
+           
+        }
         public static void Listen()
         {
            
 
             while (enabled) {
-
+                Socket handler;
                 sListener.Listen(10);
-                Socket handler = sListener.Accept();
+                try
+                {
+                    handler = sListener.Accept();
+                }
+                catch (SocketException exc) { break; }
                 Task.Run(() => Connected(handler));
                 
              //   text();

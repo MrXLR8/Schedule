@@ -23,6 +23,9 @@ namespace Server
                 case "start":
                     startFunc(input.getParametr("port"));
                     break;
+                case "stop":
+                    stopFunc();
+                    break;
 
             }
         }
@@ -30,6 +33,12 @@ namespace Server
         private static void startFunc(Argument port)
         {
             Server.Initialize(Convert.ToInt32(port.parametr));
+        }
+
+        private static void stopFunc()
+        {
+            Server.DeActivate();
+           
         }
        
     }

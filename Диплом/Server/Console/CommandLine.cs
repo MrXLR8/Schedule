@@ -16,41 +16,52 @@ namespace Server
         {
 
             string input = Console.ReadLine();
-            var raw= input.ToLower().Split(' ');
+            string[] raw= input.ToLower().Split(' ');
             File.AppendAllText(Log.filename, "["+DateTime.Now+"] >>>>" + input + Environment.NewLine);
             arguments = new Argument[10];
             command = raw[0];
-            for(int i=1;i<raw.Length;i++)
+
+            if (raw.Length != 1)
             {
-                string[] split = raw[i].Split(':');
-                try
+                for (int i = 1; i < raw.Length; i++)
                 {
-                    arguments[i - 1] = new Argument(split[0], split[1]);
-                }
-                catch(IndexOutOfRangeException exc)
-                {
-                    Log.write(LOGTYPE, "Комманда " + command + " не существует или произведен некоректный ввод параметра",ConsoleColor.Yellow);
-                    return null;
+                    string[] split = raw[i].Split(':');
+                    try
+                    {
+                        arguments[i - 1] = new Argument(split[0], split[1]);
+                    }
+                    catch (IndexOutOfRangeException exc)
+                    {
+                        Log.write(LOGTYPE, "Для " + command + " произведен некоректный ввод параметра", ConsoleColor.Yellow);
+                        return null;
+                    }
                 }
             }
-            if(!check())
-            {
-                Log.write(LOGTYPE, "Команда " + command + " не выполнена. Не хватает параметра(ов)", ConsoleColor.Yellow);
 
+            string checkSTR = check();
+            if(checkSTR == "parametr")
+            {
+                Log.write(LOGTYPE, "Команда " + command + " не выполнена. Ошибка ввода аргументов", ConsoleColor.Yellow);
+                return null;
+                
+            }
+            else if(checkSTR=="nocommand")
+            {
+                Log.write(LOGTYPE, "Комманда " + command + " не существует", ConsoleColor.Yellow);
                 return null;
             }
             return this;
         }
 
-        bool check()
+        string check()
         {
             switch (command)
             {
                 case "start":
-                    if (getParametr("port")!=null) return true;
-                    break;
+                    if (getParametr("port") != null) return "good"; else { return "parametr"; };
+                case "stop": return "good";
             }
-            return false;
+            return "nocommand";
         }
 
         public Argument getParametr(string lookingfor)

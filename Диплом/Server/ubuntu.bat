@@ -1,0 +1,1 @@
+dotnet build --runtime ubuntu.14.04-x64 -c Release

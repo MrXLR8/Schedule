@@ -173,8 +173,9 @@ namespace Share
             response.type = "GroupDownload";
             response.arguments.Add(Cipher.encryption(JsonConvert.SerializeObject(wanted)));
             response.arguments.Add(wanted.hash());
+            response.arguments.Add(JsonConvert.SerializeObject(Global.MainSchedule.intervals.timeList));
 
-            toAnswer = JsonConvert.SerializeObject(response);
+           toAnswer = JsonConvert.SerializeObject(response);
         }
 
 

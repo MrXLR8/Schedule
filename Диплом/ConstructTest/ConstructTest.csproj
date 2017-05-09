@@ -55,9 +55,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Конструктор\Конструктор.csproj">
+    <ProjectReference Include="..\Constructor\Constructor.csproj">
       <Project>{8b8f19f7-e15d-4af8-9c74-685ea5e6be91}</Project>
-      <Name>Конструктор</Name>
+      <Name>Constructor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -130,13 +130,19 @@ namespace Builder
                 if (NetFunctions.compareGroup(Global.selectedGroup))
                 {
                     Global.selectedGroup = NetFunctions.GroupDownload(groupCombo.SelectedItem as string);
-                    Global.selectedGroup.massReDraw();
+                 
                 }
             }
-        }
+                else
+                {
+                    Global.selectedGroup = NetFunctions.GroupDownload(groupCombo.SelectedItem as string);
+                   
+                }
+                
+            }
             catch (Exception exc) { Status.Content = "[Не удалось получить группу]"; }
-
-}
+            Global.selectedGroup.massReDraw();
+        }
 
         private void RefreshGroups_Click(object sender, RoutedEventArgs e)
         {

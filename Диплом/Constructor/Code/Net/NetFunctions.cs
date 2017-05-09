@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Share;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
+
 namespace Builder
 {
     public static class NetFunctions
@@ -127,7 +129,10 @@ namespace Builder
                 Command response = JsonConvert.DeserializeObject<Command>(json);
                 string decoded = Cipher.transcript(response.arguments[0]);
                 Group result = JsonConvert.DeserializeObject<Group>(decoded);
-                if (result.hash() == response.arguments[1]) return result;
+                if (result.hash() == response.arguments[1]) {
+                    Global.intervals.timeList = JsonConvert.DeserializeObject<ObservableCollection<Interval>>(response.arguments[2]);
+                    return result;
+                }
 
                 return null;
             }

@@ -1,0 +1,1 @@
+dotnet build --runtime osx.10.10-x64 -c Release

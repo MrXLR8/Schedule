@@ -84,6 +84,7 @@ namespace Builder
             #endregion
 
             InitializeComponent();
+
             DataContext = this;
  
         }
@@ -118,11 +119,6 @@ namespace Builder
             */
             #endregion
 
-            #region test lections
-            Lection test;
-            test = new Lection("Информатика", 1, new Lector("Федоров", "Андрей", "Вячеславович"), 308);
-            Global.selectedGroup.chuslutel.pick("Понедельник").add(test.Clone());
-            # endregion
 
 
         }

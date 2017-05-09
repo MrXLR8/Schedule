@@ -11,6 +11,10 @@ namespace Server
             Console.OutputEncoding = Encoding.UTF8;
             string Version = "0.1";
 
+            Log.formFile();
+            Log.write("LOG", "Лог запщуен");
+            Console.Clear();
+
             Console.WriteLine("Добро пожаловать в приложение сервер для расписаний");
             Console.WriteLine("Автор приложения Федоров Андрей, студент 4-го курса КДАВТ");
             Console.WriteLine("Версия приложения "+ Version);

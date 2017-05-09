@@ -14,6 +14,8 @@ namespace Server
 
    public static class Server
     {
+        const string LOGTYPE = "NET";
+
         public static IPHostEntry ipHost;
         public static IPAddress ipAddr;
         public static IPEndPoint ipEndPoint;
@@ -25,7 +27,8 @@ namespace Server
 
         public static  void Initialize(int port)
         {
-            Console.WriteLine("[NET]Создаю сервер на порте: " + port);
+           
+            Log.write(LOGTYPE, "Создаю сервер на порте: " + port);
 
            if(sListener != null)
             {
@@ -42,7 +45,9 @@ namespace Server
 
         private static string Connected(Socket _handler)
         {
-            Console.WriteLine("[NET]Входящее подключение от  " + _handler.RemoteEndPoint);
+            IPAddress address = ((IPEndPoint)_handler.RemoteEndPoint).Address;
+            Log.write(LOGTYPE, address, "Входящее подключение", ConsoleColor.Magenta);
+
 
             data = null;
             byte[] bytes = new byte[Int32.MaxValue/100];
@@ -50,7 +55,9 @@ namespace Server
             data += Encoding.UTF8.GetString(bytes, 0, bytesRec);
 
             Command recived = JsonConvert.DeserializeObject<Command>(data);
-            recived.qualify();
+
+           
+            recived.qualify(address);
             SendResponse(_handler, recived.toAnswer);
 
             return data;
@@ -61,7 +68,6 @@ namespace Server
             
             byte[] msg = Encoding.UTF8.GetBytes(toSend);
             _handler.Send(msg);
-            Console.WriteLine("[NET]Отправил ответ для " + _handler.RemoteEndPoint);
         }
 
         public static void Activate()
@@ -75,7 +81,8 @@ namespace Server
             
             Thread potok = new Thread(Listen);
             potok.Start();
-            Console.WriteLine("[NET]Сервер Активен!");
+
+            Log.write(LOGTYPE, "Сервер успешно запущен", ConsoleColor.Green);
         }
 
         public static void Listen()
@@ -100,7 +107,8 @@ namespace Server
         private static void text(string write)
         {
             Console.WriteLine("[NET]ПОЛУЧЕН ОТВЕТ. СОДЕРЖАНИЕ:");
-            Console.WriteLine(write);
+            Log.write(LOGTYPE, "Клиент ответил: "+write);
+           
         }
     }
 }

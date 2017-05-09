@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Server
 {
     public class CommandLine
     {
-
+        const string LOGTYPE="CMD";
 
         public string command;
         public Argument[] arguments;
 
         public CommandLine get()
         {
-           
-         var raw= Console.ReadLine().ToLower().Split(' ');
+
+            string input = Console.ReadLine();
+            var raw= input.ToLower().Split(' ');
+            File.AppendAllText(Log.filename, "["+DateTime.Now+"] >>>>" + input + Environment.NewLine);
             arguments = new Argument[10];
             command = raw[0];
             for(int i=1;i<raw.Length;i++)
@@ -24,9 +27,18 @@ namespace Server
                 {
                     arguments[i - 1] = new Argument(split[0], split[1]);
                 }
-                catch(IndexOutOfRangeException exc) { Console.WriteLine("[CONSOLE]Комманда " + command + " не существует или произведен некоректный ввод параметра"); return null; }
+                catch(IndexOutOfRangeException exc)
+                {
+                    Log.write(LOGTYPE, "Комманда " + command + " не существует или произведен некоректный ввод параметра",ConsoleColor.Yellow);
+                    return null;
+                }
             }
-            if(!check()) { Console.WriteLine("[CONSOLE]Команда " + command + " не выполнена. Не хватает параметра(ов)"); return null; }
+            if(!check())
+            {
+                Log.write(LOGTYPE, "Команда " + command + " не выполнена. Не хватает параметра(ов)", ConsoleColor.Yellow);
+
+                return null;
+            }
             return this;
         }
 

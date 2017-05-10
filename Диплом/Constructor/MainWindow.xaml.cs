@@ -33,7 +33,8 @@ namespace Builder
 
         public MainWindow()
         {
-            
+
+
 
 
             Global.prepodWindow = new LectorsForm();
@@ -119,10 +120,27 @@ namespace Builder
             SyncButton.ToolTip = "Не доступно в режиме студента";
 
             Grid holder = (Grid)MenuHold.Parent;
-            holder.RowDefinitions[1].Height = new GridLength(0);
+            holder.RowDefinitions[1].Height = new GridLength(0); 
 
            left.Children.Add(Global.syncGroupForm);
             commentary.Visibility = Visibility.Visible;
+
+            #region tray
+
+            var asdd = Resources;
+            System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
+            ni.Icon = new System.Drawing.Icon("Resources/AppICO.ico");
+            ni.Visible = true;
+            ni.DoubleClick +=
+                delegate (object sender, EventArgs args)
+                {
+                    this.Show();
+                    this.WindowState = System.Windows.WindowState.Normal;
+                };
+
+            StateChanged += Window_StateChanged;
+            #endregion
+
 
             try
             {
@@ -413,8 +431,22 @@ namespace Builder
 
             FileInteraction.saveToSavedPath(prepareToWire.json());
         }
-    }
         #endregion
+
+        private void Window_StateChanged(object sender, EventArgs e)
+        {
+            if (WindowState == System.Windows.WindowState.Minimized)
+                if(Visibility!=Visibility.Hidden)
+                    this.Hide();
+        //    base.OnStateChanged(e);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+    }
+        
 
 
     }

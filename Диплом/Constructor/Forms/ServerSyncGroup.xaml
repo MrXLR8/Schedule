@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Builder"
              mc:Ignorable="d" 
-         Height="460" Width="120"
+         Height="560" Width="155"
          Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
        
         >
@@ -13,59 +13,75 @@
     <Grid Margin="5">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30*"/>
-                <RowDefinition Height="26*"/>
-                <RowDefinition Height="32*"/>
-                <RowDefinition Height="29*"/>
-                <RowDefinition Height="41*"/>
-                <RowDefinition Height="264*"/>
-                <RowDefinition Height="28*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="7*"/>
 
             </Grid.RowDefinitions>
 
-            <Label HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0" Content="IP-адресс" Margin="24,0" Width="62"/>
-
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-            
-                <TextBox Margin="1" MaxLength="3" Grid.Column="0" PreviewTextInput="NumberValidationTextBox" x:Name="ip1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="ip_TextChanged"></TextBox>
-                <TextBox  Margin="1" MaxLength="3" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" x:Name="ip2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  TextChanged="ip_TextChanged"/>
-                <TextBox  Margin="1" MaxLength="3" Grid.Column="2" PreviewTextInput="NumberValidationTextBox" x:Name="ip3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="ip_TextChanged"/>
-                <TextBox   Margin="1" MaxLength="3" Grid.Column="3" PreviewTextInput="NumberValidationTextBox" x:Name="ip4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="ip_TextChanged"/>
-            </Grid>
-
-            <Label HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="2" Content=" Порт" Margin="34,0" Width="42"/>
-            <TextBox  Margin="5" TextChanged="port_TextChanged" MaxLength="5" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="3" x:Name="port"/>
-
-            <Label  HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="4" x:Name="Status" Content="" FontFamily="Times New Roman"></Label>
-            <GroupBox Margin="1" Grid.Row="5">
-                <Grid >
+            <GroupBox Grid.Row="0">
+                <GroupBox.Header>Загрузка с сервера</GroupBox.Header>
+                <Grid Margin="0,5,0,0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="7*"/>
-                        <RowDefinition Height="57*" />
+                        <RowDefinition Height="48*"/>
+                        <RowDefinition Height="65*"/>
+                        <RowDefinition Height="65*"/>
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Label FontSize="10" Grid.Column="0" Content="Группы:" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                    <ListBox VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" x:Name="groupCombo"  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="False" SelectionChanged="groupCombo_SelectionChanged" Height="213" Margin="0,5,0,10"/>
-                    <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="RefreshGroups" Grid.Column="1" Click="RefreshGroups_Click" Margin="4" >
-                        <Image Source="..\img\Refresh.png"></Image>
-                    </Button>
+                    <GroupBox Grid.Row="0">
+                        <GroupBox.Header>IP-адресс</GroupBox.Header>
+
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Margin="1" MaxLength="3" Grid.Column="0" PreviewTextInput="NumberValidationTextBox" x:Name="ip1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="ip_TextChanged"></TextBox>
+                            <TextBox  Margin="1" MaxLength="3" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" x:Name="ip2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  TextChanged="ip_TextChanged"/>
+                            <TextBox  Margin="1" MaxLength="3" Grid.Column="2" PreviewTextInput="NumberValidationTextBox" x:Name="ip3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="ip_TextChanged"/>
+                            <TextBox   Margin="1" MaxLength="3" Grid.Column="3" PreviewTextInput="NumberValidationTextBox" x:Name="ip4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="ip_TextChanged"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Grid.Row="1">
+                        <GroupBox.Header>Порт</GroupBox.Header>
+                        <TextBox  Margin="5" TextChanged="port_TextChanged" MaxLength="5" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" x:Name="port"/>
+
+
+                    </GroupBox>
+                    <Label Grid.Row="2" HorizontalAlignment="Center" VerticalContentAlignment="Center"  x:Name="Status" Content="" FontFamily="Times New Roman"></Label>
+
                 </Grid>
             </GroupBox>
-            <Button Grid.Row="6" x:Name="GetGroup" IsEnabled="False" Click="GetGroup_Click">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="..\img\Download.png"></Image>
-                    <Label Content="Загрузить группу" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" FontSize="9"/>
-                </StackPanel>
-            </Button>
+
+            <GroupBox Margin="1" Grid.Row="1">
+                <GroupBox.Header>Группы</GroupBox.Header>
+                <Grid >
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="249*"/>
+                        <RowDefinition Height="38*" />
+                        <RowDefinition Height="39*" />
+                    </Grid.RowDefinitions>
+
+                    <ListBox Grid.Row="0" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" x:Name="groupCombo"  Grid.Column="0" IsEnabled="False" SelectionChanged="groupCombo_SelectionChanged" Height="238" Margin="0,10,0,1" />
+                    <Button Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="RefreshGroups" Click="RefreshGroups_Click" Margin="4" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="..\img\Refresh.png"></Image>
+                            <Label Content="Обновить список" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" FontSize="9"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Grid.Row="2" x:Name="GetGroup" IsEnabled="False" Click="GetGroup_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="..\img\Download.png"></Image>
+                            <Label Content="Загрузить группу" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" FontSize="9"/>
+                        </StackPanel>
+                    </Button>
+
+                </Grid>
+            </GroupBox>
+
         </Grid>
 
 

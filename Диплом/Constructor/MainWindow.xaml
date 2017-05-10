@@ -25,34 +25,34 @@
     <Grid x:Name="GlobalGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" x:Name="ActionHold"/>
-            <RowDefinition Height="0.2*" x:Name="MenuHold"/>
+            <RowDefinition  Height="0.2*" x:Name="MenuHold"/>
         </Grid.RowDefinitions>
 
 
         <Grid x:Name="ActionGrid" Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition  Width="0.7*" />
+                <ColumnDefinition  Width="158*" />
 
                 <ColumnDefinition Width="2" />
 
-                <ColumnDefinition Width="2.5*"/>
+                <ColumnDefinition Width="443*"/>
 
                 <ColumnDefinition Width="2" />
 
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="188*"/>
             </Grid.ColumnDefinitions>
 
-            <GridSplitter  Width="Auto" Height="Auto" ResizeBehavior="PreviousAndNext" HorizontalAlignment="Stretch" ResizeDirection="Columns" Grid.Row="1" Grid.Column="1"  Panel.ZIndex="1"/>
+            <GridSplitter  Width="Auto" Height="Auto" ResizeBehavior="PreviousAndNext" HorizontalAlignment="Stretch" ResizeDirection="Columns" Grid.Column="1"  Panel.ZIndex="1" Margin="0,0,1,0"/>
             <GridSplitter Width="Auto" Height="Auto" ResizeBehavior="PreviousAndNext" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="3"  Panel.ZIndex="1"/>
 
 
-            
+
             <Border x:Name="LeftPanel" Style="{StaticResource Borders}" Grid.Column="0">
-                
+
                 <Border.BorderBrush>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>
                 </Border.BorderBrush>
-                
+
                 <Grid x:Name="LeftPanelGrid">
                     <Grid.RowDefinitions>
                         <RowDefinition MinHeight="0,25" Height="25*" />
@@ -119,42 +119,42 @@
                                     <ColumnDefinition Width="200"/>
                                     <ColumnDefinition Width="200"/>
                                 </Grid.ColumnDefinitions>
-                                
+
                                 <Border Grid.Column="0" BorderThickness="1" BorderBrush="Black" Background="GhostWhite">
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Понедельник" TextAlignment="Center" Background="Beige"></TextBlock>
-                                    <ListBox  HorizontalContentAlignment="Stretch" Background="GhostWhite"  x:Name="chMonday" SelectionChanged="days_SelectionChanged"/>
+                                        <ListBox  HorizontalContentAlignment="Stretch" Background="GhostWhite"  x:Name="chMonday" SelectionChanged="days_SelectionChanged"/>
                                     </StackPanel>
                                 </Border>
-                                
+
                                 <Border Grid.Column="1" BorderThickness="1" BorderBrush="Black" >
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Вторник" TextAlignment="Center" Background="FloralWhite"></TextBlock>
-                                    <ListBox HorizontalContentAlignment="Stretch" x:Name="chTuesday" SelectionChanged="days_SelectionChanged" />
+                                        <ListBox HorizontalContentAlignment="Stretch" x:Name="chTuesday" SelectionChanged="days_SelectionChanged" />
                                     </StackPanel>
                                 </Border>
-                                
+
                                 <Border Grid.Column="2" BorderThickness="1" BorderBrush="Black" Background="GhostWhite">
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Среда" TextAlignment="Center" Background="Beige"></TextBlock>
                                         <ListBox HorizontalContentAlignment="Stretch" Background="GhostWhite" x:Name="chWednesday" SelectionChanged="days_SelectionChanged" />
                                     </StackPanel>
                                 </Border>
-                                
+
                                 <Border Grid.Column="3" BorderThickness="1" BorderBrush="Black">
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Четверг" TextAlignment="Center" Background="FloralWhite"></TextBlock>
                                         <ListBox HorizontalContentAlignment="Stretch" x:Name="chThursday" SelectionChanged="days_SelectionChanged" />
                                     </StackPanel>
                                 </Border>
-                                
+
                                 <Border Grid.Column="4" BorderThickness="1" BorderBrush="Black" Background="GhostWhite">
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Пятница" TextAlignment="Center" Background="Beige"></TextBlock>
                                         <ListBox HorizontalContentAlignment="Stretch" Background="GhostWhite" x:Name="chFriday" SelectionChanged="days_SelectionChanged" />
                                     </StackPanel>
                                 </Border>
-                                
+
                                 <Border Grid.Column="5" BorderThickness="1" BorderBrush="Black">
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Суббота" TextAlignment="Center" Background="FloralWhite"></TextBlock>
@@ -183,14 +183,14 @@
                                         <ListBox HorizontalContentAlignment="Stretch" Background="GhostWhite" x:Name="zmMonday" SelectionChanged="days_SelectionChanged"/>
                                     </StackPanel>
                                 </Border>
-                                
+
                                 <Border Grid.Column="1" BorderThickness="1" BorderBrush="Black" >
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Вторник" TextAlignment="Center" Background="FloralWhite"></TextBlock>
                                         <ListBox HorizontalContentAlignment="Stretch" x:Name="zmTuesday" SelectionChanged="days_SelectionChanged" />
                                     </StackPanel>
                                 </Border>
-                                
+
                                 <Border Grid.Column="2" BorderThickness="1" BorderBrush="Black" Background="GhostWhite">
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Среда" TextAlignment="Center" Background="Beige"></TextBlock>
@@ -198,14 +198,14 @@
                                         <ListBox HorizontalContentAlignment="Stretch" Background="GhostWhite" x:Name="zmWednesday" SelectionChanged="days_SelectionChanged" />
                                     </StackPanel>
                                 </Border>
-                                
+
                                 <Border Grid.Column="3" BorderThickness="1" BorderBrush="Black">
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Четверг" TextAlignment="Center" Background="FloralWhite"></TextBlock>
                                         <ListBox HorizontalContentAlignment="Stretch" x:Name="zmThursday" SelectionChanged="days_SelectionChanged"/>
                                     </StackPanel>
                                 </Border>
-                                
+
                                 <Border Grid.Column="4" BorderThickness="1" BorderBrush="Black" Background="GhostWhite">
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Пятница" TextAlignment="Center" Background="Beige"></TextBlock>
@@ -213,7 +213,7 @@
                                         <ListBox HorizontalContentAlignment="Stretch" Background="GhostWhite" x:Name="zmFriday" SelectionChanged="days_SelectionChanged"/>
                                     </StackPanel>
                                 </Border>
-                                
+
                                 <Border Grid.Column="5" BorderThickness="1" BorderBrush="Black">
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Суббота" TextAlignment="Center" Background="FloralWhite"></TextBlock>
@@ -233,7 +233,7 @@
                 <Border.BorderBrush>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>
                 </Border.BorderBrush>
-                
+
                 <ScrollViewer x:Name="RightPanelGrid">
                     <StackPanel Margin="5">
 
@@ -309,14 +309,14 @@
                             <ComboBox x:Name="timeCombo" MouseEnter="timeCombo_MouseEnter"/>
                         </GroupBox>
 
-                       
+
                         <GroupBox Padding="0">
                             <GroupBox.Header>
                                 <Label Margin="0,1,0,0" Content="День недели"/>
                             </GroupBox.Header>
 
-                                <ComboBox x:Name="dayInWeekCombo"></ComboBox>  
-                
+                            <ComboBox x:Name="dayInWeekCombo"></ComboBox>
+
                         </GroupBox>
 
 
@@ -402,16 +402,16 @@
                             </Grid>
                         </Button>
                         <GroupBox Margin="0,20,5,0">
-                        <Button  MaxHeight="40" x:Name="CommentaryButton" Click="CommentaryButton_Click" ToolTip="Открыть окно изменений комментариев к расписанию для текущей группы">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="0.3*"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" FontSize="11" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Комментарии"/>
-                                <Image Grid.Column="1"  Source="img\Commentary.png"/>
-                            </Grid>
-                        </Button>
+                            <Button  MaxHeight="40" x:Name="CommentaryButton" Click="CommentaryButton_Click" ToolTip="Открыть окно изменений комментариев к расписанию для текущей группы">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="0.3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" FontSize="11" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Комментарии"/>
+                                    <Image Grid.Column="1"  Source="img\Commentary.png"/>
+                                </Grid>
+                            </Button>
 
                         </GroupBox>
                     </StackPanel>
@@ -441,7 +441,7 @@
                 <Button Margin="5,5,10,5" Grid.Column="1" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Открыть файл с расписанием" x:Name="openButton" Click="openButton_Click">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Open.png" d:IsLocked="True"></Image>
                 </Button>
-                
+
                 <Button Grid.Column="2" Style="{StaticResource MenuButtonWithMargin}"  ToolTip="Сохранить расписание" x:Name="saveButton" IsEnabled="False" Click="saveButton_Click">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Save.png" d:IsLocked="True"/>
                 </Button>
@@ -451,7 +451,7 @@
                 <Button Margin="5,5,10,5" Grid.Column="4" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Синхронизация с сервером" x:Name="SyncButton" IsEnabled="True" Click="SyncButton_Click">
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Sync.png" d:IsLocked="True"></Image>
                 </Button>
-                
+
                 <Button Grid.Column="5" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Инструкция/Справка" x:Name="ManualButton" IsEnabled="True" >
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Manual.png" d:IsLocked="True"></Image>
                 </Button>

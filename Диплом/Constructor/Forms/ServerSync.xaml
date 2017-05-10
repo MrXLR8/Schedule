@@ -32,7 +32,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBox Margin="5" MaxLength="3" Grid.Column="0" PreviewTextInput="NumberValidationTextBox" x:Name="ip1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged">127</TextBox>
+                    <TextBox Margin="5" MaxLength="3" Grid.Column="0" PreviewTextInput="NumberValidationTextBox" x:Name="ip1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged"></TextBox>
                     <TextBox Margin="5" MaxLength="3" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" x:Name="ip2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged"/>
                     <TextBox Margin="5" MaxLength="3" Grid.Column="2" PreviewTextInput="NumberValidationTextBox" x:Name="ip3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged"/>
                     <TextBox Margin="5" MaxLength="3" Grid.Column="3" PreviewTextInput="NumberValidationTextBox" x:Name="ip4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" TextChanged="ip_TextChanged"/>

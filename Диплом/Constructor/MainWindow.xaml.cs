@@ -117,7 +117,9 @@ namespace Builder
 
             SyncButton.IsEnabled = false;
             SyncButton.ToolTip = "Не доступно в режиме студента";
-            
+
+            Grid holder = (Grid)MenuHold.Parent;
+            holder.RowDefinitions[1].Height = new GridLength(0);
 
            left.Children.Add(Global.syncGroupForm);
             commentary.Visibility = Visibility.Visible;

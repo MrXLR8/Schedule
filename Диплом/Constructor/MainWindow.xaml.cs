@@ -55,39 +55,7 @@ namespace Builder
             Global.classList = new ObservableCollection<int>();
             Global.groupList = new ObservableCollection<Group>();
                        #endregion
-/*
-            #region ТЕСТОВЫЕ ЗАПОЛНЕНИЯ В СПИСКАХ
 
-            #region lectors
-            Global.lectorList.Add(new Lector("Дубинский", "Вячеслав", "Генадийович"));
-
-            Global.lectorList.Add(new Lector("Федоров", "Андрей", "Вячеславович"));
-
-            Global.lectorList.Add(new Lector("Бондарь", "Иван", "ФигЕгоЗнаевич"));
-            #endregion
-
-            #region paru
-            Global.predmetList.Add("Эмпирические Методы");
-            Global.predmetList.Add("Информатика");
-            Global.predmetList.Add("English");
-            #endregion 
-
-            #region class
-            Global.classList.Add(105);
-            Global.classList.Add(308);
-            Global.classList.Add(224);
-            #endregion
-
-            #region intervals
-            Global.intervals.timeList.Add(new Interval(1, new TimeSpan(9, 0, 0), new TimeSpan(10, 20, 0)));
-            Global.intervals.timeList.Add(new Interval(2, new TimeSpan(10, 30, 0), new TimeSpan(11, 50, 0)));
-            Global.intervals.timeList.Add(new Interval(3, new TimeSpan(12, 10, 0), new TimeSpan(13, 30, 0)));
-            #endregion
-
-
-
-            #endregion
-            */
             InitializeComponent();
 
             DataContext = this;
@@ -113,18 +81,24 @@ namespace Builder
                     string decrypted = Cipher.transcript(encrypted);
                     get = JsonConvert.DeserializeObject<Schedule>(decrypted);
                     get.applyMe();
-                     FileInteraction.loadNetSettings();
+
                     
             }
             catch (Exception exc) { }
 
+            try
+            {
+                FileInteraction.loadNetSettings();
+            }
+            catch(Exception exc) { }
+
             #if VIEWMODE
             VIEWMODE = true;
-#endif
+            #endif
 
             if (Global.VIEWMODE) ViewModeFunc();
 
-
+            Global.selectedGroup.massReDraw();
 
         }
         private void Window_Closed(object sender, EventArgs e)
@@ -141,7 +115,19 @@ namespace Builder
             left.Children.Remove(LeftPanel);
             right.Children.Remove(RightPanel);
 
-           // left.Children.Add(Global.syncGroupForm);
+            SyncButton.IsEnabled = false;
+            SyncButton.ToolTip = "Не доступно в режиме студента";
+            
+
+           left.Children.Add(Global.syncGroupForm);
+            commentary.Visibility = Visibility.Visible;
+
+            try
+            {
+                Global.selectedGroup = Global.groupList[0];
+            }
+            catch(NullReferenceException exc) { }
+            //right.Children.Add(toAdd);
 
         }
 
@@ -388,7 +374,7 @@ namespace Builder
         private void SyncButton_Click(object sender, RoutedEventArgs e)
         {
              Global.syncForm.Show();
-            Global.syncGroupForm.Show();
+          //  Global.syncGroupForm.Show();
         }
         private void openButton_Click(object sender, RoutedEventArgs e)
         {

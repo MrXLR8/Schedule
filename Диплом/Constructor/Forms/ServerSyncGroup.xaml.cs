@@ -21,7 +21,7 @@ namespace Builder
     /// <summary>
     /// Логика взаимодействия для ServerSync.xaml
     /// </summary>
-    public partial class ServerSyncGroup : Window
+    public partial class ServerSyncGroup : UserControl
     {
 
         TextBox[] ips;
@@ -29,17 +29,14 @@ namespace Builder
         string ip = "";
         int portNumber;
         ObservableCollection<string> groupList;
+
+        
         public ServerSyncGroup()
         {
             InitializeComponent();
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            e.Cancel = true;
-            this.Visibility = Visibility.Hidden;
 
-        }
 
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -127,18 +124,23 @@ namespace Builder
             Global.selectedGroup = input;
             Global.groupList = new ObservableCollection<Group>() { input };
             Status.Content = "[Загруженна группа: "+input.name+"]";
+            
         }
         private void GetGroup_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (Global.selectedGroup != null&((String)groupCombo.SelectedItem)==Global.selectedGroup.name)
+                if (Global.selectedGroup != null)
                  {
-                    if (NetFunctions.compareGroup(Global.selectedGroup))
+                    if (((String)groupCombo.SelectedItem) == Global.selectedGroup.name)
                     {
-                        installOneGroup(NetFunctions.GroupDownload(groupCombo.SelectedItem as string));
-                 
+                        if (NetFunctions.compareGroup(Global.selectedGroup))
+                        {
+                            installOneGroup(NetFunctions.GroupDownload(groupCombo.SelectedItem as string));
+
+                        }
                     }
+                    else { installOneGroup(NetFunctions.GroupDownload(groupCombo.SelectedItem as string)); }
                 }
                 else
                 {

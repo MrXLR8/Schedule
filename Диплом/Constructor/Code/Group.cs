@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace Builder
 {
@@ -71,6 +72,9 @@ namespace Builder
         bool allowNewTemp = true;
         public void massReDraw()
         {
+            TextRange toSet = new TextRange(Global.main.commentary.Document.ContentStart, Global.main.commentary.Document.ContentEnd);
+            toSet.Text = Global.selectedGroup.commentary;
+
             if (allowNewTemp)
             {
                 allowNewTemp = false;

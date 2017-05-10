@@ -228,11 +228,12 @@
             </Border>
 
 
-
+            <RichTextBox  VerticalScrollBarVisibility="Visible" FontSize="20" Margin="5" x:Name="commentary" Grid.Column="4" Visibility="Collapsed" IsReadOnly="True"></RichTextBox>
             <Border x:Name="RightPanel" Style="{StaticResource Borders}" Grid.Column="4" IsEnabled="False" >
                 <Border.BorderBrush>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>
                 </Border.BorderBrush>
+                
                 <ScrollViewer x:Name="RightPanelGrid">
                     <StackPanel Margin="5">
 

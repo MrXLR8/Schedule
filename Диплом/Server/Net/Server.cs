@@ -14,7 +14,7 @@ namespace Server
 
    public static class Server
     {
-        const string LOGTYPE = "NET";
+        const string LOGTYPE = "SOCK";
 
         public static IPHostEntry ipHost;
         public static IPAddress ipAddr;

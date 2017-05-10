@@ -1,1 +1,2 @@
-dotnet build --runtime ubuntu.14.04-x64 -c Release
+dotnet build --runtime ubuntu-x86 -c Release
+pause

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Text;
-
+using Builder;
 namespace Server
 {
     class Program
@@ -19,6 +19,9 @@ namespace Server
             Console.WriteLine("Автор приложения Федоров Андрей, студент 4-го курса КДАВТ");
             Console.WriteLine("Версия приложения "+ Version);
             Console.WriteLine("===============================================");
+
+            Global.LoadSchedule("last.schd");
+
             while (true)
             {
                

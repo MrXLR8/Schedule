@@ -10,7 +10,7 @@ namespace Share
 {
     public partial class Command
     {
-        const string LOGTYPE = "SRV";
+        const string LOGTYPE = "DATA";
         [JsonIgnore]
         IPAddress ip;
         public void qualify(IPAddress _ip)
@@ -67,10 +67,10 @@ namespace Share
 
                     string myHash = Global.MainSchedule.hash();
                     if (myHash == arguments[0]) { toAnswer = "same";
-                    Log.write(LOGTYPE, ip, "Полученное расписания идентично с серверным");
+                    Log.write(LOGTYPE, ip, "Полученное расписание идентично с серверным");
             }
                     else { toAnswer = "different";
-                Log.write(LOGTYPE, ip, "Полученное расписания отличается от серверного");
+                Log.write(LOGTYPE, ip, "Полученное расписание отличается от серверного");
             }
 
 
@@ -95,9 +95,9 @@ namespace Share
                         return;
                     }
 
-                    Global.MainSchedule = recived;
-                    Log.write(LOGTYPE, ip, "Установленно новое расписание. Количество групп: " + recived.groupList.Count,ConsoleColor.Green);
-                    Log.write(LOGTYPE, "Создано на ПК :" + recived.pcName,ConsoleColor.Green);
+                    Global.SaveSchedule(recived);
+                    Log.write(LOGTYPE, ip, "Установленно новое расписание. Количество групп: " + recived.groupList.Count, ConsoleColor.Green);
+                    Log.write(LOGTYPE, "Создано на ПК :" + recived.pcName, ConsoleColor.Green);
                     toAnswer = "accepted";
 
                 }

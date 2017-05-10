@@ -7,7 +7,7 @@ namespace Server
 {
     public class CommandLine
     {
-        const string LOGTYPE="CMD";
+        const string LOGTYPE="INPT";
 
         public string command;
         public Argument[] arguments;

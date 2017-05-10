@@ -15,6 +15,7 @@ namespace Builder
     {
 
 
+        public static bool VIEWMODE=false;
 
         public static UIElement getFromGrid(Grid _toLook, int column, int row)
         {

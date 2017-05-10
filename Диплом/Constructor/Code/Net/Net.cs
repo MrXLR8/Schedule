@@ -18,6 +18,7 @@ namespace Builder
         public static Socket socket;
         public static void Initialize(string ipv4,int port)
         {
+            FileInteraction.saveNetSettings();
             ipHost = Dns.GetHostEntry("localhost");
             ipAddr = IPAddress.Parse(ipv4); //Куда мы будем отправлять
             ipEndPoint = new IPEndPoint(ipAddr, port); // Обєкт-цель

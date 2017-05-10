@@ -1,8 +1,10 @@
 ﻿ using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -129,5 +131,52 @@ namespace Builder
                 return "";
             }
         }
+
+        public struct NetSettings
+        {
+            public string ip;
+            public int port;
+        }
+
+        public static void saveNetSettings()
+        {
+            NetSettings toSave = new NetSettings();
+            toSave.ip = NetFunctions.ip;
+            toSave.port = NetFunctions.portNumber;
+            string json = JsonConvert.SerializeObject(toSave);
+
+            File.WriteAllText("netSettings.json",json);
+        }
+
+        public static void loadNetSettings()
+        {
+            string json = File.ReadAllText("netSettings.json");
+            NetSettings loaded= JsonConvert.DeserializeObject<NetSettings>(json); 
+
+            NetFunctions.ip = loaded.ip;
+            NetFunctions.portNumber = loaded.port;
+
+            string[] ip = loaded.ip.Split('.');
+
+            Global.syncForm.ip1.Text = ip[0];
+            Global.syncGroupForm.ip1.Text = ip[0];
+
+            Global.syncForm.ip2.Text = ip[1];
+            Global.syncGroupForm.ip2.Text = ip[1];
+
+            Global.syncForm.ip3.Text = ip[2];
+            Global.syncGroupForm.ip3.Text = ip[2];
+
+            Global.syncForm.ip4.Text = ip[3];
+            Global.syncGroupForm.ip4.Text = ip[3];
+
+            Global.syncForm.port.Text = loaded.port.ToString();
+            Global.syncGroupForm.port.Text = loaded.port.ToString();
+
+            Global.syncForm.Check.IsEnabled = true;
+            Global.syncGroupForm.RefreshGroups.IsEnabled = true;
+
+        }
+
     }
 }

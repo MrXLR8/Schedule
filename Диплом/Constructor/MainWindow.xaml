@@ -46,12 +46,14 @@
             <GridSplitter Width="Auto" Height="Auto" ResizeBehavior="PreviousAndNext" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="3"  Panel.ZIndex="1"/>
 
 
-
+            
             <Border x:Name="LeftPanel" Style="{StaticResource Borders}" Grid.Column="0">
+                
                 <Border.BorderBrush>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>
                 </Border.BorderBrush>
-                <Grid>
+                
+                <Grid x:Name="LeftPanelGrid">
                     <Grid.RowDefinitions>
                         <RowDefinition MinHeight="0,25" Height="25*" />
                         <RowDefinition Height="352*" />
@@ -231,7 +233,7 @@
                 <Border.BorderBrush>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>
                 </Border.BorderBrush>
-                <ScrollViewer>
+                <ScrollViewer x:Name="RightPanelGrid">
                     <StackPanel Margin="5">
 
                         <GroupBox Padding="1">

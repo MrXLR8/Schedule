@@ -74,10 +74,18 @@ namespace Server
 
             public static void formFile()
         {
-            Directory.CreateDirectory("logs");
-            filename = "logs\\SCHD_Server_" + DateTime.Now + ".log";
-            filename = filename.Replace(' ', '_');
-            filename = filename.Replace(':', '.');
+            try
+            {
+                Directory.CreateDirectory("logs");
+                filename = "logs\\SCHD_Server_" + DateTime.Now + ".log";
+                filename = filename.Replace(' ', '_');
+                filename = filename.Replace(':', '.');
+            }
+            catch (Exception exc)
+            {
+                filename = "SCHD_SERVER_(" + DateTime.Now.Month + "_" + DateTime.Now.Day + "_" + DateTime.Now.Hour+")";
+                Log.write("FILE", "Не удалось сформировать файл. Записываю лог в файл в корне программы: "+filename, ConsoleColor.Red);
+            }
            
         }
     }

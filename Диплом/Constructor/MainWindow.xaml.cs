@@ -26,11 +26,16 @@ namespace Builder
     public partial class MainWindow : Window
     {
        
+        bool VIEWMODE { get { return Global.VIEWMODE; } set { Global.VIEWMODE = value; } }
+
         public ObservableCollection<LectionSwap> swapListToAdd = new ObservableCollection<LectionSwap>();
         public List<ListBox> days;
 
         public MainWindow()
         {
+            
+
+
             Global.prepodWindow = new LectorsForm();
             Global.predmetWindow = new PredmetsForm();
             Global.classesWindow = new ClassesForm();
@@ -50,7 +55,7 @@ namespace Builder
             Global.classList = new ObservableCollection<int>();
             Global.groupList = new ObservableCollection<Group>();
                        #endregion
-
+/*
             #region ТЕСТОВЫЕ ЗАПОЛНЕНИЯ В СПИСКАХ
 
             #region lectors
@@ -82,7 +87,7 @@ namespace Builder
 
 
             #endregion
-
+            */
             InitializeComponent();
 
             DataContext = this;
@@ -108,16 +113,16 @@ namespace Builder
                     string decrypted = Cipher.transcript(encrypted);
                     get = JsonConvert.DeserializeObject<Schedule>(decrypted);
                     get.applyMe();
+                     FileInteraction.loadNetSettings();
                     
             }
             catch (Exception exc) { }
-            #region group
-            /*
-            Group toSelect = new Group("TESTGROUP");
-            Global.groupList.Add(toSelect);
-            GroupListBox.SelectedItem = toSelect;
-            */
-            #endregion
+
+            #if VIEWMODE
+            VIEWMODE = true;
+#endif
+
+            if (Global.VIEWMODE) ViewModeFunc();
 
 
 
@@ -128,7 +133,17 @@ namespace Builder
         }
 
 
+       void ViewModeFunc()
+        {
+            Grid left = (Grid)LeftPanel.Parent;
+            Grid right = (Grid)RightPanel.Parent;
 
+            left.Children.Remove(LeftPanel);
+            right.Children.Remove(RightPanel);
+
+           // left.Children.Add(Global.syncGroupForm);
+
+        }
 
 
         private void addGroup_Click(object sender, RoutedEventArgs e)
@@ -377,6 +392,7 @@ namespace Builder
         }
         private void openButton_Click(object sender, RoutedEventArgs e)
         {
+            
             Schedule toSet = new Schedule();
             try
             {

@@ -105,6 +105,8 @@ namespace Builder
             Global.predmetList = predmetList;
             Global.classList = classList;
             Global.groupList = groupList;
+
+            Global.syncGroupForm.groupCombo.SelectedItem = Global.selectedGroup?.name;
      
             try
             {

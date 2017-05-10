@@ -6,6 +6,10 @@
 	<RuntimeIdentifiers>win7-x86;osx.10.10-x64;ubuntu.14.04-x86;ubuntu-x86;android.21-arm</RuntimeIdentifiers>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ConstructDebug|AnyCPU'" />
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DView|AnyCPU'" />
+
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
   </ItemGroup>

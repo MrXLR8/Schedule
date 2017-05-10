@@ -10,6 +10,10 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DView|AnyCPU'" />
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RView|AnyCPU'" />
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RConstruct|AnyCPU'" />
+
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
   </ItemGroup>

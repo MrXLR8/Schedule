@@ -99,7 +99,7 @@ namespace Builder
 
             if (Global.VIEWMODE) ViewModeFunc();
 
-            Global.selectedGroup.massReDraw();
+            Global.selectedGroup?.massReDraw();
 
         }
         private void Window_Closed(object sender, EventArgs e)
@@ -112,12 +112,15 @@ namespace Builder
         {
             Grid left = (Grid)LeftPanel.Parent;
             Grid right = (Grid)RightPanel.Parent;
-
+            Title = "Обозреватель расписаний. Федоров А.";
             left.Children.Remove(LeftPanel);
             right.Children.Remove(RightPanel);
 
-            SyncButton.IsEnabled = false;
-            SyncButton.ToolTip = "Не доступно в режиме студента";
+            Global.RefreshTimer = new System.Windows.Threading.DispatcherTimer();
+            Global.RefreshTimer.Tick += new EventHandler(RefreshTimer_Tick);
+            Global.RefreshTimer.Interval = new TimeSpan(0, 0, 10);         // REFRESH INTERVAL
+            //Global.RefreshTimer.Interval = new TimeSpan(6, 0, 0);
+            Global.RefreshTimer.Start();
 
             Grid holder = (Grid)MenuHold.Parent;
             holder.RowDefinitions[1].Height = new GridLength(0); 
@@ -146,9 +149,30 @@ namespace Builder
             {
                 Global.selectedGroup = Global.groupList[0];
             }
-            catch(NullReferenceException exc) { }
+            catch(ArgumentOutOfRangeException exc) { }
             //right.Children.Add(toAdd);
 
+        }
+
+        private void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Global.selectedGroup != null)
+                {
+                    if (NetFunctions.ip != "" & NetFunctions.portNumber != 0)
+                    {
+                        if (NetFunctions.compareGroup(Global.selectedGroup))
+                        {
+                            Global.syncGroupForm.installOneGroup(NetFunctions.GroupDownload(Global.selectedGroup.name));
+                            var notif = new NotificationWindow();
+                            notif.Show();
+                            Global.selectedGroup.massReDraw();
+                        }
+                    }
+                }
+            }
+            catch (Exception exc) { }
         }
 
 
@@ -394,7 +418,11 @@ namespace Builder
         private void SyncButton_Click(object sender, RoutedEventArgs e)
         {
              Global.syncForm.Show();
-          //  Global.syncGroupForm.Show();
+
+            var asd = new NotificationWindow();
+            asd.Show();
+
+            //  Global.syncGroupForm.Show();
         }
         private void openButton_Click(object sender, RoutedEventArgs e)
         {
@@ -431,6 +459,7 @@ namespace Builder
 
             FileInteraction.saveToSavedPath(prepareToWire.json());
         }
+
         #endregion
 
         private void Window_StateChanged(object sender, EventArgs e)

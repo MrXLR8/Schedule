@@ -49,7 +49,7 @@
 
 
                     </GroupBox>
-                    <Label Grid.Row="2" HorizontalAlignment="Center" VerticalContentAlignment="Center"  x:Name="Status" Content="" FontFamily="Times New Roman"></Label>
+                    <TextBlock Grid.Row="2" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center"  x:Name="Status" Text="" FontFamily="Times New Roman"></TextBlock>
 
                 </Grid>
             </GroupBox>
@@ -65,7 +65,7 @@
                     </Grid.RowDefinitions>
 
                     <ListBox Grid.Row="0" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" x:Name="groupCombo"  Grid.Column="0" IsEnabled="False" SelectionChanged="groupCombo_SelectionChanged" Height="238" Margin="0,10,0,1" />
-                    <Button Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="RefreshGroups" Click="RefreshGroups_Click" Margin="4" >
+                    <Button Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="RefreshGroups" Click="RefreshGroups_Click" Margin="4" IsEnabled="False" >
                         <StackPanel Orientation="Horizontal">
                             <Image Source="..\img\Refresh.png"></Image>
                             <Label Content="Обновить список" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" FontSize="9"/>

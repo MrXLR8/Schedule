@@ -33,7 +33,7 @@ namespace Builder
         
         public ServerSyncGroup()
         {
-            InitializeComponent();
+            InitializeComponent(); ips = new TextBox[4] { ip1, ip2, ip3, ip4 };
         }
 
 
@@ -113,7 +113,7 @@ namespace Builder
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ips = new TextBox[4] { ip1, ip2, ip3, ip4 };
+           
         }
 
 
@@ -123,10 +123,10 @@ namespace Builder
 
             Global.selectedGroup = input;
             Global.groupList = new ObservableCollection<Group>() { input };
-            Status.Content = "[Загруженна группа: "+input.name+"]";
+            Status.Text = "[Загруженна группа: "+input.name+"]";
             
         }
-        private void GetGroup_Click(object sender, RoutedEventArgs e)
+        public void GetGroup_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -139,6 +139,7 @@ namespace Builder
                             installOneGroup(NetFunctions.GroupDownload(groupCombo.SelectedItem as string));
 
                         }
+                        else { Status.Text = "[В группе " + Global.selectedGroup.name + " нет измений]"; }
                     }
                     else { installOneGroup(NetFunctions.GroupDownload(groupCombo.SelectedItem as string)); }
                 }
@@ -149,7 +150,7 @@ namespace Builder
                 }
                 
             }
-            catch (Exception exc) { Status.Content = "[Не удалось получить группу]"; }
+            catch (Exception exc) { Status.Text = "[Не удалось получить группу]"; }
             Global.selectedGroup.massReDraw();
         }
 
@@ -161,7 +162,7 @@ namespace Builder
                 groupList = Collection.ToCollection<string>(recived);
                 if (groupList.Count > 0) { groupCombo.ItemsSource = groupList; groupCombo.IsEnabled = true; }
             }
-            catch (Exception exc) { Status.Content = "[Не удалось обновить список групп]"; }
+            catch (Exception exc) { Status.Text = "[Не удалось обновить список групп]"; }
            
         }
 

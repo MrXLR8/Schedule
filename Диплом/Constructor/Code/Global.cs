@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace Builder
 {
@@ -167,6 +168,8 @@ namespace Builder
         public static CommentaryForm commentaryWindow;
         public static ServerSync syncForm;
         public static ServerSyncGroup syncGroupForm;
+
+        public static DispatcherTimer RefreshTimer;
 
         public static ObservableCollection<Lector> lectorList { get; set; }
         public static ObservableCollection<string> predmetList { get; set; }

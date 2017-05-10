@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
-
+using System.Media;
 
 namespace Builder
 {
@@ -25,7 +25,7 @@ namespace Builder
     /// </summary>
     public partial class MainWindow : Window
     {
-       
+        System.Windows.Forms.NotifyIcon ni;
         bool VIEWMODE { get { return Global.VIEWMODE; } set { Global.VIEWMODE = value; } }
 
         public ObservableCollection<LectionSwap> swapListToAdd = new ObservableCollection<LectionSwap>();
@@ -131,7 +131,7 @@ namespace Builder
             #region tray
 
             var asdd = Resources;
-            System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
+            ni= new System.Windows.Forms.NotifyIcon();
             ni.Icon = new System.Drawing.Icon("Resources/AppICO.ico");
             ni.Visible = true;
             ni.DoubleClick +=
@@ -418,11 +418,7 @@ namespace Builder
         private void SyncButton_Click(object sender, RoutedEventArgs e)
         {
              Global.syncForm.Show();
-
-            var asd = new NotificationWindow();
-            asd.Show();
-
-            //  Global.syncGroupForm.Show();
+            Global.syncForm.Activate();
         }
         private void openButton_Click(object sender, RoutedEventArgs e)
         {
@@ -472,7 +468,8 @@ namespace Builder
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if(ni!=null)
+            ni.Visible = false;
         }
     }
         

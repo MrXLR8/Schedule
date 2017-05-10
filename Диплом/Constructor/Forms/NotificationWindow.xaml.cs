@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Media;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -17,6 +18,10 @@ public partial class NotificationWindow : Window
             this.Left = corner.X - this.ActualWidth - 100;
             this.Top = corner.Y - this.ActualHeight;
         }));
+
+        SoundPlayer player = new SoundPlayer("Resources/notif.wav");
+        player.Load();
+        player.Play();
     }
 
     private void Storyboard_Completed(object sender, EventArgs e)

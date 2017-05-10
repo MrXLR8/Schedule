@@ -121,22 +121,29 @@ namespace Builder
 
 
         Group group;
+        public void installOneGroup(Group input)
+        {
+
+            Global.selectedGroup = input;
+            Global.groupList = new ObservableCollection<Group>() { input };
+            Status.Content = "[Загруженна группа: "+input.name+"]";
+        }
         private void GetGroup_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (Global.selectedGroup != null)
-            {
-                if (NetFunctions.compareGroup(Global.selectedGroup))
-                {
-                    Global.selectedGroup = NetFunctions.GroupDownload(groupCombo.SelectedItem as string);
+                if (Global.selectedGroup != null&((String)groupCombo.SelectedItem)==Global.selectedGroup.name)
+                 {
+                    if (NetFunctions.compareGroup(Global.selectedGroup))
+                    {
+                        installOneGroup(NetFunctions.GroupDownload(groupCombo.SelectedItem as string));
                  
+                    }
                 }
-            }
                 else
                 {
-                    Global.selectedGroup = NetFunctions.GroupDownload(groupCombo.SelectedItem as string);
-                   
+                    installOneGroup(NetFunctions.GroupDownload(groupCombo.SelectedItem as string));
+
                 }
                 
             }

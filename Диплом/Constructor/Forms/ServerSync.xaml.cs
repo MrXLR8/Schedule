@@ -105,6 +105,7 @@ namespace Builder
 
 
                 ip=ip.Remove(ip.Length-1);
+                checkBoth();
                 
             }
             catch (Exception exc) { }

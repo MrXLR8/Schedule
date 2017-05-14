@@ -62,9 +62,9 @@ namespace Server
                 case "stop": return "good";
                 case "help": return "good";
                 case "blacklist":
-                    if (getParametr("ip") != null) return "good"; else { return "parametr"; };
+                    if (getParametr("add") != null||getParametr("remove")!=null) return "good"; else { return "parametr"; };
                 case "whitelist":
-                    if (getParametr("ip") != null) return "good"; else { return "parametr"; };
+                    if (getParametr("add") != null || getParametr("remove") != null) return "good"; else { return "parametr"; };
             }
             return "nocommand";
         }

@@ -75,12 +75,13 @@ namespace Builder
             list.Add(ip);
         }
 
-        public static void listRemove(List<IPAddress> list, IPAddress ip)
+        public static bool listRemove(List<IPAddress> list, IPAddress ip)
         {
             foreach (IPAddress addr in list)
             {
-                if (addr.ToString() == ip.ToString()) list.Remove(addr);
+                if (addr.ToString() == ip.ToString()) { list.Remove(addr); return true; } 
             }
+            return false;
         }
 
         public static List<IPAddress> LoadList(string filename)

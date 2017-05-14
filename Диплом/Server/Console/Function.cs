@@ -147,28 +147,55 @@ namespace Server
         #endregion
         private static void blacklist(CommandLine input)
         {
+
             IPAddress ip;
             try
             {
-                ip= IPAddress.Parse(input.getParametr("ip").parametr);
+                ip = IPAddress.Parse(input.arguments[0].parametr);
             }
-            catch(FormatException exc) { Log.write("INPT", "Введен неверный IP для комманды blacklist", ConsoleColor.Red); return; }
-            Builder.Global.listAdd(Builder.Global.blacklist, ip);
-            Builder.Global.SaveList(Builder.Global.blacklist, "blacklist.json");
-            Log.write("FILE", ip, "Добавлен в черный список");
+            catch (FormatException exc) { Log.write("INPT", "Введен неверный IP для комманды blacklist", ConsoleColor.Red); return; }
+            if (input.arguments[0].argument == "add")
+            {
+                Builder.Global.listAdd(Builder.Global.blacklist, ip);
+                Builder.Global.SaveList(Builder.Global.blacklist, "blacklist.json");
+                Log.write("FILE", ip, "Добавлен в черный список");
+            }
+            if (input.arguments[0].argument == "remove")
+            {
+                if (Builder.Global.listRemove(Builder.Global.blacklist, ip))
+                {
+                    Builder.Global.SaveList(Builder.Global.blacklist, "blacklist.json");
+                    Log.write("FILE", ip, "Убран из черного списка");
+                }
+                else { Log.write("FILE", ip, "Не найден в черном списке"); }
+            }
         }
 
         private static void whitelist(CommandLine input)
         {
+           
             IPAddress ip;
             try
             {
-                ip = IPAddress.Parse(input.getParametr("ip").parametr);
+                ip = IPAddress.Parse(input.arguments[0].parametr);
             }
             catch (FormatException exc) { Log.write("INPT", "Введен неверный IP для комманды whitelist", ConsoleColor.Red); return; }
-            Builder.Global.listAdd(Builder.Global.whitelist, ip);
-            Builder.Global.SaveList(Builder.Global.whitelist, "whitelist.json");
-            Log.write("FILE", ip, "Добавлен в белый список");
+            if (input.arguments[0].argument == "add")
+            {
+                Builder.Global.listAdd(Builder.Global.whitelist, ip);
+                Builder.Global.SaveList(Builder.Global.whitelist, "whitelist.json");
+                Log.write("FILE", ip, "Добавлен в белый список");
+            }
+            if(input.arguments[0].argument == "remove")
+            {
+
+                if (Builder.Global.listRemove(Builder.Global.whitelist, ip))
+                {
+                    Builder.Global.SaveList(Builder.Global.whitelist, "whitelist.json");
+                    Log.write("FILE", ip, "Убран из белого списка");
+                }
+                else { Log.write("FILE", ip, "Не найден в белом списке списке"); }
+            }
         }
 
     }

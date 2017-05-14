@@ -79,7 +79,9 @@ namespace Share
 
                  public void ScheduleUpload()
                 {
-                     Log.write(LOGTYPE, ip, "Загружает свое расписание");
+                    if(!Global.isInList(Global.whitelist,ip)) { Log.write(LOGTYPE, ip, "Отказано в загрузке расписания на сервер. Адрес не находиться в белом списке",ConsoleColor.Yellow); toAnswer = "whitelist"; return; }
+
+                Log.write(LOGTYPE, ip, "Загружает свое расписание");
                     Schedule recived;
                     try
                     {

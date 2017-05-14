@@ -51,12 +51,18 @@ namespace Builder
                 responseBytesCount = socket.Receive(responseBytes); // Получаем ответ от сервера и кол-во байтов
 
                 Stop();
+                
+            string result = Encoding.UTF8.GetString(responseBytes, 0, responseBytesCount);
 
-                return Encoding.UTF8.GetString(responseBytes, 0, responseBytesCount); // ответ в виде стринга
+            if (result == "blacklist") { MessageBox.Show("Ваш IP-адресс находиться в черном списке на сервере"); Global.RefreshTimer.IsEnabled = false; }
+            if (result == "whitelist") MessageBox.Show("Для внесение изменений в расписаний необходимо находиться в белом списке на сервере");
+
+            return result; // ответ в виде стринга
 
 
-              
-            
+
+
+
 
         }
 

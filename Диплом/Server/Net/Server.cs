@@ -50,6 +50,11 @@ namespace Server
         private static void Connected(Socket _handler)
         {
             IPAddress address = ((IPEndPoint)_handler.RemoteEndPoint).Address;
+            if (Builder.Global.isInList(Builder.Global.blacklist, address)) {
+                Log.write(LOGTYPE, address, "Входящее подключение отклонено. Адрес находится в черном списке", ConsoleColor.Yellow);
+                SendResponse(_handler, "blacklist");
+                return;
+            }
             Log.write(LOGTYPE, address, "Входящее подключение", ConsoleColor.Magenta);
 
 

@@ -114,10 +114,42 @@ namespace Server
                 toAdd.arguments.Add(toAdd2);
 
                 allhelp.Add(toAdd);
-
+                //////////////
                 toAdd.command = "stop";
                 toAdd.desc = "Останавливает сервер";
                 toAdd.arguments = new List<argumentinfo>();
+
+                allhelp.Add(toAdd);
+                //////////////
+                toAdd.command = "blacklist";
+                toAdd.desc = "IP-адреса занесенные в черный список не обрабатываються";
+                toAdd.arguments = new List<argumentinfo>();
+
+                toAdd2.argument = "add";
+                toAdd2.parametr = "Добавляет IP-адрес в черный список. Прим: blacklist add:127.0.0.1";
+                toAdd.arguments.Add(toAdd2);
+
+                toAdd2.argument = "remove";
+                toAdd2.parametr = "Удаляет IP-адрес из черного списка. Прим: blacklist remove:127.0.0.1";
+
+                toAdd.arguments.Add(toAdd2);
+
+                allhelp.Add(toAdd);
+
+                //////////////
+                toAdd.command = "whitelist";
+                toAdd.desc = "Расписания устанавливаються на сервер только с IP-адресов занесеные в белый список";
+                toAdd.arguments = new List<argumentinfo>();
+
+                toAdd2.argument = "add";
+                toAdd2.parametr = "Добавляет IP-адрес в белый список. Прим: whitelist add:127.0.0.1";
+
+                toAdd.arguments.Add(toAdd2);
+
+                toAdd2.argument = "remove";
+                toAdd2.parametr = "Удаляет IP-адрес из белого списка. Прим: whitelist remove:127.0.0.1";
+
+                toAdd.arguments.Add(toAdd2);
 
                 allhelp.Add(toAdd);
 

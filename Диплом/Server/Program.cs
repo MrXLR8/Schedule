@@ -17,6 +17,7 @@ namespace Server
 
             Console.WriteLine("Добро пожаловать в приложение сервер для расписаний");
             Console.WriteLine("Автор приложения Федоров Андрей, студент 4-го курса КДАВТ");
+            Console.WriteLine("Для справки по коммандам напишите help");
             Console.WriteLine("Версия приложения "+ Version);
             Console.WriteLine("===============================================");
 

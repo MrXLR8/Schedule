@@ -143,8 +143,11 @@ namespace Builder
             toSave.ip = NetFunctions.ip;
             toSave.port = NetFunctions.portNumber;
             string json = JsonConvert.SerializeObject(toSave);
-
-            File.WriteAllText("netSettings.json",json);
+            try
+            {
+                File.WriteAllText("netSettings.json", json);
+            }
+            catch(Exception) {}
         }
 
         public static void loadNetSettings()

@@ -100,6 +100,7 @@ namespace Server
         {
             Log.write(LOGTYPE, "Останавливаю сервер", ConsoleColor.Blue);
             enabled = false;
+            status = "Отключен";
             sListener.Dispose();
            
         }

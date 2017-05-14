@@ -60,6 +60,11 @@ namespace Server
                 case "start":
                     if (getParametr("port") != null) return "good"; else { return "parametr"; };
                 case "stop": return "good";
+                case "help": return "good";
+                case "blacklist":
+                    if (getParametr("ip") != null) return "good"; else { return "parametr"; };
+                case "whitelist":
+                    if (getParametr("ip") != null) return "good"; else { return "parametr"; };
             }
             return "nocommand";
         }

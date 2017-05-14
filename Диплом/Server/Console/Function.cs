@@ -32,12 +32,14 @@ namespace Server
 
         private static void startFunc(Argument port)
         {
-            Server.Initialize(Convert.ToInt32(port.parametr));
+            if(Server.SocketServer.status=="Отключен")
+            SocketServer.Initialize(Convert.ToInt32(port.parametr));
+            else { Log.write("SOCK", "Сервер уже запущен. Для остановки используйте команду stop",ConsoleColor.Red); }
         }
 
         private static void stopFunc()
         {
-            Server.DeActivate();
+            SocketServer.DeActivate();
            
         }
        

@@ -118,7 +118,7 @@ namespace Builder
 
             Global.RefreshTimer = new System.Windows.Threading.DispatcherTimer();
             Global.RefreshTimer.Tick += new EventHandler(RefreshTimer_Tick);
-            Global.RefreshTimer.Interval = new TimeSpan(0, 0, 10);         // REFRESH INTERVAL
+            Global.RefreshTimer.Interval = new TimeSpan(0, 0, 60);         // REFRESH INTERVAL
             //Global.RefreshTimer.Interval = new TimeSpan(6, 0, 0);
             Global.RefreshTimer.Start();
 
@@ -154,28 +154,44 @@ namespace Builder
 
         }
 
-        private void RefreshTimer_Tick(object sender, EventArgs e)
+        private async void RefreshTimer_Tick(object sender, EventArgs e)
         {
-            try
+            
+            Global.RefreshTimer.IsEnabled = false;
+          var task= Task.Run(() => Tick());
+             Group Tick()
             {
-                if (Global.selectedGroup != null)
                 {
-                    if (NetFunctions.ip != "" & NetFunctions.portNumber != 0)
+                    try
                     {
-                        if (NetFunctions.compareGroup(Global.selectedGroup))
+                        if (Global.selectedGroup != null)
                         {
-                            Global.syncGroupForm.installOneGroup(NetFunctions.GroupDownload(Global.selectedGroup.name));
-                            var notif = new NotificationWindow();
-                            notif.Show();
-                            Global.selectedGroup.massReDraw();
+                            if (NetFunctions.ip != "" & NetFunctions.portNumber != 0)
+                            {
+                                if (NetFunctions.compareGroup(Global.selectedGroup))
+                                {
+                                   
+                                   
+
+                                    return NetFunctions.GroupDownload(Global.selectedGroup.name);
+                                }
+                            }
                         }
                     }
+                    catch (Exception exc) { return null; }
                 }
+                return null;
             }
-            catch (Exception exc) { }
+            var downloaded = await task;
+            Global.RefreshTimer.IsEnabled = true;
+            if (downloaded == null) return;
+
+            var notif = new NotificationWindow();
+            notif.Show();
+            Global.syncGroupForm.installOneGroup(downloaded);
+            Global.selectedGroup.massReDraw();
+
         }
-
-
         private void addGroup_Click(object sender, RoutedEventArgs e)
         {
             string text = groupNameText.Text;

@@ -129,42 +129,59 @@ namespace Builder
         }
         public void GetGroup_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                if (Global.selectedGroup != null)
-                 {
-                    if (((String)groupCombo.SelectedItem) == Global.selectedGroup.name)
-                    {
-                        if (NetFunctions.compareGroup(Global.selectedGroup))
-                        {
-                            installOneGroup(NetFunctions.GroupDownload(groupCombo.SelectedItem as string));
 
-                        }
-                        else { Status.Text = "[В группе " + Global.selectedGroup.name + " нет измений]"; }
-                    }
-                    else { installOneGroup(NetFunctions.GroupDownload(groupCombo.SelectedItem as string)); }
-                }
-                else
+                try
                 {
-                    installOneGroup(NetFunctions.GroupDownload(groupCombo.SelectedItem as string));
+                    if (Global.selectedGroup != null)
+                    {
+                        if (((String)groupCombo.SelectedItem) == Global.selectedGroup.name)
+                        {
+                            if (NetFunctions.compareGroup(Global.selectedGroup))
+                            {
+                                installOneGroup(NetFunctions.GroupDownload(groupCombo.SelectedItem as string));
+
+                            }
+                            else { Status.Text = "[В группе " + Global.selectedGroup.name + " нет измений]"; }
+                        }
+                        else { installOneGroup(NetFunctions.GroupDownload(groupCombo.SelectedItem as string)); }
+                    }
+                    else
+                    {
+                        installOneGroup(NetFunctions.GroupDownload(groupCombo.SelectedItem as string));
+
+                    }
 
                 }
-                
-            }
-            catch (Exception exc) { Status.Text = "[Не удалось получить группу]"; }
-            Global.selectedGroup.massReDraw();
+                catch (Exception exc) { Status.Text = "[Не удалось получить группу]"; }
+                Global.selectedGroup.massReDraw();
+            
         }
 
-        private void RefreshGroups_Click(object sender, RoutedEventArgs e)
+        private async void RefreshGroups_Click(object sender, RoutedEventArgs e)
         {
-            try
+            ObservableCollection<string> Ingrouplist = null;
+            Status.Text = "[Идет обновление списка]";
+            var task=Task.Run(() => Load());
+            Status.Text = await task;
+            
+            if(Ingrouplist==null) { groupCombo.Items.Clear(); return; }
+
+            groupCombo.ItemsSource = Ingrouplist;
+            groupCombo.IsEnabled = true;
+ 
+            string Load()
             {
-                List<string> recived = NetFunctions.GroupListDownload();
-                groupList = Collection.ToCollection<string>(recived);
-                if (groupList.Count > 0) { groupCombo.ItemsSource = groupList; groupCombo.IsEnabled = true; }
+                try
+                {
+                    List<string> recived = NetFunctions.GroupListDownload();
+                    groupList = Collection.ToCollection<string>(recived);
+                    if (groupList.Count > 0) { Ingrouplist = groupList; }
+                    return "[Загруженно " + groupList.Count + " групп]";
+                }
+                catch (Exception exc) { return "[Не удалось обновить список групп]"; }
             }
-            catch (Exception exc) { Status.Text = "[Не удалось обновить список групп]"; }
-           
+
+
         }
 
         private void groupCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -12,7 +12,7 @@ using Share;
 namespace Server
 {
 
-   public static class Server
+   public static class SocketServer
     {
         const string LOGTYPE = "SOCK";
 

@@ -62,7 +62,7 @@ namespace Builder
             {
                 SaveButton.IsEnabled = true;
             }
-            catch (NullReferenceException exc) { }
+            catch (NullReferenceException) { }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

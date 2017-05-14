@@ -36,7 +36,7 @@ namespace Server
                 {
                     sListener.Shutdown(SocketShutdown.Both);
                 }
-                catch (Exception exc) { }
+                catch (Exception) { }
             }
            
            
@@ -62,7 +62,7 @@ namespace Server
             {
                 recived = JsonConvert.DeserializeObject<Command>(data);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Log.write(LOGTYPE, "Не удаеться разобрать запрос", ConsoleColor.Red);
                 return;
@@ -115,7 +115,7 @@ namespace Server
                 {
                     handler = sListener.Accept();
                 }
-                catch (SocketException exc) { break; }
+                catch (SocketException) { break; }
                 Task.Run(() => Connected(handler));
                 
              //   text();

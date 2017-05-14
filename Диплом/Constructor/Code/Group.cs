@@ -111,7 +111,7 @@ namespace Builder
             {
                 result += " " + name[0] + ". " + middleName[0] + ".";
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 result = lastName;
             }
@@ -216,7 +216,7 @@ namespace Builder
                     {
                         toShow.Add(new LectionControl(c));
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         lectionList.Remove(c);
  
@@ -227,7 +227,7 @@ namespace Builder
             list.ItemsSource = toShow;
             list.Items.Refresh();
             }
-            catch (InvalidOperationException exc)
+            catch (InvalidOperationException)
             {
                 reDraw();
             }

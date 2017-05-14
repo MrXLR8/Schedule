@@ -54,7 +54,7 @@ namespace Builder
             {
                 test = Convert.ToInt32(port.Text);
             }
-            catch(FormatException exc)
+            catch(FormatException)
             {
                 port.Text = "0";
                 return;
@@ -90,7 +90,7 @@ namespace Builder
             {
                 value = Convert.ToInt32(target.Text);
             }
-            catch(FormatException exc) { return; }
+            catch(FormatException) { return; }
             if (value < 0 || value > 255) { target.Text="0"; return; }
 
             try
@@ -108,7 +108,7 @@ namespace Builder
                 checkBoth();
                 
             }
-            catch (Exception exc) { }
+            catch (Exception) { }
         }
 
 
@@ -128,7 +128,7 @@ namespace Builder
             {
                 answer = NetFunctions.compareSchedule(toSend);
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 Status.Content = "[Не удалось соединиться]";
                 return;
@@ -150,7 +150,7 @@ namespace Builder
             {
                 answer = NetFunctions.sendSchedule(toSend);
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 Status.Content = "[Не удалось соединиться]";
                 return;

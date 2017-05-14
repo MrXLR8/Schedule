@@ -110,7 +110,7 @@ namespace Builder
                 List<string> result = JsonConvert.DeserializeObject<List<string>>(json);
                 return result;
             }
-            catch (Exception exc) { return null; }
+            catch (Exception) { return null; }
             
         }
 
@@ -136,7 +136,7 @@ namespace Builder
 
                 return null;
             }
-            catch (Exception exc) { return null; }
+            catch (Exception) { return null; }
 
         }
         #endregion

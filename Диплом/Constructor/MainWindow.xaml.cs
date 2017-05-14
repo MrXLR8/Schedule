@@ -23,7 +23,7 @@ namespace Builder
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window,IDisposable
     {
         System.Windows.Forms.NotifyIcon ni;
         bool VIEWMODE { get { return Global.VIEWMODE; } set { Global.VIEWMODE = value; } }
@@ -85,13 +85,13 @@ namespace Builder
 
                     
             }
-            catch (Exception exc) { }
+            catch (Exception) { }
 
             try
             {
                 FileInteraction.loadNetSettings();
             }
-            catch(Exception exc) { }
+            catch(Exception) { }
 
             #if VIEWMODE
             VIEWMODE = true;
@@ -149,7 +149,7 @@ namespace Builder
             {
                 Global.selectedGroup = Global.groupList[0];
             }
-            catch(ArgumentOutOfRangeException exc) { }
+            catch(ArgumentOutOfRangeException) { }
             //right.Children.Add(toAdd);
 
         }
@@ -178,7 +178,7 @@ namespace Builder
                             }
                         }
                     }
-                    catch (Exception exc) { return null; }
+                    catch (Exception) { return null; }
                 }
                 return null;
             }
@@ -226,7 +226,7 @@ namespace Builder
                 deleteGroupButton.IsEnabled = true;
                 Global.selectedGroup.massReDraw();
             }
-            catch (NullReferenceException exc) //если не выбранна ни одна группа, или была недавно удленна
+            catch (NullReferenceException) //если не выбранна ни одна группа, или была недавно удленна
             {
                 Title = "Конструктор расписаний";
                 Global.resetForm();
@@ -333,7 +333,7 @@ namespace Builder
                 }
                 Global.selectedGroup.massReDraw();
             }
-            catch (NullReferenceException exc)
+            catch (NullReferenceException)
             {
                 MessageBox.Show("Одно или несколько полей незаполнено, изменения не внесены.");
             }
@@ -486,6 +486,11 @@ namespace Builder
         {
             if(ni!=null)
             ni.Visible = false;
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
         

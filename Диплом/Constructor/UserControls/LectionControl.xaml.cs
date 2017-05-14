@@ -50,7 +50,7 @@ namespace Builder
                 LectionChanged(this, new DependencyPropertyChangedEventArgs());
                 return true;
             }
-            catch (IndexOutOfRangeException e)
+            catch (IndexOutOfRangeException)
             {
                 MessageBox.Show("Этого времени больше нет");
                 return false;

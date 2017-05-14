@@ -27,7 +27,7 @@ namespace Server
             {
                 command = input.command;
             }
-            catch(NullReferenceException exc)
+            catch(NullReferenceException)
             {
                 return;
             }
@@ -62,7 +62,7 @@ namespace Server
             {
                 port = Convert.ToInt32(getParametr(input, "port").parametr);
             }
-            catch(FormatException exc) { Log.write("INPT", "Введен неверный порт для комманды start", ConsoleColor.Red); return; }
+            catch(FormatException) { Log.write("INPT", "Введен неверный порт для комманды start", ConsoleColor.Red); return; }
             if(Server.SocketServer.status=="Отключен")
             SocketServer.Initialize(port);
             else { Log.write("SOCK", "Сервер уже запущен. Для остановки используйте команду stop",ConsoleColor.Red); }
@@ -153,7 +153,7 @@ namespace Server
             {
                 ip = IPAddress.Parse(input.arguments[0].parametr);
             }
-            catch (FormatException exc) { Log.write("INPT", "Введен неверный IP для комманды blacklist", ConsoleColor.Red); return; }
+            catch (FormatException) { Log.write("INPT", "Введен неверный IP для комманды blacklist", ConsoleColor.Red); return; }
             if (input.arguments[0].argument == "add")
             {
                 Builder.Global.listAdd(Builder.Global.blacklist, ip);
@@ -179,7 +179,7 @@ namespace Server
             {
                 ip = IPAddress.Parse(input.arguments[0].parametr);
             }
-            catch (FormatException exc) { Log.write("INPT", "Введен неверный IP для комманды whitelist", ConsoleColor.Red); return; }
+            catch (FormatException) { Log.write("INPT", "Введен неверный IP для комманды whitelist", ConsoleColor.Red); return; }
             if (input.arguments[0].argument == "add")
             {
                 Builder.Global.listAdd(Builder.Global.whitelist, ip);

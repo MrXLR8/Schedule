@@ -30,7 +30,7 @@ namespace Server
                     {
                         arguments[i - 1] = new Argument(split[0], split[1]);
                     }
-                    catch (IndexOutOfRangeException exc)
+                    catch (IndexOutOfRangeException)
                     {
                         Log.write(LOGTYPE, "Для " + command + " произведен некоректный ввод параметра", ConsoleColor.Yellow);
                         return null;

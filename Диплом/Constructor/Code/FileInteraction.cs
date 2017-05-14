@@ -36,7 +36,7 @@ namespace Builder
                 }
                 return false;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 filePath = "";
                 fileName = "";
@@ -57,7 +57,7 @@ namespace Builder
                     Global.setSaveButton();
                     return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 filePath = "";
                 fileName = "";
@@ -76,7 +76,7 @@ namespace Builder
                 return true;
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -101,7 +101,7 @@ namespace Builder
                 Global.setSaveButton();
                 return "";
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 filePath = "";
                 fileName = "";
@@ -121,9 +121,8 @@ namespace Builder
                     Global.setSaveButton();
                     return File.ReadAllText(filePath);
 
-                return "";
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 filePath = "";
                 fileName = "";

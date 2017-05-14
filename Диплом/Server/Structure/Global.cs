@@ -34,7 +34,7 @@ namespace Builder
                 File.WriteAllText("last.schd", MainSchedule.json());
                 Log.write("FILE", "Расписание сохраненно в файл", ConsoleColor.Green);
             }
-            catch(Exception exc)
+            catch(Exception)
             {
                 Log.write("FILE", "Не удалось записать новое расписание в файл last.schd", ConsoleColor.Red);
             }
@@ -50,7 +50,7 @@ namespace Builder
                 Log.write("FILE", "Расписание успешно загружено с файла: " + filename, ConsoleColor.Green);
 
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 Log.write("FILE", "Не удалось загрузить файл: " +filename, ConsoleColor.Red);
             }
@@ -99,7 +99,7 @@ namespace Builder
                 }
                 return result;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 Log.write("FILE", "Не прочитать файл: " + filename, ConsoleColor.Red);
                 return new List<IPAddress>();
@@ -119,7 +119,7 @@ namespace Builder
                 string json = JsonConvert.SerializeObject(towrite);
                 File.WriteAllText(filename, json);
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 Log.write("FILE", "Не удалось записать в файл "+filename, ConsoleColor.Red);
             }

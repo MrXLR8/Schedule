@@ -82,7 +82,7 @@ namespace Builder
             if (checkCorrect(_input))
             {
                 try { timeList[_input.index - 1] = _input; }
-                catch (Exception e) { timeList.Add(_input); }
+                catch (Exception) { timeList.Add(_input); }
                 
                 return true;
             }

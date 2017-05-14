@@ -88,7 +88,7 @@ namespace Share
                         if (recived == null || recived.groupList.Count == 0) throw new Exception();
                         if(recived.hash()!=arguments[1]) throw new Exception();
                     }
-                    catch (Exception e) {
+                    catch (Exception) {
                          Log.write(LOGTYPE, ip, "Расписание не принято. Полученно некорректно, или не содержит групп",ConsoleColor.Red);
 
                          toAnswer = "bad";
@@ -120,7 +120,7 @@ namespace Share
                         answer.arguments.Add(hash);
                         toAnswer = JsonConvert.SerializeObject(answer);
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                      Log.write(LOGTYPE, ip, "Расписание не удалось отправить!",ConsoleColor.Red);
                     toAnswer = "bad";

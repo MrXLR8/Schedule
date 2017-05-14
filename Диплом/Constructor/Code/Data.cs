@@ -113,7 +113,7 @@ namespace Builder
                 Global.selectedGroup = Global.groupList[0];
                 Global.selectedGroup.massReDraw();
             }
-            catch (Exception e) { }
+            catch (Exception) { }
             Global.fixItemSource();
         }
         

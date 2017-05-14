@@ -52,7 +52,7 @@ namespace Builder
             {
                 test = Convert.ToInt32(port.Text);
             }
-            catch(FormatException exc)
+            catch(FormatException)
             {
                 port.Text = "0";
                 return;
@@ -89,7 +89,7 @@ namespace Builder
             {
                 value = Convert.ToInt32(target.Text);
             }
-            catch(FormatException exc) { return; }
+            catch(FormatException) { return; }
             if (value < 0 || value > 255) { target.Text="0"; return; }
 
             try
@@ -107,7 +107,7 @@ namespace Builder
                 checkBoth();
             }
             
-            catch (Exception exc) { }
+            catch (Exception) { }
         }
 
 
@@ -117,8 +117,6 @@ namespace Builder
            
         }
 
-
-        Group group;
         public void installOneGroup(Group input)
         {
 
@@ -152,7 +150,7 @@ namespace Builder
                     }
 
                 }
-                catch (Exception exc) { Status.Text = "[Не удалось получить группу]"; }
+                catch (Exception) { Status.Text = "[Не удалось получить группу]"; }
                 Global.selectedGroup.massReDraw();
             
         }
@@ -178,7 +176,7 @@ namespace Builder
                     if (groupList.Count > 0) { Ingrouplist = groupList; }
                     return "[Загруженно " + groupList.Count + " групп]";
                 }
-                catch (Exception exc) { return "[Не удалось обновить список групп]"; }
+                catch (Exception) { return "[Не удалось обновить список групп]"; }
             }
 
 

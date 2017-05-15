@@ -75,9 +75,10 @@ namespace Builder
 
         void LoadText()
         {
-           var toSet = new TextRange(CommentaryText.Document.ContentStart, CommentaryText.Document.ContentEnd);
-            
-            toSet.Text = selected.commentary;
+            TextRange toSet = new TextRange(CommentaryText.Document.ContentStart, CommentaryText.Document.ContentEnd)
+            {
+                Text = selected.commentary
+            };
             SaveButton.IsEnabled = false;
         }
 

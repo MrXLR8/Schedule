@@ -62,7 +62,7 @@ namespace Builder
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
-            this.Visibility = Visibility.Hidden;
+            Visibility = Visibility.Hidden;
 
         }
 
@@ -102,7 +102,7 @@ namespace Builder
             Global.intervals = test.Clone();
             resetButton_Click(null, null);
             saveButton.IsEnabled = false;
-            this.Visibility = Visibility.Hidden;
+            Visibility = Visibility.Hidden;
             Global.selectedGroup.massReDraw();
 
         }

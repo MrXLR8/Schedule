@@ -7,7 +7,7 @@ namespace Server
 {
     public static class Function
     {
-        public static Argument getParametr(CommandLine input,string lookingfor)
+        public static Argument getParametr(CommandLine input, string lookingfor)
         {
             foreach (Argument a in input.arguments)
             {
@@ -27,7 +27,7 @@ namespace Server
             {
                 command = input.command;
             }
-            catch(NullReferenceException)
+            catch (NullReferenceException)
             {
                 return;
             }
@@ -50,22 +50,22 @@ namespace Server
                     whitelist(input);
                     break;
 
-                
+
 
             }
         }
 
         private static void startFunc(CommandLine input)
         {
-            int port=0;
+            int port = 0;
             try
             {
                 port = Convert.ToInt32(getParametr(input, "port").parametr);
             }
-            catch(FormatException) { Log.write("INPT", "Введен неверный порт для комманды start", ConsoleColor.Red); return; }
-            if(Server.SocketServer.status=="Отключен")
-            SocketServer.Initialize(port);
-            else { Log.write("SOCK", "Сервер уже запущен. Для остановки используйте команду stop",ConsoleColor.Red); }
+            catch (FormatException) { Log.write("INPT", "Введен неверный порт для комманды start", ConsoleColor.Red); return; }
+            if (Server.SocketServer.status == "Отключен")
+                SocketServer.Initialize(port);
+            else { Log.write("SOCK", "Сервер уже запущен. Для остановки используйте команду stop", ConsoleColor.Red); }
         }
 
         private static void stopFunc()
@@ -73,9 +73,9 @@ namespace Server
             if (Server.SocketServer.status == "Включен")
                 SocketServer.DeActivate();
             else { Log.write("SOCK", "Сервер не запущен. Для запуска используйте команду start port:номерпорта", ConsoleColor.Red); }
-           
+
         }
-#region help
+        #region help
 
         public static List<helpinfo> allhelp = new List<helpinfo>();
 
@@ -107,10 +107,10 @@ namespace Server
                 toAdd.command = "start";
                 toAdd.desc = "Запускает сервер на выбранном порте";
                 toAdd.arguments = new List<argumentinfo>();
-               
+
                 toAdd2.argument = "port";
                 toAdd2.parametr = "Обязательный параметр. Указывает порт на котором будет запущен сервер";
-               
+
                 toAdd.arguments.Add(toAdd2);
 
                 allhelp.Add(toAdd);
@@ -159,10 +159,10 @@ namespace Server
 
             foreach (helpinfo h in allhelp)
             {
-                
-                Console.WriteLine("Команда: " + h.command );
+
+                Console.WriteLine("Команда: " + h.command);
                 Console.WriteLine(h.desc);
-                
+
                 if (h.arguments.Count > 0)
 
                 {
@@ -205,7 +205,7 @@ namespace Server
 
         private static void whitelist(CommandLine input)
         {
-           
+
             IPAddress ip;
             try
             {
@@ -218,7 +218,7 @@ namespace Server
                 Builder.Global.SaveList(Builder.Global.whitelist, "whitelist.json");
                 Log.write("FILE", ip, "Добавлен в белый список");
             }
-            if(input.arguments[0].argument == "remove")
+            if (input.arguments[0].argument == "remove")
             {
 
                 if (Builder.Global.listRemove(Builder.Global.whitelist, ip))

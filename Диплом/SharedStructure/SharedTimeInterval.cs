@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace Builder
 {
 
-    public partial class IntervalCollection 
+    public partial class IntervalCollection
     {
-    
+
         public IntervalCollection() { }
 
         public int last { get { return timeList.Count; } }
@@ -19,7 +19,7 @@ namespace Builder
 
     }
 
-    public partial class Interval 
+    public partial class Interval
     {
         public int index;
         public TimeSpan start;
@@ -29,4 +29,4 @@ namespace Builder
 
     }
 }
-    
+

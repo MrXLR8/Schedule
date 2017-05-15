@@ -10,14 +10,14 @@ using System.Windows;
 namespace Builder
 {
 
-    public  abstract class Entry
+    public abstract class Entry
     {
         public string name { get; set; }
 
-        
+
         public string hash()
         {
-             return Data.Hash.GetMd5Hash(JsonConvert.SerializeObject(this));
+            return Data.Hash.GetMd5Hash(JsonConvert.SerializeObject(this));
         }
     }
 
@@ -56,14 +56,14 @@ namespace Builder
 
         public Lector() { }
 
-           }
+    }
     public partial class LectionSwap
     {
-        public string para { get; set; } 
-        public  DateTime period { get; set; }
+        public string para { get; set; }
+        public DateTime period { get; set; }
 
         public LectionSwap() { }
-      
+
 
 
     }
@@ -88,15 +88,15 @@ namespace Builder
         public int lectionInterval { get; set; } // номер пары в дне
         public ObservableCollection<LectionSwap> swapList { get; set; }
 
-        
+
         public string week;
 
-        
+
         public string day;
 
         public Lection() { }
 
-     
+
 
     }
 

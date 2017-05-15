@@ -14,16 +14,18 @@ namespace Builder
         public static string ip;
         public static int portNumber;
 
-         #region Schedule
+        #region Schedule
         public static bool compareSchedule(Schedule input)
         {
-            
+
 
             string hash = input.hash();
 
 
-            Command execute = new Command();
-            execute.type = "ScheduleHashVerify";
+            Command execute = new Command()
+            {
+                type = "ScheduleHashVerify"
+            };
             execute.arguments.Add(hash);
 
             Net.Initialize(ip, portNumber);
@@ -32,7 +34,7 @@ namespace Builder
 
             if (answer == "different") return true;
             else { return false; }
-            
+
         }
 
         public static bool sendSchedule(Schedule input)
@@ -40,8 +42,10 @@ namespace Builder
 
             string json = JsonConvert.SerializeObject(input);
 
-            Command execute = new Command();
-            execute.type = "ScheduleUpload";
+            Command execute = new Command()
+            {
+                type = "ScheduleUpload"
+            };
             execute.arguments.Add(Cipher.encryption(json));
             execute.arguments.Add(input.hash());
 
@@ -56,8 +60,10 @@ namespace Builder
 
         public static Schedule getSchedule()
         {
-            Command execute = new Command();
-            execute.type = "ScheduleDownload";
+            Command execute = new Command()
+            {
+                type = "ScheduleDownload"
+            };
             Net.Initialize(ip, portNumber);
 
             string answer = Net.Send(JsonConvert.SerializeObject(execute));
@@ -81,9 +87,10 @@ namespace Builder
 
             string hash = input.hash();
 
-            Command execute = new Command();
-
-            execute.type = "GroupHashVerify";
+            Command execute = new Command()
+            {
+                type = "GroupHashVerify"
+            };
             execute.arguments.Add(input.name);
             execute.arguments.Add(hash);
 
@@ -98,10 +105,10 @@ namespace Builder
 
         public static List<String> GroupListDownload()
         {
-            Command execute = new Command();
-
-            execute.type = "GroupListDownload";
-
+            Command execute = new Command()
+            {
+                type = "GroupListDownload"
+            };
             Net.Initialize(ip, portNumber);
 
             string json = Net.Send(JsonConvert.SerializeObject(execute));
@@ -111,25 +118,27 @@ namespace Builder
                 return result;
             }
             catch (Exception) { return null; }
-            
+
         }
 
         public static Group GroupDownload(string groupName)
         {
-            Command execute = new Command();
-
-            execute.type = "GroupDownload";
+            Command execute = new Command()
+            {
+                type = "GroupDownload"
+            };
             execute.arguments.Add(groupName);
 
             Net.Initialize(ip, portNumber);
             try
             {
                 string json = Net.Send(JsonConvert.SerializeObject(execute));
-                
+
                 Command response = JsonConvert.DeserializeObject<Command>(json);
                 string decoded = Cipher.transcript(response.arguments[0]);
                 Group result = JsonConvert.DeserializeObject<Group>(decoded);
-                if (result.hash() == response.arguments[1]) {
+                if (result.hash() == response.arguments[1])
+                {
                     Global.intervals.timeList = JsonConvert.DeserializeObject<ObservableCollection<Interval>>(response.arguments[2]);
                     return result;
                 }

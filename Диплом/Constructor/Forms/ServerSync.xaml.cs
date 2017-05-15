@@ -36,7 +36,7 @@ namespace Builder
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
-            this.Visibility = Visibility.Hidden;
+            Visibility = Visibility.Hidden;
 
         }
 
@@ -54,32 +54,32 @@ namespace Builder
             {
                 test = Convert.ToInt32(port.Text);
             }
-            catch(FormatException)
+            catch (FormatException)
             {
                 port.Text = "0";
                 return;
             }
 
-            if (test <= 0) {port.Text = "0"; return; }
+            if (test <= 0) { port.Text = "0"; return; }
             if (test > 65535) { port.Text = "0"; return; }
 
             portNumber = test;
 
             checkBoth();
-;
+            ;
         }
 
         void checkBoth()
         {
             if (portNumber <= 0) { Check.IsEnabled = false; port.Text = "0"; return; }
             if (portNumber > 65535) { Check.IsEnabled = false; port.Text = "0"; return; }
-            if (string.IsNullOrWhiteSpace(ip)) {Check.IsEnabled = false; return; }
+            if (string.IsNullOrWhiteSpace(ip)) { Check.IsEnabled = false; return; }
 
             Check.IsEnabled = true;
 
             NetFunctions.ip = ip;
             NetFunctions.portNumber = portNumber;
-            
+
         }
         private void ip_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -90,23 +90,23 @@ namespace Builder
             {
                 value = Convert.ToInt32(target.Text);
             }
-            catch(FormatException) { return; }
-            if (value < 0 || value > 255) { target.Text="0"; return; }
+            catch (FormatException) { return; }
+            if (value < 0 || value > 255) { target.Text = "0"; return; }
 
             try
             {
-                
+
                 foreach (TextBox t in ips)
                 {
-                    var octat = Convert.ToInt32(t.Text);
+                    int octat = Convert.ToInt32(t.Text);
                     ip += octat;
                     ip += ".";
                 }
 
 
-                ip=ip.Remove(ip.Length-1);
+                ip = ip.Remove(ip.Length - 1);
                 checkBoth();
-                
+
             }
             catch (Exception) { }
         }

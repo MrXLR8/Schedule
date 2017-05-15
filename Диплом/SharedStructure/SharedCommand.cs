@@ -9,7 +9,7 @@ namespace Share
         public Command() { }
 
         public string type;
-        public List<string> arguments=new List<string>();
+        public List<string> arguments = new List<string>();
 
 
         public string toAnswer;

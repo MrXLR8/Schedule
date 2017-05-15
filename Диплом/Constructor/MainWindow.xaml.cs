@@ -1,32 +1,21 @@
-﻿
-using Microsoft.Win32;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Newtonsoft.Json;
-using System.Media;
 
 namespace Builder
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window,IDisposable
+    public partial class MainWindow : Window, IDisposable
     {
         System.Windows.Forms.NotifyIcon ni;
-        bool VIEWMODE { get { return Global.VIEWMODE; } set { Global.VIEWMODE = value; } }
+        bool VIEWMODE { get => Global.VIEWMODE; set => Global.VIEWMODE = value; }
 
         public ObservableCollection<LectionSwap> swapListToAdd = new ObservableCollection<LectionSwap>();
         public List<ListBox> days;
@@ -43,8 +32,9 @@ namespace Builder
             Global.intervalWindow = new IntervalsForm();
             Global.syncForm = new ServerSync();
             Global.syncGroupForm = new ServerSyncGroup();
+            Global.aboutForm = new About();
             Global.main = this;
-            
+
 
             #region Инициализая глобальных списков
 
@@ -55,12 +45,12 @@ namespace Builder
             Global.predmetList = new ObservableCollection<string>();
             Global.classList = new ObservableCollection<int>();
             Global.groupList = new ObservableCollection<Group>();
-                       #endregion
+            #endregion
 
             InitializeComponent();
 
             DataContext = this;
- 
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -75,15 +65,16 @@ namespace Builder
             dayInWeekCombo.ItemsSource = new string[] { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" };
             days = new List<ListBox>() { chMonday, chTuesday, chThursday, chWednesday, chTuesday, chFriday, chSaturday, zmMonday, zmTuesday, zmWednesday, zmThursday, zmFriday, zmSaturday };
 
-            try { 
-                   
-                    Schedule get;
-                    string encrypted = FileInteraction.openFile("last.schd");
-                    string decrypted = Cipher.transcript(encrypted);
-                    get = JsonConvert.DeserializeObject<Schedule>(decrypted);
-                    get.applyMe();
+            try
+            {
 
-                    
+                Schedule get;
+                string encrypted = FileInteraction.openFile("last.schd");
+                string decrypted = Cipher.transcript(encrypted);
+                get = JsonConvert.DeserializeObject<Schedule>(decrypted);
+                get.applyMe();
+
+
             }
             catch (Exception) { }
 
@@ -91,11 +82,11 @@ namespace Builder
             {
                 FileInteraction.loadNetSettings();
             }
-            catch(Exception) { }
+            catch (Exception) { }
 
-            #if VIEWMODE
-            VIEWMODE = true;
-            #endif
+#if VIEWMODE
+			VIEWMODE = true;
+#endif
 
             if (Global.VIEWMODE) ViewModeFunc();
 
@@ -108,7 +99,7 @@ namespace Builder
         }
 
 
-       void ViewModeFunc()
+        void ViewModeFunc()
         {
             Grid left = (Grid)LeftPanel.Parent;
             Grid right = (Grid)RightPanel.Parent;
@@ -119,26 +110,28 @@ namespace Builder
             Global.RefreshTimer = new System.Windows.Threading.DispatcherTimer();
             Global.RefreshTimer.Tick += new EventHandler(RefreshTimer_Tick);
             Global.RefreshTimer.Interval = new TimeSpan(0, 0, 60);         // REFRESH INTERVAL
-            //Global.RefreshTimer.Interval = new TimeSpan(6, 0, 0);
+                                                                           //Global.RefreshTimer.Interval = new TimeSpan(6, 0, 0);
             Global.RefreshTimer.Start();
 
             Grid holder = (Grid)MenuHold.Parent;
-            holder.RowDefinitions[1].Height = new GridLength(0); 
+            holder.RowDefinitions[1].Height = new GridLength(0);
 
-           left.Children.Add(Global.syncGroupForm);
+            left.Children.Add(Global.syncGroupForm);
             commentary.Visibility = Visibility.Visible;
 
             #region tray
 
-            var asdd = Resources;
-            ni= new System.Windows.Forms.NotifyIcon();
-            ni.Icon = new System.Drawing.Icon("Resources/AppICO.ico");
-            ni.Visible = true;
+
+            ni = new System.Windows.Forms.NotifyIcon()
+            {
+                Icon = new System.Drawing.Icon("Resources/AppICO.ico"),
+                Visible = true
+            };
             ni.DoubleClick +=
                 delegate (object sender, EventArgs args)
                 {
-                    this.Show();
-                    this.WindowState = System.Windows.WindowState.Normal;
+                    Show();
+                    WindowState = System.Windows.WindowState.Normal;
                 };
 
             StateChanged += Window_StateChanged;
@@ -149,17 +142,17 @@ namespace Builder
             {
                 Global.selectedGroup = Global.groupList[0];
             }
-            catch(ArgumentOutOfRangeException) { }
+            catch (ArgumentOutOfRangeException) { }
             //right.Children.Add(toAdd);
 
         }
 
         private async void RefreshTimer_Tick(object sender, EventArgs e)
         {
-            
+
             Global.RefreshTimer.IsEnabled = false;
-          var task= Task.Run(() => Tick());
-             Group Tick()
+            Task<Group> task = Task.Run(() => Tick());
+            Group Tick()
             {
                 {
                     try
@@ -170,9 +163,6 @@ namespace Builder
                             {
                                 if (NetFunctions.compareGroup(Global.selectedGroup))
                                 {
-                                   
-                                   
-
                                     return NetFunctions.GroupDownload(Global.selectedGroup.name);
                                 }
                             }
@@ -182,11 +172,11 @@ namespace Builder
                 }
                 return null;
             }
-            var downloaded = await task;
+            Group downloaded = await task;
             Global.RefreshTimer.IsEnabled = true;
             if (downloaded == null) return;
 
-            var notif = new NotificationWindow();
+            NotificationWindow notif = new NotificationWindow();
             notif.Show();
             Global.syncGroupForm.installOneGroup(downloaded);
             Global.selectedGroup.massReDraw();
@@ -216,13 +206,13 @@ namespace Builder
             Global.selectedGroup = (Group)GroupListBox.SelectedItem;
 
             Global.commentaryWindow?.Close();
-         //   Global.commentaryWindow = null;
+            //   Global.commentaryWindow = null;
 
             try
             {
                 Title = "Конструктор расписаний. Выбранная группа: " + Global.selectedGroup.name;
                 RightPanel.IsEnabled = true;
-             //   saveAsButton.IsEnabled = true;
+                //   saveAsButton.IsEnabled = true;
                 deleteGroupButton.IsEnabled = true;
                 Global.selectedGroup.massReDraw();
             }
@@ -232,7 +222,7 @@ namespace Builder
                 Global.resetForm();
                 deleteGroupButton.IsEnabled = false;
                 RightPanel.IsEnabled = false;
-              //  saveAsButton.IsEnabled = false;
+                //  saveAsButton.IsEnabled = false;
             }
         }
 
@@ -304,12 +294,13 @@ namespace Builder
                 int interval = ((Interval)timeCombo.SelectedItem).index;
                 string dayOfWeek = dayInWeekCombo.SelectedItem.ToString();
                 string weekType = radioPick();
-                Lection toAdd = new Lection(lection_name, interval, lector, classNumber);
-
-                toAdd.swapList = swapListToAdd;
+                Lection toAdd = new Lection(lection_name, interval, lector, classNumber)
+                {
+                    swapList = swapListToAdd
+                };
                 swapListToAdd = new ObservableCollection<LectionSwap>();
 
-                foreach(LectionSwap c in toAdd.swapList)
+                foreach (LectionSwap c in toAdd.swapList)
                 {
                     swapListToAdd.Add(c);
                 }
@@ -343,11 +334,11 @@ namespace Builder
         private void DeleteSelected_Click(object sender, RoutedEventArgs e)
         {
             Lection target = Global.selectedLection;
-            Week week=null;
+            Week week = null;
             if (target.week == "ch") week = Global.selectedGroup.chuslutel;
             if (target.week == "zm") week = Global.selectedGroup.znamenatel;
 
-            Day day=null;
+            Day day = null;
 
             switch (target.day)
             {
@@ -393,9 +384,9 @@ namespace Builder
 
         private void days_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
             ListBox caller = (ListBox)sender;
-            LectionControl picked = (LectionControl) caller.SelectedItem;
+            LectionControl picked = (LectionControl)caller.SelectedItem;
             if (picked != null)
             {
                 foreach (ListBox c in days)
@@ -414,7 +405,7 @@ namespace Builder
             }
         }
 
-       
+
 
 
         #region Кнопки нижней панели
@@ -433,27 +424,27 @@ namespace Builder
 
         private void SyncButton_Click(object sender, RoutedEventArgs e)
         {
-             Global.syncForm.Show();
+            Global.syncForm.Show();
             Global.syncForm.Activate();
         }
         private void openButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
             Schedule toSet = new Schedule();
             try
             {
 
                 string fileText = FileInteraction.openFile();
                 //toSet = Schedule.getSchedule(fileText);
-                toSet= Schedule.fillMe(fileText);
+                toSet = Schedule.fillMe(fileText);
                 toSet.applyMe();
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 MessageBox.Show("Не удалось занести данные с файла. Детали ошибки : \n" + exc.Message);
                 Data.reset();
             }
-            
+
 
         }
         private void saveAsButton_Click(object sender, RoutedEventArgs e)
@@ -477,25 +468,40 @@ namespace Builder
         private void Window_StateChanged(object sender, EventArgs e)
         {
             if (WindowState == System.Windows.WindowState.Minimized)
-                if(Visibility!=Visibility.Hidden)
-                    this.Hide();
-        //    base.OnStateChanged(e);
+                if (Visibility != Visibility.Hidden)
+                    Hide();
+            //    base.OnStateChanged(e);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if(ni!=null)
-            ni.Visible = false;
+            if (ni != null)
+                ni.Visible = false;
         }
 
         public void Dispose()
         {
-            
+            ni.Dispose();
+            Dispose();
+            GC.SuppressFinalize(this);
+        }
+
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Global.aboutForm.Show();
+            }
+            catch (Exception)
+            {
+                Global.aboutForm = new About();
+            }
+            Global.aboutForm.Activate();
         }
     }
-        
 
 
-    }
+
+}
 
 

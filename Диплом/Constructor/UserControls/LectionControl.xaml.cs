@@ -30,7 +30,7 @@ namespace Builder
         {
             InitializeComponent();
             Lection = input;
-            
+
         }
 
         public static readonly DependencyProperty lectionProperty =
@@ -38,8 +38,7 @@ namespace Builder
 
         public Lection Lection
         {
-            get { return (Lection)GetValue(lectionProperty); }
-            set { SetValue(lectionProperty, value); }
+            get => (Lection)GetValue(lectionProperty); set => SetValue(lectionProperty, value);
         }
 
 
@@ -60,13 +59,13 @@ namespace Builder
         private static void LectionChanged(DependencyObject sender,
    DependencyPropertyChangedEventArgs e)
         {
-            
+
             LectionControl window = (LectionControl)sender;
             window.pairIndexLabel.Content = window.Lection.lectionInterval;
 
-            window.startTimeLabel.Content = Global.SpanToString(Global.intervals.timeList[window.Lection.lectionInterval-1].start);
+            window.startTimeLabel.Content = Global.SpanToString(Global.intervals.timeList[window.Lection.lectionInterval - 1].start);
 
-            window.endTimeLabel.Content = Global.SpanToString(Global.intervals.timeList[window.Lection.lectionInterval-1].end);
+            window.endTimeLabel.Content = Global.SpanToString(Global.intervals.timeList[window.Lection.lectionInterval - 1].end);
 
             window.predmetLabel.Text = window.Lection.name;
 
@@ -74,7 +73,7 @@ namespace Builder
 
             window.classLabel.Text = window.Lection.auditory.ToString();
 
-            if(window.Lection.swapList.Count>0)
+            if (window.Lection.swapList.Count > 0)
             {
                 window.swapCountLabel.Content = window.Lection.swapList.Count.ToString();
                 window.swapButton.Visibility = Visibility.Visible;
@@ -91,8 +90,8 @@ namespace Builder
         private void swapButton_Click(object sender, RoutedEventArgs e)
         {
             ToolTip hint = swapButton.ToolTip as ToolTip;
-            
-            
+
+
         }
     }
 }

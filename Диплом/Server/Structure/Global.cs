@@ -8,17 +8,17 @@ using System.Text;
 
 namespace Builder
 {
-   public static class Global
+    public static class Global
     {
         public static Schedule MainSchedule;
 
-        public static List<IPAddress> blacklist=new List<IPAddress>();
+        public static List<IPAddress> blacklist = new List<IPAddress>();
         public static List<IPAddress> whitelist = new List<IPAddress>();
 
 
-        public static Group getGroup(Schedule input,string groupName)
+        public static Group getGroup(Schedule input, string groupName)
         {
-            foreach(Group g in MainSchedule.groupList)
+            foreach (Group g in MainSchedule.groupList)
             {
                 if (g.name == groupName) return g;
             }
@@ -34,7 +34,7 @@ namespace Builder
                 File.WriteAllText("last.schd", MainSchedule.json());
                 Log.write("FILE", "Расписание сохраненно в файл", ConsoleColor.Green);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 Log.write("FILE", "Не удалось записать новое расписание в файл last.schd", ConsoleColor.Red);
             }
@@ -52,7 +52,7 @@ namespace Builder
             }
             catch (Exception)
             {
-                Log.write("FILE", "Не удалось загрузить файл: " +filename, ConsoleColor.Red);
+                Log.write("FILE", "Не удалось загрузить файл: " + filename, ConsoleColor.Red);
             }
 
         }
@@ -68,9 +68,9 @@ namespace Builder
             return false;
         }
 
-        public static void listAdd(List<IPAddress> list,IPAddress ip)
+        public static void listAdd(List<IPAddress> list, IPAddress ip)
         {
-            if (isInList(list,ip)) return;
+            if (isInList(list, ip)) return;
 
             list.Add(ip);
         }
@@ -79,23 +79,23 @@ namespace Builder
         {
             foreach (IPAddress addr in list)
             {
-                if (addr.ToString() == ip.ToString()) { list.Remove(addr); return true; } 
+                if (addr.ToString() == ip.ToString()) { list.Remove(addr); return true; }
             }
             return false;
         }
 
         public static List<IPAddress> LoadList(string filename)
         {
-            List<IPAddress> result=new List<IPAddress>();
+            List<IPAddress> result = new List<IPAddress>();
             try
             {
                 string read = File.ReadAllText(filename);
 
                 List<string> readO = JsonConvert.DeserializeObject<List<string>>(read);
-                foreach(string s in readO)
+                foreach (string s in readO)
                 {
-                        result.Add(IPAddress.Parse(s));
- 
+                    result.Add(IPAddress.Parse(s));
+
                 }
                 return result;
             }
@@ -110,7 +110,7 @@ namespace Builder
         public static void SaveList(List<IPAddress> list, string filename)
         {
             List<string> towrite = new List<string>();
-            foreach(IPAddress addr in list)
+            foreach (IPAddress addr in list)
             {
                 towrite.Add(addr.ToString());
             }
@@ -121,7 +121,7 @@ namespace Builder
             }
             catch (Exception)
             {
-                Log.write("FILE", "Не удалось записать в файл "+filename, ConsoleColor.Red);
+                Log.write("FILE", "Не удалось записать в файл " + filename, ConsoleColor.Red);
             }
 
         }

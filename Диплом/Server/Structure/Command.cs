@@ -45,94 +45,102 @@ namespace Share
             }
         }
 
-        
+
         bool checkEmpty()
         {
             if (Global.MainSchedule == null || Global.MainSchedule.groupList.Count == 0)
             {
                 toAnswer = "empty";
-                Log.write(LOGTYPE,ip,"На сервере на загруженно рабочие расписание, или в нем отсуствуют группы!", ConsoleColor.Red);
-                return true; }
+                Log.write(LOGTYPE, ip, "На сервере на загруженно рабочие расписание, или в нем отсуствуют группы!", ConsoleColor.Red);
+                return true;
+            }
             return false;
         }
 
         #region schedule
 
-                public void ScheduleHashVerify()
-                {
-                     Log.write(LOGTYPE, ip, "Запросил сравнение актуальности расписаний");
+        public void ScheduleHashVerify()
+        {
+            Log.write(LOGTYPE, ip, "Запросил сравнение актуальности расписаний");
 
-                 if (checkEmpty()) { toAnswer = "different"; return; }
+            if (checkEmpty()) { toAnswer = "different"; return; }
 
 
-                    string myHash = Global.MainSchedule.hash();
-                    if (myHash == arguments[0]) { toAnswer = "same";
-                    Log.write(LOGTYPE, ip, "Полученное расписание идентично с серверным");
+            string myHash = Global.MainSchedule.hash();
+            if (myHash == arguments[0])
+            {
+                toAnswer = "same";
+                Log.write(LOGTYPE, ip, "Полученное расписание идентично с серверным");
             }
-                    else { toAnswer = "different";
+            else
+            {
+                toAnswer = "different";
                 Log.write(LOGTYPE, ip, "Полученное расписание отличается от серверного");
             }
 
 
-            
-                }
 
-                 public void ScheduleUpload()
-                {
-                    if(!Global.isInList(Global.whitelist,ip)) { Log.write(LOGTYPE, ip, "Отказано в загрузке расписания на сервер. Адрес не находиться в белом списке",ConsoleColor.Yellow); toAnswer = "whitelist"; return; }
+        }
 
-                Log.write(LOGTYPE, ip, "Загружает свое расписание");
-                    Schedule recived;
-                    try
-                    {
-                        string decrypted = Cipher.transcript(arguments[0]);
-                        recived = JsonConvert.DeserializeObject<Schedule>(decrypted);
-                        if (recived == null || recived.groupList.Count == 0) throw new Exception();
-                        if(recived.hash()!=arguments[1]) throw new Exception();
-                    }
-                    catch (Exception) {
-                         Log.write(LOGTYPE, ip, "Расписание не принято. Полученно некорректно, или не содержит групп",ConsoleColor.Red);
+        public void ScheduleUpload()
+        {
+            if (!Global.isInList(Global.whitelist, ip)) { Log.write(LOGTYPE, ip, "Отказано в загрузке расписания на сервер. Адрес не находиться в белом списке", ConsoleColor.Yellow); toAnswer = "whitelist"; return; }
 
-                         toAnswer = "bad";
-                        return;
-                    }
+            Log.write(LOGTYPE, ip, "Загружает свое расписание");
+            Schedule recived;
+            try
+            {
+                string decrypted = Cipher.transcript(arguments[0]);
+                recived = JsonConvert.DeserializeObject<Schedule>(decrypted);
+                if (recived == null || recived.groupList.Count == 0) throw new Exception();
+                if (recived.hash() != arguments[1]) throw new Exception();
+            }
+            catch (Exception)
+            {
+                Log.write(LOGTYPE, ip, "Расписание не принято. Полученно некорректно, или не содержит групп", ConsoleColor.Red);
 
-                    Global.SaveSchedule(recived);
-                    Log.write(LOGTYPE, ip, "Установленно новое расписание. Количество групп: " + recived.groupList.Count, ConsoleColor.Green);
-                    Log.write(LOGTYPE, "Создано на ПК :" + recived.pcName, ConsoleColor.Green);
-                    toAnswer = "accepted";
+                toAnswer = "bad";
+                return;
+            }
 
-                }
+            Global.SaveSchedule(recived);
+            Log.write(LOGTYPE, ip, "Установленно новое расписание. Количество групп: " + recived.groupList.Count, ConsoleColor.Green);
+            Log.write(LOGTYPE, "Создано на ПК :" + recived.pcName, ConsoleColor.Green);
+            toAnswer = "accepted";
 
-                public void ScheduleDownload()
-                {
-                     Log.write(LOGTYPE, ip, "Запросил загрузку расписания с сервера");
-                try
-                    {
+        }
+
+        public void ScheduleDownload()
+        {
+            Log.write(LOGTYPE, ip, "Запросил загрузку расписания с сервера");
+            try
+            {
 
                 if (checkEmpty()) { return; }
 
                 string json = JsonConvert.SerializeObject(Global.MainSchedule);
-                        string hash = Global.MainSchedule.hash();
-                        string encrypt = Cipher.encryption(json);
+                string hash = Global.MainSchedule.hash();
+                string encrypt = Cipher.encryption(json);
 
-                        Command answer = new Command();
-                        answer.type = "ScheduleDownload";
-                        answer.arguments.Add(encrypt);
-                        answer.arguments.Add(hash);
-                        toAnswer = JsonConvert.SerializeObject(answer);
-                    }
-                    catch (Exception)
-                    {
-                     Log.write(LOGTYPE, ip, "Расписание не удалось отправить!",ConsoleColor.Red);
-                    toAnswer = "bad";
-                        return;
-                    }
+                Command answer = new Command()
+                {
+                    type = "ScheduleDownload"
+                };
+                answer.arguments.Add(encrypt);
+                answer.arguments.Add(hash);
+                toAnswer = JsonConvert.SerializeObject(answer);
+            }
+            catch (Exception)
+            {
+                Log.write(LOGTYPE, ip, "Расписание не удалось отправить!", ConsoleColor.Red);
+                toAnswer = "bad";
+                return;
+            }
 
-                Log.write(LOGTYPE, ip, "Расписание переданно клиенту",ConsoleColor.Green);
+            Log.write(LOGTYPE, ip, "Расписание переданно клиенту", ConsoleColor.Green);
 
 
-                }
+        }
 
         #endregion
 
@@ -142,28 +150,30 @@ namespace Share
         public void GroupHashVerify()
         {
             // группа 0. хеш 1
-            Log.write(LOGTYPE, ip, "Запросил сравнение актуальности группы "+arguments[0],ConsoleColor.Gray);
+            Log.write(LOGTYPE, ip, "Запросил сравнение актуальности группы " + arguments[0], ConsoleColor.Gray);
 
-            if(checkEmpty()) {  return; }
+            if (checkEmpty()) { return; }
 
 
-            Group inside = Global.getGroup(Global.MainSchedule,arguments[0]);
+            Group inside = Global.getGroup(Global.MainSchedule, arguments[0]);
 
             if (inside == null)
             {
                 toAnswer = "noGroup";
-                Log.write(LOGTYPE, ip,string.Format("Группа ({0}) не найдена среди {1} групп", arguments[0], Global.MainSchedule.groupList.Count),ConsoleColor.Red);
+                Log.write(LOGTYPE, ip, string.Format("Группа ({0}) не найдена среди {1} групп", arguments[0], Global.MainSchedule.groupList.Count), ConsoleColor.Red);
             }
 
 
             string myHash = inside.hash();
-            if (myHash == arguments[1]) {
+            if (myHash == arguments[1])
+            {
                 toAnswer = "same";
-                Log.write(LOGTYPE, ip,"Группа "+ arguments[0]+" одинакова на обоих сторонах", ConsoleColor.Gray);
+                Log.write(LOGTYPE, ip, "Группа " + arguments[0] + " одинакова на обоих сторонах", ConsoleColor.Gray);
             }
-            else {
+            else
+            {
                 toAnswer = "different";
-                Log.write(LOGTYPE, ip,"Группа " + arguments[0] + " одинакова на обеих сторонах");
+                Log.write(LOGTYPE, ip, "Группа " + arguments[0] + " одинакова на обеих сторонах");
             }
 
 
@@ -173,11 +183,11 @@ namespace Share
         {
             Log.write(LOGTYPE, ip + "Запросил список всех групп", ConsoleColor.Gray);
 
-            if (checkEmpty()) {   return; }
+            if (checkEmpty()) { return; }
 
             List<string> groups = new List<string>();
 
-            foreach(Group g in Global.MainSchedule.groupList)
+            foreach (Group g in Global.MainSchedule.groupList)
             {
                 groups.Add(g.name);
             }
@@ -185,26 +195,28 @@ namespace Share
             string json = JsonConvert.SerializeObject(groups);
 
             toAnswer = json;
-            Log.write(LOGTYPE, ip, "Переслан список из " +groups.Count+ " групп для клиента", ConsoleColor.Gray);
+            Log.write(LOGTYPE, ip, "Переслан список из " + groups.Count + " групп для клиента", ConsoleColor.Gray);
         }
 
         public void GroupDownload()
         {
-            Log.write(LOGTYPE, ip,"Запросил загрузку группы: " + arguments[0], ConsoleColor.Gray);
+            Log.write(LOGTYPE, ip, "Запросил загрузку группы: " + arguments[0], ConsoleColor.Gray);
 
             if (checkEmpty()) { return; }
 
             Group wanted = Global.getGroup(Global.MainSchedule, arguments[0]);
-            if(wanted==null) { toAnswer = "noGroup"; Log.write(LOGTYPE, ip,string.Format("Группа ({0}) не найдена среди {1} групп", arguments[0], Global.MainSchedule.groupList.Count), ConsoleColor.Red); return; }
+            if (wanted == null) { toAnswer = "noGroup"; Log.write(LOGTYPE, ip, string.Format("Группа ({0}) не найдена среди {1} групп", arguments[0], Global.MainSchedule.groupList.Count), ConsoleColor.Red); return; }
 
             //группа 0, хеш 1
-            Command response = new Command();
-            response.type = "GroupDownload";
+            Command response = new Command()
+            {
+                type = "GroupDownload"
+            };
             response.arguments.Add(Cipher.encryption(JsonConvert.SerializeObject(wanted)));
             response.arguments.Add(wanted.hash());
             response.arguments.Add(JsonConvert.SerializeObject(Global.MainSchedule.intervals.timeList));
 
-           toAnswer = JsonConvert.SerializeObject(response);
+            toAnswer = JsonConvert.SerializeObject(response);
         }
 
 

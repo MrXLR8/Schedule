@@ -11,12 +11,12 @@ public partial class NotificationWindow : Window
 
         Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(() =>
         {
-            var workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
-            var transform = PresentationSource.FromVisual(this).CompositionTarget.TransformFromDevice;
-            var corner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
+            System.Drawing.Rectangle workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
+            System.Windows.Media.Matrix transform = PresentationSource.FromVisual(this).CompositionTarget.TransformFromDevice;
+            Point corner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
 
-            this.Left = corner.X - this.ActualWidth - 100;
-            this.Top = corner.Y - this.ActualHeight;
+            Left = corner.X - ActualWidth - 100;
+            Top = corner.Y - ActualHeight;
         }));
 
         SoundPlayer player = new SoundPlayer("Resources/notif.wav");
@@ -26,11 +26,11 @@ public partial class NotificationWindow : Window
 
     private void Storyboard_Completed(object sender, EventArgs e)
     {
-        this.Close();
+        Close();
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        this.Close();
+        Close();
     }
 }

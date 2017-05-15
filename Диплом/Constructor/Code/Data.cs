@@ -44,7 +44,7 @@ namespace Builder
             Global.prepodWindow.Close();
 
             Global.commentaryWindow?.Close();
-           // Global.commentaryWindow = null;
+            // Global.commentaryWindow = null;
 
             Global.intervalWindow.Close();
             Global.intervalWindow = new IntervalsForm();
@@ -63,8 +63,8 @@ namespace Builder
 
 
 
-       
-            
+
+
         }
 
 
@@ -76,7 +76,7 @@ namespace Builder
     {
 
 
-        
+
 
         public void fillMe()
         {
@@ -92,7 +92,7 @@ namespace Builder
         }
 
 
-            
+
         public void applyMe()
         {
 
@@ -107,7 +107,7 @@ namespace Builder
             Global.groupList = groupList;
 
             Global.syncGroupForm.groupCombo.SelectedItem = Global.selectedGroup?.name;
-     
+
             try
             {
                 Global.selectedGroup = Global.groupList[0];
@@ -116,7 +116,7 @@ namespace Builder
             catch (Exception) { }
             Global.fixItemSource();
         }
-        
+
 
 
     }

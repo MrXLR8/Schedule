@@ -12,11 +12,12 @@ namespace Builder
     public static partial class Data
     {
 
-         public class Hash {
+        public class Hash
+        {
 
-           private static MD5 md5Hash = MD5.Create();
+            private static MD5 md5Hash = MD5.Create();
 
-            public static string GetMd5Hash( string input)
+            public static string GetMd5Hash(string input)
             {
 
                 // Convert the input string to a byte array and compute the hash.
@@ -66,15 +67,15 @@ namespace Builder
 
     public partial class Schedule
     {
-        public Schedule() {}
+        public Schedule() { }
         public IntervalCollection intervals;
 
         public ObservableCollection<Lector> lectorList { get; set; }
-        public  ObservableCollection<string> predmetList { get; set; }
-        public  ObservableCollection<Group> groupList { get; set; }
-        public  ObservableCollection<int> classList { get; set; }
+        public ObservableCollection<string> predmetList { get; set; }
+        public ObservableCollection<Group> groupList { get; set; }
+        public ObservableCollection<int> classList { get; set; }
 
-      
+
 
 
         public string pcName;
@@ -86,7 +87,7 @@ namespace Builder
             if (string.IsNullOrWhiteSpace(_Encodedjson)) throw new Exception("Файл не прочитан, или его содержимое пустое");
             string _json = Cipher.transcript(_Encodedjson);
 
-            Schedule newone =JsonConvert.DeserializeObject<Schedule>(_json);
+            Schedule newone = JsonConvert.DeserializeObject<Schedule>(_json);
 
             return newone;
         }
@@ -101,6 +102,6 @@ namespace Builder
 
     }
 
-  
+
 
 }

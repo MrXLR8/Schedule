@@ -58,13 +58,13 @@ namespace Builder
             Saturday.reDraw();
         }
     }
-    public partial class Group: Entry
+    public partial class Group : Entry
     {
         public Group(string _name)
         {
             chuslutel = new Week("ch");
             znamenatel = new Week("zm");
-            
+
             name = _name;
             commentary = "";
         }
@@ -72,9 +72,10 @@ namespace Builder
         bool allowNewTemp = true;
         public void massReDraw()
         {
-            TextRange toSet = new TextRange(Global.main.commentary.Document.ContentStart, Global.main.commentary.Document.ContentEnd);
-            toSet.Text = Global.selectedGroup.commentary;
-
+            TextRange toSet = new TextRange(Global.main.commentary.Document.ContentStart, Global.main.commentary.Document.ContentEnd)
+            {
+                Text = Global.selectedGroup.commentary
+            };
             if (allowNewTemp)
             {
                 allowNewTemp = false;
@@ -93,7 +94,7 @@ namespace Builder
 
     }
 
-    
+
 
 
     public partial class Lector : Entry
@@ -149,15 +150,15 @@ namespace Builder
                 return result;
             }
         }
-       public override string ToString()
+        public override string ToString()
         {
-          return periodString+" ["+para+"]";
+            return periodString + " [" + para + "]";
         }
 
 
     }
 
-    public partial class Day: Entry
+    public partial class Day : Entry
     {
         public Day(string _name, string weekParent)
         {
@@ -174,7 +175,7 @@ namespace Builder
         }
         public void add(Lection _input)
         {
-            
+
             Lection duplicate;
             duplicate = gotDuplicate(_input.lectionInterval);
             if (duplicate != null) // если в дне уже есть пара в этом интервале
@@ -184,18 +185,18 @@ namespace Builder
                 duplicate.lector = _input.lector;
                 duplicate.name = _input.name;
                 duplicate.swapList = _input.swapList;
-                duplicate.setParents(week,name);
+                duplicate.setParents(week, name);
             }
-            else { _input.setParents(week, name);  lectionList.Add(_input);  }
+            else { _input.setParents(week, name); lectionList.Add(_input); }
 
 
-             var look = lectionList.OrderBy(s => s.lectionInterval);
+            IOrderedEnumerable<Lection> look = lectionList.OrderBy(s => s.lectionInterval);
             lectionList = Collection.ToCollectionFromNum<Lection>(look);
             reDraw();
 
         }
 
-        Lection gotDuplicate (int look)
+        Lection gotDuplicate(int look)
         {
             foreach (Lection c in lectionList)
             {
@@ -204,12 +205,12 @@ namespace Builder
             return null;
         }
 
-       public void reDraw()
+        public void reDraw()
         {
             try
             {
                 ObservableCollection<LectionControl> toShow = new ObservableCollection<LectionControl>();
-      
+
                 foreach (Lection c in lectionList)
                 {
                     try
@@ -219,13 +220,13 @@ namespace Builder
                     catch (Exception)
                     {
                         lectionList.Remove(c);
- 
+
                     }
                 }
 
-            var list = (ListBox)Global.main.FindName(lookname);
-            list.ItemsSource = toShow;
-            list.Items.Refresh();
+                ListBox list = (ListBox)Global.main.FindName(lookname);
+                list.ItemsSource = toShow;
+                list.Items.Refresh();
             }
             catch (InvalidOperationException)
             {
@@ -248,7 +249,7 @@ namespace Builder
             swapList = new ObservableCollection<LectionSwap>();
         }
 
-        public void setParents(string weekname,string dayname)
+        public void setParents(string weekname, string dayname)
         {
             day = dayname;
             week = weekname;
@@ -257,8 +258,10 @@ namespace Builder
         public Lection Clone()
         {
             Lection toReturn;
-            toReturn = new Lection(name, lectionInterval, lector, auditory);
-            toReturn.swapList = swapList;
+            toReturn = new Lection(name, lectionInterval, lector, auditory)
+            {
+                swapList = swapList
+            };
             return toReturn;
         }
 

@@ -1,4 +1,4 @@
-﻿ using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace Builder
 {
-   public static class FileInteraction
+    public static class FileInteraction
     {
         public static string filePath;
         public static string fileName;
 
-        private static SaveFileDialog saveFileDialog=new SaveFileDialog();
+        private static SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-        private static OpenFileDialog openFileDialog=new OpenFileDialog();
+        private static OpenFileDialog openFileDialog = new OpenFileDialog();
 
         public static bool saveToFile(string toSave)
         {
@@ -50,12 +50,12 @@ namespace Builder
             try
             {
 
-                    fileName = System.IO.Path.GetFileName(path);
-                    filePath = saveFileDialog.FileName;
-                    File.WriteAllText(path, toSave);
+                fileName = System.IO.Path.GetFileName(path);
+                filePath = saveFileDialog.FileName;
+                File.WriteAllText(path, toSave);
 
-                    Global.setSaveButton();
-                    return true;
+                Global.setSaveButton();
+                return true;
             }
             catch (Exception)
             {
@@ -80,7 +80,7 @@ namespace Builder
             {
                 return false;
             }
-            }
+        }
 
         public static string openFile()
         {
@@ -90,8 +90,8 @@ namespace Builder
                 openFileDialog.DefaultExt = "schd";
                 if (openFileDialog.ShowDialog() == true)
                 {
-                    
-                    filePath =openFileDialog.FileName;
+
+                    filePath = openFileDialog.FileName;
                     fileName = System.IO.Path.GetFileName(openFileDialog.FileName);
                     Global.setSaveButton();
                     return File.ReadAllText(filePath);
@@ -116,10 +116,10 @@ namespace Builder
             try
             {
 
-                     filePath = path;
-                    fileName = System.IO.Path.GetFileName(path);
-                    Global.setSaveButton();
-                    return File.ReadAllText(filePath);
+                filePath = path;
+                fileName = System.IO.Path.GetFileName(path);
+                Global.setSaveButton();
+                return File.ReadAllText(filePath);
 
             }
             catch (Exception)
@@ -139,21 +139,23 @@ namespace Builder
 
         public static void saveNetSettings()
         {
-            NetSettings toSave = new NetSettings();
-            toSave.ip = NetFunctions.ip;
-            toSave.port = NetFunctions.portNumber;
+            NetSettings toSave = new NetSettings()
+            {
+                ip = NetFunctions.ip,
+                port = NetFunctions.portNumber
+            };
             string json = JsonConvert.SerializeObject(toSave);
             try
             {
                 File.WriteAllText("netSettings.json", json);
             }
-            catch(Exception) {}
+            catch (Exception) { }
         }
 
         public static void loadNetSettings()
         {
             string json = File.ReadAllText("netSettings.json");
-            NetSettings loaded= JsonConvert.DeserializeObject<NetSettings>(json); 
+            NetSettings loaded = JsonConvert.DeserializeObject<NetSettings>(json);
 
             NetFunctions.ip = loaded.ip;
             NetFunctions.portNumber = loaded.port;

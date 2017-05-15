@@ -16,7 +16,7 @@ namespace Builder
     {
 
 
-        public static bool VIEWMODE=false;
+        public static bool VIEWMODE = false;
 
         public static UIElement getFromGrid(Grid _toLook, int column, int row)
         {
@@ -33,8 +33,8 @@ namespace Builder
             if (input.Minutes < 10) { startM = "0" + input.Minutes; } else { startM = input.Minutes.ToString(); };
 
             return startH + ":" + startM;
-        
-    }
+
+        }
 
         public static void resetForm()
         {
@@ -45,7 +45,7 @@ namespace Builder
 
             setEdits(null);
 
-         
+
         }
 
         public static void setEdits(Lection input)
@@ -54,14 +54,14 @@ namespace Builder
             {
                 Lector pickLector(Lector search)
                 {
-                    foreach(Lector l in main.lectorCombo.ItemsSource)
+                    foreach (Lector l in main.lectorCombo.ItemsSource)
                     {
                         if (l.lastName == search.lastName)
 
                             if (l.middleName == search.middleName)
                                 if (l.name == l.name)
                                     return l;
-                        
+
                     }
                     return null;
                 }
@@ -69,10 +69,10 @@ namespace Builder
                 main.lectorCombo.SelectedItem = pickLector(input.lector);
                 main.paraCombo.SelectedItem = input.name;
                 main.classCombo.SelectedItem = input.auditory;
-                main.timeCombo.SelectedItem = Global.intervals.timeList[input.lectionInterval-1];
+                main.timeCombo.SelectedItem = Global.intervals.timeList[input.lectionInterval - 1];
 
                 main.swapListToAdd.Clear();
-             //   main.swapGrid.ItemsSource = null;
+                //   main.swapGrid.ItemsSource = null;
                 foreach (LectionSwap c in input.swapList)
                 {
                     main.swapListToAdd.Add(c);
@@ -80,9 +80,9 @@ namespace Builder
                 main.swapGrid.ItemsSource = main.swapListToAdd;
 
 
-                
 
-                
+
+
 
                 switch (input.week)
                 {
@@ -135,7 +135,7 @@ namespace Builder
                 main.swapGrid.SelectedItem = null;
                 main.predmetSwapCombo.SelectedItem = null;
                 main.dayInWeekCombo.SelectedItem = null;
-                
+
             }
 
         }
@@ -168,6 +168,7 @@ namespace Builder
         public static CommentaryForm commentaryWindow;
         public static ServerSync syncForm;
         public static ServerSyncGroup syncGroupForm;
+        public static About aboutForm;
 
         public static DispatcherTimer RefreshTimer;
 
@@ -208,7 +209,7 @@ namespace Builder
         {
             ObservableCollection<T> output = new ObservableCollection<T>();
 
-            foreach (T c in     _input)
+            foreach (T c in _input)
             {
                 output.Add(c);
             }

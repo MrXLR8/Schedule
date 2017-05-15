@@ -97,7 +97,7 @@ namespace Builder
                 
                 foreach (TextBox t in ips)
                 {
-                    var octat = Convert.ToInt32(t.Text);
+                    int octat = Convert.ToInt32(t.Text);
                     ip += octat;
                     ip += ".";
                 }
@@ -159,7 +159,7 @@ namespace Builder
         {
             ObservableCollection<string> Ingrouplist = null;
             Status.Text = "[Идет обновление списка]";
-            var task=Task.Run(() => Load());
+            Task<string> task =Task.Run(() => Load());
             Status.Text = await task;
             
             if(Ingrouplist==null) { groupCombo.Items.Clear(); return; }

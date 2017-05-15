@@ -16,13 +16,13 @@ namespace Builder
         public static IPEndPoint ipEndPoint;
 
         public static Socket socket;
-        public static void Initialize(string ipv4,int port)
+        public static void Initialize(string ipv4, int port)
         {
             FileInteraction.saveNetSettings();
             ipHost = Dns.GetHostEntry("localhost");
             ipAddr = IPAddress.Parse(ipv4); //Куда мы будем отправлять
             ipEndPoint = new IPEndPoint(ipAddr, port); // Обєкт-цель
-            
+
         }
         public static bool connect()
         {
@@ -36,22 +36,22 @@ namespace Builder
         {
 
 
-                byte[] responseBytes = new byte[Int32.MaxValue / 100]; // Буфер для получения данных
-                int responseBytesCount;  // Количество байтов которые получим
+            byte[] responseBytes = new byte[Int32.MaxValue / 100]; // Буфер для получения данных
+            int responseBytesCount;  // Количество байтов которые получим
 
-                if (socket == null||socket.Connected==false) connect();// Соединяем сокет с удаленной точкой
+            if (socket == null || socket.Connected == false) connect();// Соединяем сокет с удаленной точкой
 
-                
 
-                byte[] msg = Encoding.UTF8.GetBytes(mess); // сообщение для отправки в байтомов виде
-                socket.Send(msg); // Отправляем данные через сокет
 
-                System.Diagnostics.Debug.Write("\nОтправил");
+            byte[] msg = Encoding.UTF8.GetBytes(mess); // сообщение для отправки в байтомов виде
+            socket.Send(msg); // Отправляем данные через сокет
 
-                responseBytesCount = socket.Receive(responseBytes); // Получаем ответ от сервера и кол-во байтов
+            System.Diagnostics.Debug.Write("\nОтправил");
 
-                Stop();
-                
+            responseBytesCount = socket.Receive(responseBytes); // Получаем ответ от сервера и кол-во байтов
+
+            Stop();
+
             string result = Encoding.UTF8.GetString(responseBytes, 0, responseBytesCount);
 
             if (result == "blacklist") { MessageBox.Show("Ваш IP-адресс находиться в черном списке на сервере"); Global.RefreshTimer.IsEnabled = false; }

@@ -14,7 +14,7 @@ namespace Server
             write(category, info, ConsoleColor.Gray);
         }
 
-        public static void write(string category, string info,ConsoleColor color)
+        public static void write(string category, string info, ConsoleColor color)
         {
             if (string.IsNullOrEmpty(filename)) formFile();
             string fileoutput;
@@ -28,7 +28,7 @@ namespace Server
 
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("(" + category+") ");
+            Console.Write("(" + category + ") ");
 
             Console.ForegroundColor = color;
             Console.WriteLine(info);
@@ -44,19 +44,19 @@ namespace Server
         {
             if (string.IsNullOrEmpty(filename)) formFile();
             string fileoutput;
-            fileoutput = string.Format("[{0}] ({1}): {2}", DateTime.Now, category,ip + " "+ info);
+            fileoutput = string.Format("[{0}] ({1}): {2}", DateTime.Now, category, ip + " " + info);
 
-            string DateOutput= DateTime.Now.ToString();
+            string DateOutput = DateTime.Now.ToString();
             string IPOutput = ip.ToString();
 
-            Console.ForegroundColor=ConsoleColor.DarkYellow;
-            Console.Write("["+DateOutput+"] ");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("[" + DateOutput + "] ");
 
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("(" + category + ") ");
 
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.Write("{"+IPOutput+"}: ");
+            Console.Write("{" + IPOutput + "}: ");
 
             Console.ForegroundColor = color;
             Console.WriteLine(info);
@@ -72,7 +72,7 @@ namespace Server
 
 
 
-            public static void formFile()
+        public static void formFile()
         {
             try
             {
@@ -83,10 +83,10 @@ namespace Server
             }
             catch (Exception)
             {
-                filename = "SCHD_SERVER_(" + DateTime.Now.Month + "_" + DateTime.Now.Day + "_" + DateTime.Now.Hour+")";
-                Log.write("FILE", "Не удалось сформировать файл. Записываю лог в файл в корне программы: "+filename, ConsoleColor.Red);
+                filename = "SCHD_SERVER_(" + DateTime.Now.Month + "_" + DateTime.Now.Day + "_" + DateTime.Now.Hour + ")";
+                Log.write("FILE", "Не удалось сформировать файл. Записываю лог в файл в корне программы: " + filename, ConsoleColor.Red);
             }
-           
+
         }
     }
 }

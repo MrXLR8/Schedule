@@ -38,8 +38,7 @@ namespace Builder
 
         public Interval time
         {
-            get { return (Interval)GetValue(TimeProperty); }
-            set { SetValue(TimeProperty, value); }
+            get => (Interval)GetValue(TimeProperty); set => SetValue(TimeProperty, value);
         }
 
 
@@ -47,11 +46,9 @@ namespace Builder
 
         public voidMethod checkMethod
         {
-            get { return (voidMethod)GetValue(checkMethodProperty); }
-            set { SetValue(checkMethodProperty, value); }
-
+            get => (voidMethod)GetValue(checkMethodProperty); set => SetValue(checkMethodProperty, value);
         }
-        
+
 
 
 
@@ -70,7 +67,7 @@ namespace Builder
             window.endMText.Text = window.time.end.Minutes.ToString();
 
             window.checkMethod?.Invoke(window);
-            
+
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -81,12 +78,12 @@ namespace Builder
 
         private void TextChanged(object sender, TextChangedEventArgs e)
         {
-            string senderText = ((TextBox)sender).Text; 
+            string senderText = ((TextBox)sender).Text;
             if (!string.IsNullOrEmpty(startHText.Text) && !string.IsNullOrEmpty(startMText.Text) && !string.IsNullOrEmpty(endHText.Text) && !string.IsNullOrEmpty(endMText.Text))
             {
-                if(((TextBox)sender).Name.Last()=='H')
+                if (((TextBox)sender).Name.Last() == 'H')
                 {
-                    if(Convert.ToInt32(senderText)>23)
+                    if (Convert.ToInt32(senderText) > 23)
                     {
                         ((TextBox)sender).Clear();
                         return;

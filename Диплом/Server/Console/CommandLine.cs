@@ -7,7 +7,7 @@ namespace Server
 {
     public class CommandLine
     {
-        const string LOGTYPE="INPT";
+        const string LOGTYPE = "INPT";
 
         public string command;
         public Argument[] arguments;
@@ -16,8 +16,8 @@ namespace Server
         {
 
             string input = Console.ReadLine();
-            string[] raw= input.ToLower().Split(' ');
-            File.AppendAllText(Log.filename, "["+DateTime.Now+"] >>>>" + input + Environment.NewLine);
+            string[] raw = input.ToLower().Split(' ');
+            File.AppendAllText(Log.filename, "[" + DateTime.Now + "] >>>>" + input + Environment.NewLine);
             arguments = new Argument[10];
             command = raw[0];
 
@@ -39,13 +39,13 @@ namespace Server
             }
 
             string checkSTR = check();
-            if(checkSTR == "parametr")
+            if (checkSTR == "parametr")
             {
                 Log.write(LOGTYPE, "Команда " + command + " не выполнена. Ошибка ввода аргументов", ConsoleColor.Yellow);
                 return null;
-                
+
             }
-            else if(checkSTR=="nocommand")
+            else if (checkSTR == "nocommand")
             {
                 Log.write(LOGTYPE, "Комманда " + command + " не существует", ConsoleColor.Yellow);
                 return null;
@@ -62,7 +62,7 @@ namespace Server
                 case "stop": return "good";
                 case "help": return "good";
                 case "blacklist":
-                    if (getParametr("add") != null||getParametr("remove")!=null) return "good"; else { return "parametr"; };
+                    if (getParametr("add") != null || getParametr("remove") != null) return "good"; else { return "parametr"; };
                 case "whitelist":
                     if (getParametr("add") != null || getParametr("remove") != null) return "good"; else { return "parametr"; };
             }
@@ -71,10 +71,10 @@ namespace Server
 
         public Argument getParametr(string lookingfor)
         {
-            foreach(Argument a in arguments)
+            foreach (Argument a in arguments)
             {
-                
-                if(a?.argument==lookingfor)
+
+                if (a?.argument == lookingfor)
                 {
                     return a;
                 }

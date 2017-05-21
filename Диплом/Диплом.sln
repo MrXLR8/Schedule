@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Constructor", "Constructor\Constructor.csproj", "{8B8F19F7-E15D-4AF8-9C74-685EA5E6BE91}"
 EndProject
@@ -16,6 +16,9 @@ EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedStructure", "SharedStructure\SharedStructure.shproj", "{45420DD6-7F62-45B8-A25E-F75D065D6711}"
 EndProject
 Global
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedStructure\SharedStructure.projitems*{45420dd6-7f62-45b8-a25e-f75d065d6711}*SharedItemsImports = 13
 		SharedStructure\SharedStructure.projitems*{8b8f19f7-e15d-4af8-9c74-685ea5e6be91}*SharedItemsImports = 4

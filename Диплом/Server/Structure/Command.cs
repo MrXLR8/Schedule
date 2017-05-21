@@ -181,7 +181,7 @@ namespace Share
 
         public void GroupListDownload()
         {
-            Log.write(LOGTYPE, ip + "Запросил список всех групп", ConsoleColor.Gray);
+            Log.write(LOGTYPE, ip, "Запросил список всех групп", ConsoleColor.Gray);
 
             if (checkEmpty()) { return; }
 

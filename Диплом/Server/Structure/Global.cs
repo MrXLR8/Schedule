@@ -52,7 +52,7 @@ namespace Builder
             }
             catch (Exception)
             {
-                Log.write("FILE", "Не удалось загрузить файл: " + filename, ConsoleColor.Red);
+                Log.write("FILE", "Не удалось загрузить файл расписаний (расписание еще не установлено?): " + filename, ConsoleColor.Red);
             }
 
         }
@@ -101,7 +101,7 @@ namespace Builder
             }
             catch (Exception)
             {
-                Log.write("FILE", "Не прочитать файл: " + filename, ConsoleColor.Red);
+                Log.write("FILE", "Не удалось прочитать файл: " + filename, ConsoleColor.Red);
                 return new List<IPAddress>();
             }
 

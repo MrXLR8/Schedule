@@ -77,9 +77,11 @@ namespace Server
             try
             {
                 Directory.CreateDirectory("logs");
-                filename = "logs\\SCHD_Server_" + DateTime.Now + ".log";
+                
+                filename = @"logs/SCHD_Server_" + DateTime.Now.Month + "_" + DateTime.Now.Day + "_" + DateTime.Now.Hour + ".log";
                 filename = filename.Replace(' ', '_');
                 filename = filename.Replace(':', '.');
+          
             }
             catch (Exception)
             {

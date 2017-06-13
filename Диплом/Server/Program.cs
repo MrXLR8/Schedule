@@ -12,7 +12,7 @@ namespace Server
             string Version = "0.2";
 
             Log.formFile();
-            Log.write("LOG", "Лог запщуен");
+            Log.write("LOG", "Лог запщуен4");
             Console.Clear();
 
             Console.WriteLine("Добро пожаловать в приложение сервер для расписаний");

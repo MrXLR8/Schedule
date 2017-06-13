@@ -27,7 +27,6 @@ namespace Server
 
         public static void Initialize(int port)
         {
-
             Log.write(LOGTYPE, "Создаю сервер на порте: " + port);
 
             if (sListener != null)

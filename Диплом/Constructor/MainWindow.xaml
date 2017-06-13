@@ -452,7 +452,7 @@
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Sync.png" d:IsLocked="True"></Image>
                 </Button>
 
-                <Button Grid.Column="5" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Инструкция/Справка" x:Name="ManualButton" IsEnabled="True" >
+                <Button Grid.Column="5" Style="{StaticResource MenuButtonWithMargin}" ToolTip="Инструкция/Справка" x:Name="ManualButton" IsEnabled="True" Click="ManualButton_Click" >
                     <Image Style="{StaticResource ImageWithMargin}"  Source="img/Manual.png" d:IsLocked="True"></Image>
                 </Button>
                 <Button Grid.Column="6" Style="{StaticResource MenuButtonWithMargin}" ToolTip="О программе" x:Name="AboutButton" IsEnabled="True" Click="AboutButton_Click" >

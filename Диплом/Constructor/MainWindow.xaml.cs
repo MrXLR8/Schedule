@@ -498,6 +498,11 @@ namespace Builder
             }
             Global.aboutForm.Activate();
         }
+
+        private void ManualButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("User_Manual_UA.pdf");
+        }
     }
 
 

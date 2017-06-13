@@ -257,6 +257,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="User_Manual_UA.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Конструктор_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
